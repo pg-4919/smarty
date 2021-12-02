@@ -2,7 +2,7 @@ const discord = require("discord.js");
 const express = require("express");
 const fs = require("fs");
 
-const client = new discord.Client();
+const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES", "GUILD_VOICE_STATES" ]});
 client.on("ready", () => console.log("Logged in!"));
 
 const app = express();
