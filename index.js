@@ -20,7 +20,7 @@ client.on("ready", async () => {
 });
 
 client.on("interactionCreate", async interaction => {
-    if (message.channel.name === "news") {
+    if (interaction.channel.name === "news") {
         const admonishment = await interaction.reply({
             embeds: [
                 new discord.MessageEmbed()
