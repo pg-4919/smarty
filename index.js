@@ -20,6 +20,19 @@ client.on("ready", async () => {
 });
 
 client.on("interactionCreate", async interaction => {
+    if (message.channel.name === "news") {
+        const admonishment = await interaction.reply({
+            embeds: [
+                new discord.MessageEmbed()
+                    .setColor("ff0000")
+                    .setDescription(`Smarty commands cannot be used in news!`)
+                    .setTimestamp()
+                    .setFooter({ text: "This message will self destruct in 5 seconds." })
+            ],
+            ephemeral: true
+        });
+        return setTimeout(() => admonishment.delete(), 5 * 1000);
+    }
     if (interaction.isCommand()) client.commands.get(interaction.commandName).execute(interaction);
 });
 
@@ -34,20 +47,20 @@ client.on("messageCreate", async message => {
                             .setColor("ff0000")
                             .setDescription(`News is for news; to make a news post, mention @everyone or @here.`)
                             .setTimestamp()
-                            .setFooter({ text: "*This message will self destruct in 5 seconds.*", iconURL: message.author.avatarURL() })
+                            .setFooter({ text: "This message will self destruct in 5 seconds." })
                     ]
                 });
                 message.delete();
                 setTimeout(() => admonishment.delete(), 5 * 1000);
             } else {
-                const chat = message.guild.channels.cache.find(channel => channel.name === "chat")
+                const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
+                console.log(chat);
                 const webhooks = await chat.fetchWebhooks()
 
                 cloneHook = webhooks.find(webhook => webhook.name === "Smarty (DO NOT DELETE)");
 
                 if (typeof cloneHook === undefined) chat.createWebhook("Smarty (DO NOT DELETE)");
 
-                console.log(message.member.nickname || message.author.username);
                 cloneHook.send({
                     content: message.content,
                     username: message.member.nickname || message.author.username,
