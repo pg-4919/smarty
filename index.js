@@ -27,11 +27,10 @@ client.on("interactionCreate", async interaction => {
                     .setColor("ff0000")
                     .setDescription(`Smarty commands cannot be used in news!`)
                     .setTimestamp()
-                    .setFooter({ text: "This message will self destruct in 5 seconds." })
+                    .setFooter({ text: "woops it looks like bad stuff" })
             ],
             ephemeral: true
         });
-        return setTimeout(() => admonishment.delete(), 5 * 1000);
     }
     if (interaction.isCommand()) client.commands.get(interaction.commandName).execute(interaction);
 });
