@@ -1,5 +1,4 @@
 const token = "ODA5MTExMzAyMTk4MDAxNzI0.YCQVnw.ajR0sCVEVc8LVcMrjzMZ2GWJOvQ";
-const chatClone = "961765761238564935";
 const clientId = "809111302198001724";
 const guildId = "803315311663251537";
 
