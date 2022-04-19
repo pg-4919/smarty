@@ -32,11 +32,9 @@ client.on("messageCreate", async message => {
                     embeds: [
                         new discord.MessageEmbed()
                             .setColor("ff0000")
-                            .setDescription(`News is for news; to make a news post, mention @everyone or @here.
-                            
-        *This message will self destruct in 5 seconds.*`)
+                            .setDescription(`News is for news; to make a news post, mention @everyone or @here.`)
                             .setTimestamp()
-                            .setFooter({ text: "did a small brain", iconURL: message.author.avatarURL() })
+                            .setFooter({ text: "*This message will self destruct in 5 seconds.*", iconURL: message.author.avatarURL() })
                     ]
                 });
                 message.delete();
