@@ -1,6 +1,6 @@
-const token = "ODA5MTExMzAyMTk4MDAxNzI0.YCQVnw.ajR0sCVEVc8LVcMrjzMZ2GWJOvQ";
-const clientId = "809111302198001724";
-const guildId = "803315311663251537";
+const token = process.env.TOKEN;
+const clientId = process.env.CLIENT_ID;
+const guildId = process.env.GUILD_ID;
 
 const discord = require("discord.js");
 const client = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES] });
@@ -74,7 +74,7 @@ async function updateCommands() {
     const commandFiles = fs.readdirSync(`${__dirname}/commands`);
 
     for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
+        const command = require(`${__dirname}/commands/${file}`);
         client.commands.set(command.data.name, command);
         commands.push(command.data);
     }
