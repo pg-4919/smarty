@@ -50,7 +50,7 @@ client.on("messageCreate", async message => {
                     ]
                 });
                 message.delete();
-                setTimeout(() => admonishment.delete(), 5 * 1000);
+                setTimeout(() => admonishment.delete().catch(err => console.error(err)), 5 * 1000);
             } else {
                 const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
                 console.log(chat);
