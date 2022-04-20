@@ -3,7 +3,7 @@ const clientId = process.env.CLIENT_ID;
 const guildId = process.env.GUILD_ID;
 
 const discord = require("discord.js");
-const client = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_MESSAGES] });
+const client = new discord.Client({ intents: new discord.Intents(32767) });
 
 client.commands = new discord.Collection(); //command files
 client.states = new discord.Collection(); //game states (playing/not playing)
