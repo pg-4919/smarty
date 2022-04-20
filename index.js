@@ -60,7 +60,7 @@ client.on("messageCreate", async message => {
 
 client.on("channelPinsUpdate", async (channel, time) => {
     const pinnedMessages = await channel.messages.fetchPinned();
-    const latestPin = pinnedMessages.find(message => message.createdAt === time);
+    const latestPin = pinnedMessages.find(message => message.createdTimestamp == time);
     console.log(time);
     console.log(pinnedMessages);
     latestPin.reply("This is a test. Harry is a Homosexual.")
