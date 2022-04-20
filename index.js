@@ -13,9 +13,7 @@ client.data = new discord.Collection(); //game data/variables
 
 client.on("ready", async () => {
     await updateCommands();
-
     client.states.set("acronym", false);
-
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
 
@@ -36,43 +34,34 @@ client.on("interactionCreate", async interaction => {
 });
 
 client.on("messageCreate", async message => {
-    try {
-        if (message.author.id === client.user.id) return;
-        if (message.channel.name === "news") {
-            if (!message.mentions.everyone) {
-                const admonishment = await message.reply({
-                    embeds: [
-                        new discord.MessageEmbed()
-                            .setColor("ff0000")
-                            .setDescription(`News is for news; to make a news post, mention @everyone or @here.`)
-                            .setTimestamp()
-                            .setFooter({ text: "This message will self destruct in 5 seconds." })
-                    ]
-                });
-                message.delete();
-                setTimeout(() => admonishment.delete().catch(err => console.error(err)), 5 * 1000);
-            } else {
-                const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
-                console.log(chat);
-                const webhooks = await chat.fetchWebhooks()
+    if (message.author.id === client.user.id) return;
 
-                cloneHook = webhooks.find(webhook => webhook.name === "Smarty (DO NOT DELETE)");
-
-                if (typeof cloneHook === undefined) chat.createWebhook("Smarty (DO NOT DELETE)");
-
-                cloneHook.send({
-                    content: message.content,
-                    username: message.member.nickname || message.author.username,
-                    avatarURL: message.author.avatarURL(),
-                    allowedMentions: {
-                        parse: [ "users", "roles" ]
-                    }
-                });
-            }
+    if (message.channel.name === "news") {
+        if (!message.mentions.everyone) {
+            const admonishment = await message.reply({
+                embeds: [
+                    new discord.MessageEmbed()
+                        .setColor("ff0000")
+                        .setDescription(`News is for news; to make a news post, mention @everyone or @here.`)
+                        .setTimestamp()
+                        .setFooter({ text: "This message will self destruct in 5 seconds." })
+                ]
+            });
+            await message.delete();
+            setTimeout(() => admonishment.delete().catch(err => console.error(err)), 5 * 1000);
+        } else {
+            const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
+            const webhook = require("./utils/clone.js").clone(chat, message.member);
+            await webhook.send(message);
+            return await webhook.delete({ reason: "Ephemeral webhook deletion" });
         }
-    } catch (error) {
-        console.error(error);
     }
+});
+
+client.on("channelPinsUpdate", (channel, time) => {
+    const pinnedMessages = await channel.messages.fetchPinned();
+    const latestPin = pinnedMessages.find(message => message.createdAt === time);
+    latestPin.reply("This is a test. Harry is a Homosexual.")
 });
 
 client.login(token);
