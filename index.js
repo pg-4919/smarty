@@ -58,7 +58,7 @@ client.on("messageCreate", async message => {
     }
 });
 
-client.on("channelPinsUpdate", (channel, time) => {
+client.on("channelPinsUpdate", async (channel, time) => {
     const pinnedMessages = await channel.messages.fetchPinned();
     const latestPin = pinnedMessages.find(message => message.createdAt === time);
     latestPin.reply("This is a test. Harry is a Homosexual.")
