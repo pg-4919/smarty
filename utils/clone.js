@@ -1,6 +1,6 @@
 module.exports = {
     async clone(member, channel) {
-        const webhook = await channel.createWebhook(member.nickname || member.user.username, {
+        const webhook = await channel.createWebhook(member.nickname || member.user?.username || "Trump", {
             avatar: member.avatarURL(),
             reason: "Clone (web posts)"
         });
