@@ -8,12 +8,8 @@ module.exports = {
         .setDescription('Replies with Pong!')
         .toJSON(),
     async execute(interaction) {
-        const embed = new discord.MessageEmbed()
-            .setColor("#8d8d8d")
-            .setDescription(`🏓 Pong! Latency is ${Date.now() - interaction.createdTimestamp} ms.`)
-            .setTimestamp()
-            .setFooter({ text: "used /ping", iconURL: interaction.user.avatarURL() });
-
+        const embed = new require("../utils/embed.js")
+            .default(`🏓 Pong! Latency is ${Date.now() - interaction.createdTimestamp} ms.`, interaction.member, "used /ping");
         interaction.reply({ embeds: [embed]});
         return setTimeout(() => interaction.deleteReply(), 60 * 1000);
     }
