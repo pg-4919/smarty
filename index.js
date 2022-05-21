@@ -15,9 +15,6 @@ client.on("ready", async () => {
     await updateCommands();
     client.states.set("acronym", false);
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
-
-    const peizeRole = client.guilds.cache.get("803315311663251537").roles.cache.get("911061291140014100");
-    require(`${__dirname}/utils/rainbow.js`).rainbow(peizeRole);
 });
 
 client.on("interactionCreate", async interaction => {
