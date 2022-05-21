@@ -16,7 +16,7 @@ client.on("ready", async () => {
     client.states.set("acronym", false);
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 
-    const peizeRole = message.guild.roles.find("Peter", "name");
+    const peizeRole = client.guilds.find("NCI", "name").roles.find("Peter", "name");
     rainbow(peizeRole);
 });
 
