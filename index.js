@@ -99,7 +99,7 @@ async function updateCommands() {
 }
 
 function sleep(ms) {
-    return Promise((resolve, reject) => setTimeout(ms, resolve));
+    return new Promise((resolve, reject) => setTimeout(ms, resolve));
 }
 
 async function rainbow(role) {
