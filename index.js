@@ -17,7 +17,7 @@ client.on("ready", async () => {
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
 
-client.on("interactionCreate", async interaction => {
+/*client.on("interactionCreate", async interaction => {
     if (interaction.channel.name === "news") {
         const admonishment = await interaction.reply({
             embeds: [
@@ -31,7 +31,7 @@ client.on("interactionCreate", async interaction => {
         });
     }
     if (interaction.isCommand()) client.commands.get(interaction.commandName).execute(interaction);
-});
+});*/
 
 client.on("messageCreate", async message => {
     if (message.author.id === client.user.id) return;
