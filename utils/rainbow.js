@@ -13,11 +13,13 @@ function sleep(ms) {
     return new Promise((resolve, reject) => setTimeout(resolve, ms));
 }
 
-async function rainbow(role) {
-    while (true) {
-        for (let i = 0; i <= 360; i += 10) {
-            role.setColor(hslToHex(i, 100, 50));
-            await sleep(500); 
+module.exports = {
+    async rainbow(role) {
+        while (true) {
+            for (let i = 0; i <= 360; i += 10) {
+                role.setColor(hslToHex(i, 100, 50));
+                await sleep(500); 
+            }
         }
     }
 }
