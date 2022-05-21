@@ -15,6 +15,9 @@ client.on("ready", async () => {
     await updateCommands();
     client.states.set("acronym", false);
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
+
+    const peizeRole = message.guild.roles.find("Peter", "name");
+    rainbow(peizeRole);
 });
 
 client.on("interactionCreate", async interaction => {
@@ -92,5 +95,19 @@ async function updateCommands() {
         );
     } catch (error) {
         console.error(error);
+    }
+}
+
+function sleep(ms) {
+    return Promise((resolve, reject) => setTimeout(ms, resolve));
+}
+
+async function rainbow(role) {
+    const rainbow = [ "ff0000", "ff8000", "ffff00", "80ff00", "00ff00", "00ff80", "00ffff", "0080ff", "0000ff", "8000ff", "ff00ff", "ff0080" ];
+    while (true) {
+        for (const color of rainbow) {
+            role.setColor(color);
+            await sleep(750); 
+        }
     }
 }
