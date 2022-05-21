@@ -107,7 +107,7 @@ async function rainbow(role) {
     while (true) {
         for (const color of rainbow) {
             role.setColor(color);
-            await sleep(250); 
+            await sleep(25000000); 
         }
     }
 }
