@@ -17,7 +17,7 @@ module.exports = {
     async rainbow(role) {
         while (true) {
             for (let i = 0; i <= 360; i += 10) {
-                role.setColor(hslToHex(i, 100, 50));
+                await role.setColor(hslToHex(i, 100, 50));
                 await sleep(500); 
                 console.log(hslToHex(i, 100, 50));
             }
