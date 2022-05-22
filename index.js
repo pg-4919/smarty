@@ -12,12 +12,24 @@ client.players = new discord.Collection(); //game players
 client.data = new discord.Collection(); //game data/variables
 
 client.on("ready", async () => {
-    await updateCommands();
+    const fs = require("fs");
+
+    const commands = [];
+    const commandFiles = fs.readdirSync(`${__dirname}/commands`);
+
+    for (const file of commandFiles) {
+        const command = require(`${__dirname}/commands/${file}`);
+        client.commands.set(command.data.name, command);
+        commands.push(command.data);
+    }
+
+    client.application.commands.set(commands);
+
     client.states.set("acronym", false);
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
 
-/*client.on("interactionCreate", async interaction => {
+client.on("interactionCreate", async interaction => {
     if (interaction.channel.name === "news") {
         const admonishment = await interaction.reply({
             embeds: [
@@ -31,7 +43,7 @@ client.on("ready", async () => {
         });
     }
     if (interaction.isCommand()) client.commands.get(interaction.commandName).execute(interaction);
-});*/
+});
 
 client.on("messageCreate", async message => {
     if (message.author.id === client.user.id) return;
