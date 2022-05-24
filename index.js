@@ -30,18 +30,6 @@ client.on("ready", async () => {
 });
 
 client.on("interactionCreate", async interaction => {
-    if (interaction.channel.name === "news") {
-        const admonishment = await interaction.reply({
-            embeds: [
-                new discord.MessageEmbed()
-                    .setColor("ff0000")
-                    .setDescription(`Smarty commands cannot be used in news!`)
-                    .setTimestamp()
-                    .setFooter({ text: "woops it looks like bad stuff" })
-            ],
-            ephemeral: true
-        });
-    }
     if (interaction.isCommand()) client.commands.get(interaction.commandName).execute(interaction);
 });
 
@@ -49,19 +37,8 @@ client.on("messageCreate", async message => {
     if (message.author.id === client.user.id) return;
 
     if (message.channel.name === "news") {
-        if (!message.mentions.everyone) {
-            const admonishment = await message.reply({
-                embeds: [
-                    new discord.MessageEmbed()
-                        .setColor("ff0000")
-                        .setDescription(`News is for news; to make a news post, mention @everyone or @here.`)
-                        .setTimestamp()
-                        .setFooter({ text: "This message will self destruct in 5 seconds." })
-                ]
-            });
-            await message.delete();
-            setTimeout(() => admonishment.delete().catch(err => console.error(err)), 5 * 1000);
-        } else {
+        if (!message.mentions.everyone) await message.delete();
+        else {
             const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
             const webhook = await require("./utils/clone.js").clone(message.member, chat);
             await webhook.send(message);
