@@ -40,9 +40,7 @@ client.on("messageCreate", async message => {
         if (!message.mentions.everyone) await message.delete();
         else {
             const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
-            const webhook = await require("./utils/clone.js").clone(message.member, chat);
-            await webhook.send(message);
-            return await webhook.delete({ reason: "Ephemeral webhook deletion" });
+            const webhook = await require("./utils/clone.js").clone(message.member, chat, message);
         }
     }
 });
