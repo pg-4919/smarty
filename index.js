@@ -37,20 +37,19 @@ client.on("messageCreate", async message => {
     if (message.author.id === client.user.id) return;
 
     if (message.channel.name === "news") {
-        if (!message.mentions.everyone) await message.delete();
-        else {
-            const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
-            const webhook = await require("./utils/clone.js").clone(message.member, chat, message);
-        }
+        try {
+            if (!message.mentions.everyone) await message.delete();
+            else {
+                const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
+                const webhook = await require("./utils/clone.js").clone(message.member, chat, message);
+            }
+        } catch (err) console.log(err);
     }
 });
 
 client.on("channelPinsUpdate", async (channel, time) => {
     const pinnedMessages = await channel.messages.fetchPinned();
     const latestPin = pinnedMessages.find(message => message.createdTimestamp == time);
-    console.log(time);
-    console.log(pinnedMessages);
-    latestPin.reply("This is a test. Harry is a Homosexual.")
 });
 
 client.login(token);
