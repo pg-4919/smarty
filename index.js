@@ -43,7 +43,9 @@ client.on("messageCreate", async message => {
                 const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
                 const webhook = await require("./utils/clone.js").clone(message.member, chat, message);
             }
-        } catch (err) console.log(err);
+        } catch (err) {
+            console.log(err);
+        }
     }
 });
 
