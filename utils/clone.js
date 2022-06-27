@@ -7,7 +7,7 @@ module.exports = {
         const attachments = message.attachments.toJSON();
         
         await webhook.send({
-            attachments: attachments,
+            files: [...message.attachments.values()],
             content: message.content,
             username: member.displayName,
             avatarURL: member.displayAvatarURL(),
