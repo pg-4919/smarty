@@ -11,7 +11,7 @@ module.exports = {
             content: message.content,
             username: member.displayName,
             avatarURL: member.displayAvatarURL(),
-            allowedMentions: { parse: [ "everyone" ] }
+            allowedMentions: { parse: [] }
         });
     }
 }
