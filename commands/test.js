@@ -11,3 +11,4 @@ module.exports = {
         interaction.reply("The test succeeded. Id: 1");
     }
 }
+
