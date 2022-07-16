@@ -24,8 +24,9 @@ client.on("ready", async () => {
         commands.push(command.data);
     }
 
-    client.application.commands.set(commands);
-
+    client.application.commands.set([]);
+    client.guilds.cache.get("803315311663251537").commands.set(commands);
+    
     client.states.set("acronym", false);
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
