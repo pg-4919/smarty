@@ -53,7 +53,7 @@ client.on("channelPinsUpdate", async (channel, time) => {
     const latestPin = pinnedMessages.find(message => message.createdTimestamp == time);
 });
 
-client.login(token);
+client.login("ODA5MTExMzAyMTk4MDAxNzI0.GrwWKe.l5pMFjcnH4ieVn2IuJbftpRV4RFE7N-bg1ZOng");
 
 async function updateCommands() {
     const fs = require("fs");
