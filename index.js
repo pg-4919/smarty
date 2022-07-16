@@ -52,34 +52,7 @@ client.on("messageCreate", async message => {
 client.on("channelPinsUpdate", async (channel, time) => {
     const pinnedMessages = await channel.messages.fetchPinned();
     const latestPin = pinnedMessages.find(message => message.createdTimestamp == time);
+    console.log(latestPin)
 });
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GrwWKe.l5pMFjcnH4ieVn2IuJbftpRV4RFE7N-bg1ZOng");
-
-async function updateCommands() {
-    const fs = require("fs");
-
-    const commands = [];
-    const commandFiles = fs.readdirSync(`${__dirname}/commands`);
-
-    for (const file of commandFiles) {
-        const command = require(`${__dirname}/commands/${file}`);
-        client.commands.set(command.data.name, command);
-        commands.push(command.data);
-    }
-
-    const { REST } = require("@discordjs/rest");
-    const { Routes } = require("discord-api-types/v9");
-
-    const rest = new REST({ version: "9" }).setToken(token);
-
-    try {
-        await rest.put(
-            Routes.applicationGuildCommands(clientId, guildId),
-            { body: commands },
-        );
-    } catch (error) {
-        console.error(error);
-    }
-}
-
