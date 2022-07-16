@@ -38,7 +38,7 @@ client.on("messageCreate", async message => {
     if (message.channel.name === "news") {
         try {
             const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
-            const webhook = await require("./utils/clone.js").clone(message.member, chat, message);
+            await require("./utils/clone.js").clone(message.member, chat, message);
             if (!message.mentions.everyone) await message.delete();
         } catch (err) {
             console.log(err);
@@ -47,9 +47,10 @@ client.on("messageCreate", async message => {
 });
 
 client.on("channelPinsUpdate", async (channel, time) => {
+    if (time !== channel.lastPinAt) return;
     const pinnedMessages = await channel.messages.fetchPinned();
-    pinnedMessages.each(message => console.log(message.createdTimestamp));
-    channel.send(pinnedMessages.first().content);
+    const latestPin = pinnedMessages.first();
+    console.log(latestPin);
 });
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GrwWKe.l5pMFjcnH4ieVn2IuJbftpRV4RFE7N-bg1ZOng");
