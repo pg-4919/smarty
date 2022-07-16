@@ -53,4 +53,4 @@ client.on("channelPinsUpdate", async (channel, time) => {
     console.log(latestPin);
 });
 
-client.login("ODA5MTExMzAyMTk4MDAxNzI0.GrwWKe.l5pMFjcnH4ieVn2IuJbftpRV4RFE7N-bg1ZOng");
+client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
