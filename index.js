@@ -51,6 +51,7 @@ client.on("messageCreate", async message => {
 
 client.on("channelPinsUpdate", async (channel, time) => {
     const pinnedMessages = await channel.messages.fetchPinned();
+    pinnedMessages.sort((userA, userB) => userA.createdTimestamp - userB.createdTimestamp);
     pinnedMessages.each(message => console.log(message.createdTimestamp));
     console.log(channel.lastPinTimestamp)
 });
