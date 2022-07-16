@@ -51,7 +51,7 @@ client.on("messageCreate", async message => {
 
 client.on("channelPinsUpdate", async (channel, time) => {
     const pinnedMessages = await channel.messages.fetchPinned();
-    const latestPin = pinnedMessages.find(message => message.createdTimestamp == time);
+    const latestPin = pinnedMessages;
     console.log(latestPin)
 });
 
