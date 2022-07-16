@@ -1,7 +1,4 @@
-
-const token = process.env.TOKEN;
-const clientId = process.env.CLIENT_ID;
-const guildId = process.env.GUILD_ID;
+const guildId = "803315311663251537";
 
 const discord = require("discord.js");
 const client = new discord.Client({ intents: new discord.Intents(32767) });
@@ -52,8 +49,8 @@ client.on("messageCreate", async message => {
 client.on("channelPinsUpdate", async (channel, time) => {
     const pinnedMessages = await channel.messages.fetchPinned();
     pinnedMessages.sort((userA, userB) => userA.createdTimestamp - userB.createdTimestamp);
-    pinnedMessages.each(message => console.log(message.createdTimestamp));
-    console.log(channel.lastPinTimestamp)
+    pinnedMessages.each(message => console.log(message.editedTimestamp));
+    console.log(channel.lastPinTimestamp);
 });
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GrwWKe.l5pMFjcnH4ieVn2IuJbftpRV4RFE7N-bg1ZOng");
