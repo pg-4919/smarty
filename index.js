@@ -23,7 +23,7 @@ client.on("ready", async () => {
 
     client.application.commands.set([]);
     client.guilds.cache.get("803315311663251537").commands.set(commands);
-    
+
     client.states.set("acronym", false);
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
@@ -47,6 +47,8 @@ client.on("messageCreate", async message => {
 });
 
 client.on("channelPinsUpdate", async (channel, time) => {
+    console.log(time);
+    console.log(channel.lastPinAt);
     if (time !== channel.lastPinAt) return;
     const pinnedMessages = await channel.messages.fetchPinned();
     const latestPin = pinnedMessages.first();
