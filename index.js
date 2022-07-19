@@ -1,7 +1,7 @@
 const guildId = "803315311663251537";
 
 const discord = require("discord.js");
-const client = new discord.Client({ intents: new discord.Intents(32767) });
+const client = new discord.Client({ intents: [ discord.Intents.FLAGS.GUILDS ] });
 
 client.commands = new discord.Collection(); //command files
 client.states = new discord.Collection(); //game states (playing/not playing)
