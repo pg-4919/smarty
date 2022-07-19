@@ -2,16 +2,16 @@ const builders = require("@discordjs/builders");
 const discord = require("discord.js");
 
 module.exports = {
-    name: "ping",
+    name: "feature",
     data: new builders.SlashCommandBuilder()
-        .setName("ping")
-        .setDescription("See if Smarty is online and how laggy it is")
+        .setName("feature")
+        .setDescription("This is useless and not implemented right now.")
         .toJSON(),
     async execute(interaction) {
         const embed = new require("../utils/embed.js").default(
-            `🏓 Pong! Latency is ${Date.now() - interaction.createdTimestamp} ms.`,
+            `HAHA DOO DOO CACA`,
             interaction.member,
-            "used /ping"
+            "used A USELESS COMMAND LLLLLLLLMAO"
         );
         interaction.reply({ embeds: [embed]});
         return setTimeout(() => interaction.deleteReply(), 60 * 1000);
