@@ -14,6 +14,5 @@ module.exports = {
             "used /ping"
         );
         interaction.reply({ embeds: [embed]});
-        return setTimeout(() => interaction.deleteReply(), 60 * 1000);
     }
 }
