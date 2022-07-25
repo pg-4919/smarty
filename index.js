@@ -4,10 +4,6 @@ const discord = require("discord.js");
 const client = new discord.Client({ intents: [ new discord.Intents(32767) ] });
 
 client.commands = new discord.Collection(); //command files
-client.states = new discord.Collection(); //game states (playing/not playing)
-client.handlers = new discord.Collection(); //global message collectors
-client.players = new discord.Collection(); //game players
-client.data = new discord.Collection(); //game data/variables
 
 client.on("ready", async () => {
     const fs = require("fs");
