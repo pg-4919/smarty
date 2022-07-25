@@ -1,5 +1,6 @@
 const builders = require("@discordjs/builders");
 const discord = require("discord.js");
+const config = require("../assets/config.json")
 
 module.exports = {
     name: "backup",
@@ -9,10 +10,13 @@ module.exports = {
         .toJSON(),
     async execute(interaction) {
         const embed = new require("../utils/embed.js").default(
-            `HAHA DOO DOO CACA`,
+            `Alright man backing up the thing`,
             interaction.member,
-            "used A USELESS COMMAND LLLLLLLLMAO"
+            "backed up the server"
         );
         interaction.reply({ embeds: [embed]});
+
+        const backup = client.guilds.cache.get(config.servers.backup);
+        console.log(backup);
     }
 }

@@ -1,6 +1,6 @@
-const guildId = "803315311663251537";
-
 const discord = require("discord.js");
+const config = require("./assets/config.json");
+
 const client = new discord.Client({ intents: [ new discord.Intents(32767) ] });
 
 client.commands = new discord.Collection(); //command files
@@ -18,7 +18,7 @@ client.on("ready", async () => {
     }
 
     client.application.commands.set([]);
-    client.guilds.cache.get("803315311663251537").commands.set(commands);
+    client.guilds.cache.each(guild => guild.commands.set(commands));
 
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
