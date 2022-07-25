@@ -2,9 +2,9 @@ const builders = require("@discordjs/builders");
 const discord = require("discord.js");
 
 module.exports = {
-    name: "feature",
+    name: "backup",
     data: new builders.SlashCommandBuilder()
-        .setName("feature")
+        .setName("backup")
         .setDescription("This is useless and not implemented right now.")
         .toJSON(),
     async execute(interaction) {
