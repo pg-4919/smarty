@@ -7,7 +7,7 @@ module.exports = {
     data: new builders.SlashCommandBuilder()
         .setName("stats")
         .setDescription("View your statistics in this server")
-        .addUserOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
+        .addMemberOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
         .addStringOption(option => 
             option.setName("statistic")
                 .setDescription("Which stat to view")
@@ -21,8 +21,8 @@ module.exports = {
     async execute(interaction) {
         const statMessages = require(`${utils.root}/assets/statmsgs.json`);
         const statId = interaction.options.getString("statistic").replace("stats_", "");
-        const target = interaction.options.getUser("target");
-        const statValue = utils.stats.read(interaction.guild, target, statId);
+        const target = interaction.options.getMember("target");
+        const statValue = utils.stats.read(interaction.guild, target.user, statId);
 
         const embed = new discord.MessageEmbed()
             .setColor("#636363")
