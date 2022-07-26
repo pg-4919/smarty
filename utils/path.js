@@ -1,3 +1,5 @@
+const root = require("./root.js")
+
 module.exports = {
     root: require("./root.js"),
     assets: `${root}/assets`,
