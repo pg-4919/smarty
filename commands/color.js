@@ -24,7 +24,7 @@ module.exports = {
                 const embed = new discord.MessageEmbed()
                     .setColor("#636363")
                     .setTimestamp()
-                    .setDescription(`You changed your color to ${hex}.`)
+                    .setDescription(`You changed your color to #${hex}.`)
                     .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
                 interaction.reply({ embeds: [embed], ephemeral: true });
             }).catch(() => { /**/ });
