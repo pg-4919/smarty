@@ -11,11 +11,10 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply();
         const embed = await utils.embed.default(
-            `${await utils.data.updateRepo()}`,
+            `\`\`\`${await utils.data.updateRepo()}\`\`\``,
             interaction.member,
             "saved the bot"
         );
-        console.log(embed);
         await interaction.editReply({ embeds: [embed] });
     }
 }
