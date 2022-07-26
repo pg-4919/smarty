@@ -53,5 +53,6 @@ client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKR
 
 process.on("SIGINT", async () => {
     await utils.data.updateRepo();
+    console.log("Finished saving to repository")
     process.exit();
 });
