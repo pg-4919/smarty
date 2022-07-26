@@ -10,11 +10,11 @@ module.exports = {
         .toJSON(),
     async execute(interaction) {
         await interaction.deferReply();
-        const embed = await utils.embed.default(
-            `\`\`\`${await utils.data.updateRepo()}\`\`\``,
-            interaction.member,
-            "saved the bot"
-        );
+        const embed = new discord.MessageEmbed()
+            .setColor("#636363")
+            .setTimestamp()
+            .setDescription(`\`\`\`${await utils.data.updateRepo()}\`\`\``)
+            .setFooter({ text: "saved the bot", iconURL: interaction.member.user.avatarURL() });
         await interaction.editReply({ embeds: [embed] });
     }
 }

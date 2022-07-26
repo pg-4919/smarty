@@ -10,11 +10,11 @@ module.exports = {
         .setDescription("This is useless and not implemented right now.")
         .toJSON(),
     async execute(interaction) {
-        const embed = utils.embed.default(
-            `Alright man backing up the thing`,
-            interaction.member,
-            "backed up the server"
-        );
+        const embed = new discord.MessageEmbed()
+            .setColor("#636363")
+            .setTimestamp()
+            .setDescription(`Not yet implemented.`)
+            .setFooter({ text: "backed up the server", iconURL: interaction.member.user.avatarURL() });
         interaction.reply({ embeds: [embed]});
 
         const backup = interaction.client.guilds.cache.get(config.servers.backup);

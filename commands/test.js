@@ -9,8 +9,6 @@ module.exports = {
         .setDescription("Basically, tests to see if the commands updated")
         .toJSON(),
     async execute(interaction) {
-        await interaction.deferReply();
-        const logs = await utils.data.updateRepo();
-        await interaction.editReply(logs);
+        await interaction.reply("meat");
     }
 }

@@ -9,11 +9,11 @@ module.exports = {
         .setDescription("This is useless and not implemented right now.")
         .toJSON(),
     async execute(interaction) {
-        const embed = utils.embed.default(
-            `HAHA DOO DOO CACA`,
-            interaction.member,
-            "used A USELESS COMMAND LLLLLLLLMAO"
-        );
+        const embed = new discord.MessageEmbed()
+            .setColor("#636363")
+            .setTimestamp()
+            .setDescription(`Yet to be implemented`)
+            .setFooter({ text: "used a useless command", iconURL: interaction.member.user.avatarURL() });
         interaction.reply({ embeds: [embed]});
     }
 }
