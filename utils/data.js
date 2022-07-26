@@ -9,8 +9,8 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
             exec(`cd ${root} && cd ../ && ./update-repo`, (err, out) => {
-                if (error) return reject(error);
-                resolve(stdout);
+                if (err) return reject(err);
+                resolve(out);
             });
         })
     }
