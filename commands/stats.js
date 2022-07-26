@@ -21,7 +21,7 @@ module.exports = {
     async execute(interaction) {
         const statMessages = require(`${utils.root}/assets/statmsgs.json`);
         const statId = interaction.options.getString("statistic").replace("stats_", "");
-        const target = interaction.options.getUser("target") || interaction.member;
+        const target = interaction.options.getUser("person") || interaction.member;
         const statValue = utils.stats.read(interaction.guild, target.user, statId);
 
         const embed = new discord.MessageEmbed()
