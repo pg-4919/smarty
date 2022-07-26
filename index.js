@@ -20,7 +20,7 @@ client.on("ready", async () => {
     }
 
     client.application.commands.set([]);
-    client.guilds.cache.each(guild => guild.commands.set(commands).catch(() => {/**/ }));
+    client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
 
     setInterval(utils.data.updateRepo, 60000);
 
