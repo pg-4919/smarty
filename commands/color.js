@@ -18,6 +18,9 @@ module.exports = {
                 .setDescription(`Not a valid hex code.`)
                 .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
             interaction.reply({ embeds: [embed], ephemeral: true });
+        } else {
+            const rolemaps = require(`${utils.root}/assets/rolemaps.json`);
+            interaction.guild.roles.edit(rolemaps[interaction.user.id], { color: hex });
         }
     }
 }
