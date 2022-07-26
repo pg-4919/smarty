@@ -29,7 +29,7 @@ client.on("ready", async () => {
 
 client.on("interactionCreate", async interaction => {
     if (interaction.isCommand()) {
-        utils.stats.increment(interaction.guild, interaction.user, "commands", 1);
+        utils.stats.increment(interaction.guild, interaction.user, "cmds_sent", 1);
         client.commands.get(interaction.commandName).execute(interaction);
     }
 });
@@ -45,7 +45,7 @@ client.on("messageCreate", async message => {
         if (!message.mentions.everyone) message.delete().catch(() => {/**/});
     }
 
-    utils.stats.increment(message.guild, author, "sent", 1);
+    utils.stats.increment(message.guild, author, "msgs_sent", 1);
 });
 
 client.on("channelPinsUpdate", async (channel, time) => {

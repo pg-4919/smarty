@@ -12,18 +12,21 @@ module.exports = {
                 .setDescription("Which stat to view")
                 .setRequired(true)
                 .addChoices(
-                    { name: "Messages sent", value: "stats_msg_sent" },
+                    { name: "Messages sent", value: "stats_msgs_sent" },
                     { name: "Commands executed", value: "stats_cmds_sent" }
                 )
         )
         .toJSON(),
     async execute(interaction) {
-        await interaction.deferReply();
+        const statId = interaction.options.getString("statistic").replace("stats_", "");
+        const statValue = utils.stats.read(interaction.guild, interaction.user, statId);
+
         const embed = new discord.MessageEmbed()
             .setColor("#636363")
             .setTimestamp()
-            .setDescription(`${JSON.stringify(interaction)}`)
-            .setFooter({ text: "saved the bot", iconURL: interaction.member.user.avatarURL() });
-        await interaction.editReply({ embeds: [embed] });
+            .setDescription(`${statValue}`)
+            .setFooter({ text: "checked their stats", iconURL: interaction.member.user.avatarURL() });
+
+        await interaction.reply({ embeds: [embed] });
     }
 }
