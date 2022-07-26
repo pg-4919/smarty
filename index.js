@@ -3,7 +3,7 @@ const config = require("./assets/config.json");
 const utils = require("./utils/utils.js");
 const fs = require("fs");
 
-const client = new discord.Client({ intents: [ new discord.Intents(32767) ] });
+const client = new discord.Client({ intents: [new discord.Intents(32767)] });
 
 client.commands = new discord.Collection(); //command files
 
@@ -20,7 +20,7 @@ client.on("ready", async () => {
     }
 
     client.application.commands.set([]);
-    client.guilds.cache.each(guild => guild.commands.set(commands).catch(() => {/**/}));
+    client.guilds.cache.each(guild => guild.commands.set(commands).catch(() => {/**/ }));
 
     setInterval(utils.data.updateRepo, 60000);
 

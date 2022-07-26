@@ -25,7 +25,7 @@ module.exports = {
         const embed = new discord.MessageEmbed()
             .setColor("#636363")
             .setTimestamp()
-            .setDescription(`${statMessages[statId][0]} ${statValue} ${statMessages[statId][1]}`)
+            .setDescription(`${statMessages[statId][0]} \`${statValue}\` ${statMessages[statId][1]}`)
             .setFooter({ text: "checked their stats", iconURL: interaction.member.user.avatarURL() });
 
         await interaction.reply({ embeds: [embed] });
