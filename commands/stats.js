@@ -16,10 +16,10 @@ module.exports = {
                     { name: "Commands executed", value: "stats_cmds_sent" }
                 )
         )
-        .addUserOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
+        .addUserOption(option => option.setName("person").setDescription("Whom to check the stats of (defaults to you)").setRequired(false))
         .toJSON(),
     async execute(interaction) {
-        const statMessages = require(`${utils.root}/assets/statmsgs.json`);
+        const statMessages = require(`${utils.path.assets}/statmsgs.json`);
         const statId = interaction.options.getString("statistic").replace("stats_", "");
         const target = interaction.options.getMember("person") || interaction.member;
         const statValue = utils.stats.read(interaction.guild, target.user, statId);

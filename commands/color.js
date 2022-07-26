@@ -19,7 +19,7 @@ module.exports = {
                 .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
             interaction.reply({ embeds: [embed], ephemeral: true });
         } else {
-            const rolemaps = require(`${utils.root}/assets/rolemaps.json`);
+            const rolemaps = require(`${utils.path.assets}/rolemaps.json`);
             interaction.guild.roles.edit(rolemaps[interaction.user.id], { color: hex }).then(() => {
                 const embed = new discord.MessageEmbed()
                     .setColor("#636363")
