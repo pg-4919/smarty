@@ -7,7 +7,7 @@ module.exports = {
     data: new builders.SlashCommandBuilder()
         .setName("stats")
         .setDescription("View your statistics in this server")
-        .addMemberOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
+        .addUserOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
         .addStringOption(option => 
             option.setName("statistic")
                 .setDescription("Which stat to view")
