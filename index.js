@@ -45,7 +45,7 @@ client.on("messageCreate", async message => {
         if (!message.mentions.everyone) message.delete().catch(() => {/**/});
     }
 
-    utils.stats.increment(author, "sent", 1);
+    utils.stats.increment(message.guild, author, "sent", 1);
 });
 
 client.on("channelPinsUpdate", async (channel, time) => {
