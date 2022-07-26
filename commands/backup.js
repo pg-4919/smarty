@@ -1,6 +1,7 @@
 const builders = require("@discordjs/builders");
 const discord = require("discord.js");
-const config = require("../assets/config.json")
+const config = require("../assets/config.json");
+const utils = require("../utils/utils.js");
 
 module.exports = {
     name: "backup",
