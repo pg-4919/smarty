@@ -29,7 +29,7 @@ client.on("ready", async () => {
 
 client.on("interactionCreate", async interaction => {
     if (interaction.isCommand()) {
-        utils.stats.increment(message.guild, interaction.user, "commands", 1);
+        utils.stats.increment(interaction.guild, interaction.user, "commands", 1);
         client.commands.get(interaction.commandName).execute(interaction);
     }
 });
