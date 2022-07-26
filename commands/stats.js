@@ -26,7 +26,7 @@ module.exports = {
         const statistic = interaction.options.getString("statistic").replace("stats_", "");
         const person = interaction.options.getMember("person") || interaction.member;
         const value = utils.stats.read(interaction.guild, person.user, statistic);
-        const template = require(`${utils.path.assets}/statmsgs.json`)[statistic];
+        const template = require(`${utils.path.assets}/templates.json`).stats[statistic];
 
         const embed = new discord.MessageEmbed()
             .setColor("#636363")

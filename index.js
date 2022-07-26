@@ -1,6 +1,7 @@
 const discord = require("discord.js");
 const config = require("./assets/config.json");
 const utils = require("./utils/utils.js");
+const events = require("./events/events.js")
 const fs = require("fs");
 
 const client = new discord.Client({ intents: [new discord.Intents(32767)] });
@@ -27,11 +28,13 @@ client.on("ready", async () => {
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
 
-client.on("interactionCreate", require("./events/interactionCreate.js"));
+client.on("interactionCreate", events.interactionCreate);
 
-client.on("messageCreate", require("./events/messageCreate.js"));
+client.on("messageCreate", events.messageCreate);
 
 client.on("channelPinsUpdate", async (channel, time) => {
+    console.log(time, lastPinTimestamp)
+    if (time !== channel.lastPinTimestamp) return;
     const pinnedMessages = await channel.messages.fetchPinned();
     const latestPin = pinnedMessages.first();
     if (!latestPin.pinned) return;
