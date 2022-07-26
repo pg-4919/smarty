@@ -10,12 +10,12 @@ module.exports = {
         .addStringOption(option => option.setName("hex").setDescription("The hex code of the color").setRequired(true))
         .toJSON(),
     async execute(interaction) {
-        const hex = interaction.options.getString("hex");
-        if (!/^#[0-9A-F]{6}$/i.test(hex)) {
+        const hex = interaction.options.getString("hex").replace("#", "");
+        if (!/^[0-9A-F]{6}$/i.test(hex)) {
             const embed = new discord.MessageEmbed()
                 .setColor("#FF0000")
                 .setTimestamp()
-                .setDescription(`Not a valid hex code.\n*(be sure to include the # mark`)
+                .setDescription(`Not a valid hex code.`)
                 .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
             interaction.reply({ embeds: [embed], ephemeral: true });
         } else {
