@@ -41,6 +41,7 @@ client.on("messageCreate", async message => {
     }
 
     const currentStats = JSON.parse(fs.readFileSync("./data/stats.json"));
+    if (typeof currentStats[message.author.id] === undefined) currentStats[message.author.id] = {};
     currentStats[message.author.id].sent += 1;
     fs.writeFileSync("./data/stats.json", JSON.stringify(currentStats));
 });
