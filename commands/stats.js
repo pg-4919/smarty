@@ -7,7 +7,6 @@ module.exports = {
     data: new builders.SlashCommandBuilder()
         .setName("stats")
         .setDescription("View your statistics in this server")
-        .addUserOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
         .addStringOption(option => 
             option.setName("statistic")
                 .setDescription("Which stat to view")
@@ -17,6 +16,7 @@ module.exports = {
                     { name: "Commands executed", value: "stats_cmds_sent" }
                 )
         )
+        .addUserOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
         .toJSON(),
     async execute(interaction) {
         const statMessages = require(`${utils.root}/assets/statmsgs.json`);
