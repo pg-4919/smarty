@@ -1,4 +1,4 @@
 module.exports = {
-    interactionCreate = require("./interactionCreate.js"),
-    messageCreate = require("./messageCreate.js"),
+    interactionCreate: require("./interactionCreate.js"),
+    messageCreate: require("./messageCreate.js"),
 }
