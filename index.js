@@ -28,7 +28,10 @@ client.on("ready", async () => {
 });
 
 client.on("interactionCreate", async interaction => {
-    if (interaction.isCommand()) client.commands.get(interaction.commandName).execute(interaction);
+    if (interaction.isCommand()) {
+        utils.stats.increment(interaction.user, "commands", 1);
+        client.commands.get(interaction.commandName).execute(interaction);
+    }
 });
 
 client.on("messageCreate", async message => {
