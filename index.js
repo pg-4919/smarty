@@ -33,7 +33,7 @@ client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
 
 client.on("channelPinsUpdate", async (channel, time) => {
-    console.log(time, lastPinTimestamp)
+    console.log(time, channel.lastPinTimestamp)
     if (time !== channel.lastPinTimestamp) return;
     const pinnedMessages = await channel.messages.fetchPinned();
     const latestPin = pinnedMessages.first();
