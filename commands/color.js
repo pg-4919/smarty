@@ -6,7 +6,7 @@ module.exports = {
     name: "color",
     data: new builders.SlashCommandBuilder()
         .setName("color")
-        .setDescription("Changes the color of your name")
+        .setDescription("Change the color of your name")
         .addStringOption(option => option.setName("hex").setDescription("The hex code of the color").setRequired(true))
         .toJSON(),
     async execute(interaction) {
