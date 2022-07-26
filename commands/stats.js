@@ -7,6 +7,7 @@ module.exports = {
     data: new builders.SlashCommandBuilder()
         .setName("stats")
         .setDescription("View your statistics in this server")
+        .addUserOption(option => option.setName("person").setDescription("The t a r g e t").setRequired(false))
         .addStringOption(option => 
             option.setName("statistic")
                 .setDescription("Which stat to view")
@@ -16,7 +17,6 @@ module.exports = {
                     { name: "Commands executed", value: "stats_cmds_sent" }
                 )
         )
-        .addUserOption(option => option.setName("target").setDescription("User to view; defaults to you").setRequired(false))
         .toJSON(),
     async execute(interaction) {
         const statMessages = require(`${utils.root}/assets/statmsgs.json`);
@@ -27,7 +27,7 @@ module.exports = {
         const embed = new discord.MessageEmbed()
             .setColor("#636363")
             .setTimestamp()
-            .setDescription(`${statMessages[statId][0]} \`${statValue}\` ${statMessages[statId][1]}`)
+            .setDescription(`${target.username} has sent ${statMessages[statId][0]} \`${statValue}\` ${statMessages[statId][1]}`)
             .setFooter({ text: "checked their stats", iconURL: interaction.member.user.avatarURL() });
 
         await interaction.reply({ embeds: [embed] });
