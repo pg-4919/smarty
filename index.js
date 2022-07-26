@@ -42,12 +42,7 @@ client.on("messageCreate", async message => {
         if (!message.mentions.everyone) message.delete().catch(() => {/**/});
     }
 
-    const currentStats = JSON.parse(fs.readFileSync("./data/stats.json"));
-    currentStats[author.id] = currentStats[author.id] || {};
-    currentStats[author.id].sent = currentStats[author.id].sent || 0;
-    currentStats[author.id].sent += 1;
-    console.log(currentStats);
-    fs.writeFileSync("./data/stats.json", JSON.stringify(currentStats));
+    utils.stats.increment(author, "sent", 1);
 });
 
 client.on("channelPinsUpdate", async (channel, time) => {
