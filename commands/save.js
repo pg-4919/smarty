@@ -10,7 +10,7 @@ module.exports = {
         .toJSON(),
     async execute(interaction) {
         await interaction.deferReply();
-        const embed = utils.embed.default(
+        const embed = await utils.embed.default(
             `${await utils.data.updateRepo()}`,
             interaction.member,
             "saved the bot"
