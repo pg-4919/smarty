@@ -1,5 +1,6 @@
 const builders = require("@discordjs/builders");
 const discord = require("discord.js");
+const utils = require("../utils/utils.js");
 
 module.exports = {
     name: "test",
@@ -8,6 +9,6 @@ module.exports = {
         .setDescription("Basically, tests to see if the commands updated")
         .toJSON(),
     async execute(interaction) {
-        interaction.reply(require("../utils/root.js"));
+        interaction.reply(utils.root);
     }
 }
