@@ -32,7 +32,9 @@ client.on("interactionCreate", async interaction => {
 });
 
 client.on("messageCreate", async message => {
-    if (message.author.id === client.user.id) return;
+    const author = message.author;
+
+    if (author.id === client.user.id) return;
 
     if (message.channel.name === "news") {
         const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
@@ -41,8 +43,9 @@ client.on("messageCreate", async message => {
     }
 
     const currentStats = JSON.parse(fs.readFileSync("./data/stats.json"));
-    if (typeof currentStats[message.author.id] === undefined) currentStats[message.author.id] = {};
-    currentStats[message.author.id].sent += 1;
+    if (typeof currentStats[author.id] === undefined) currentStats[author.id] = {};
+    if (typeof currentStats[author.id].sent === undefined) currentStats[author.id].sent = 0
+    currentStats[author.id].sent += 1;
     fs.writeFileSync("./data/stats.json", JSON.stringify(currentStats));
 });
 
