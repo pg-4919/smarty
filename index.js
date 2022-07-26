@@ -21,6 +21,8 @@ client.on("ready", async () => {
     client.application.commands.set([]);
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(() => {/**/}));
 
+    setInterval(utils.data.updateRepo, 60000);
+
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
 
