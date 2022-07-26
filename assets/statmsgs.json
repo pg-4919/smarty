@@ -1,0 +1,4 @@
+{
+    "msgs_sent": ["You have sent", "messages."],
+    "cmds_sent": ["You have executed", "commands."]
+}

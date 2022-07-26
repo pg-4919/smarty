@@ -18,13 +18,14 @@ module.exports = {
         )
         .toJSON(),
     async execute(interaction) {
+        const statMessages = require(`${utils.root}/assets/statmsgs.json`);
         const statId = interaction.options.getString("statistic").replace("stats_", "");
         const statValue = utils.stats.read(interaction.guild, interaction.user, statId);
 
         const embed = new discord.MessageEmbed()
             .setColor("#636363")
             .setTimestamp()
-            .setDescription(`${statValue}`)
+            .setDescription(`${statMessages[statId][0]} ${statValue} ${statMessages[statId][1]}`)
             .setFooter({ text: "checked their stats", iconURL: interaction.member.user.avatarURL() });
 
         await interaction.reply({ embeds: [embed] });
