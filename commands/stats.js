@@ -28,7 +28,7 @@ module.exports = {
             .setColor("#636363")
             .setTimestamp()
             .setDescription(`<@${target.id}> ${statMessages[statId][0]} \`${statValue}\` ${statMessages[statId][1]}`)
-            .setFooter({ text: "checked their stats", iconURL: interaction.member.user.avatarURL() });
+            .setFooter({ text: "checked some stats", iconURL: interaction.member.user.avatarURL() });
 
         await interaction.reply({ embeds: [embed] });
     }
