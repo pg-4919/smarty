@@ -7,15 +7,16 @@ module.exports = {
     data: new builders.SlashCommandBuilder()
         .setName("stats")
         .setDescription("View your statistics in this server")
-        .addStringOption(option => {
-            option.setName("statistic")
-                .setDescription("Which statistic to view")
+        .addStringOption(option => 
+            option.setName('category')
+                .setDescription('The gif category')
                 .setRequired(true)
                 .addChoices(
-                    { name: "messages_sent", value: "stats_messages_sent" },
-                    { name: "commands_sent", value: "stats_commands_sent" },
+                    { name: 'Funny', value: 'gif_funny' },
+                    { name: 'Meme', value: 'gif_meme' },
+                    { name: 'Movie', value: 'gif_movie' },
                 )
-        })
+        )
         .toJSON(),
     async execute(interaction) {
         await interaction.deferReply();
