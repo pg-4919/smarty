@@ -1,5 +1,6 @@
 const discord = require("discord.js");
 const config = require("./assets/config.json");
+const utils = require("./utils/utils.js");
 
 const client = new discord.Client({ intents: [ new discord.Intents(32767) ] });
 
@@ -31,14 +32,14 @@ client.on("messageCreate", async message => {
     if (message.author.id === client.user.id) return;
 
     if (message.channel.name === "news") {
-        try {
-            const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
-            await require("./utils/clone.js").clone(message.member, chat, message);
-            if (!message.mentions.everyone) await message.delete();
-        } catch (err) {
-            console.log(err);
-        }
+        const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
+        await require("./utils/clone.js").clone(message.member, chat, message);
+        if (!message.mentions.everyone) message.delete().catch(() => {/**/});
     }
+
+    const currentStats = JSON.parse(fs.readFileSync("./data/stats.json"));
+    currentStats[message.author.id].sent += 1;
+    fs.writeFileSync("./data/stats.json", JSON.stringify(currentStats));
 });
 
 client.on("channelPinsUpdate", async (channel, time) => {
@@ -49,3 +50,8 @@ client.on("channelPinsUpdate", async (channel, time) => {
 });
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
+
+process.on("SIGINT", async () => {
+    await utils.data.updateRepo();
+    process.exit();
+});
