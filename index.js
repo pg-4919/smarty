@@ -34,11 +34,13 @@ client.on("messageCreate", events.messageCreate);
 
 client.on("channelPinsUpdate", async (channel, time) => {
     console.log(time, channel.lastPinTimestamp)
+    if (time === null) console.log("Unpin?")
+    else console.log("Pin?")/*
     if (time !== channel.lastPinTimestamp) return;
     const pinnedMessages = await channel.messages.fetchPinned();
     const latestPin = pinnedMessages.first();
     if (!latestPin.pinned) return;
-    console.log(latestPin);
+    console.log(latestPin);*/
 });
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
