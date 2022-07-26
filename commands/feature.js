@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("This is useless and not implemented right now.")
         .toJSON(),
     async execute(interaction) {
-        const embed = new require("../utils/embed.js").default(
+        const embed = utils.embed.default(
             `HAHA DOO DOO CACA`,
             interaction.member,
             "used A USELESS COMMAND LLLLLLLLMAO"

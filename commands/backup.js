@@ -9,7 +9,7 @@ module.exports = {
         .setDescription("This is useless and not implemented right now.")
         .toJSON(),
     async execute(interaction) {
-        const embed = new require("../utils/embed.js").default(
+        const embed = utils.embed.default(
             `Alright man backing up the thing`,
             interaction.member,
             "backed up the server"
