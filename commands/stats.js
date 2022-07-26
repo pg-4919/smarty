@@ -8,13 +8,12 @@ module.exports = {
         .setName("stats")
         .setDescription("View your statistics in this server")
         .addStringOption(option => 
-            option.setName('category')
-                .setDescription('The gif category')
+            option.setName("statistic")
+                .setDescription("Which stat to view")
                 .setRequired(true)
                 .addChoices(
-                    { name: 'Funny', value: 'gif_funny' },
-                    { name: 'Meme', value: 'gif_meme' },
-                    { name: 'Movie', value: 'gif_movie' },
+                    { name: "Messages sent", value: "stats_msg_sent" },
+                    { name: "Commands executed", value: "stats_cmds_sent" }
                 )
         )
         .toJSON(),
