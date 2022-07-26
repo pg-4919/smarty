@@ -8,6 +8,6 @@ module.exports = {
         .setDescription("Basically, tests to see if the commands updated")
         .toJSON(),
     async execute(interaction) {
-        interaction.reply("The test succeeded. Id: 1");
+        interaction.reply(require("../utils/root.js"));
     }
 }
