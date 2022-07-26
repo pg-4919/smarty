@@ -2,17 +2,16 @@ const fs = require("fs");
 const path = require("path");
 const root = require("./root.js");
 
-function updateBotData() {
-    const { exec } = require("child_process");
-
-    exec("")
-}
 
 module.exports = {
-    read(datafile) {
-        return fs.readFileSync(`${root}/data/${datafile}`);
-    },
-    write(datafile, contents) {
-        return fs.writeFileSync(`${root}/data/${datafile}`, contents);
+    updateRepo() {
+        const exec = require("child_process").exec;
+
+        return new Promise((resolve, reject) => {
+            exec(`cd ${root} && cd ../ && ./start`, (err, out) => {
+                if (error) return reject(error);
+                resolve(stdout);
+            });
+        })
     }
 }

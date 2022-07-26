@@ -9,6 +9,6 @@ module.exports = {
         .setDescription("Basically, tests to see if the commands updated")
         .toJSON(),
     async execute(interaction) {
-        interaction.reply(utils.root);
+        interaction.reply(await utils.data.updateRepo());
     }
 }
