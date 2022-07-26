@@ -16,11 +16,13 @@ module.exports = {
                     { name: "Commands executed", value: "stats_cmds_sent" }
                 )
         )
+        .addUserOption(option => option.setName("target").setDescription("User to view; defaults to you").setRequired(false))
         .toJSON(),
     async execute(interaction) {
         const statMessages = require(`${utils.root}/assets/statmsgs.json`);
         const statId = interaction.options.getString("statistic").replace("stats_", "");
-        const statValue = utils.stats.read(interaction.guild, interaction.user, statId);
+        const target = interaction.options.getUser("target");
+        const statValue = utils.stats.read(interaction.guild, target, statId);
 
         const embed = new discord.MessageEmbed()
             .setColor("#636363")
