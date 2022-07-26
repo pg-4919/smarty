@@ -16,6 +16,6 @@ module.exports = {
             "saved the bot"
         );
         console.log(embed);
-        await interaction.editReply(embed);
+        await interaction.editReply({ embeds: [embed] });
     }
 }
