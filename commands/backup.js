@@ -16,7 +16,10 @@ module.exports = {
         );
         interaction.reply({ embeds: [embed]});
 
-        const backup = client.guilds.cache.get(config.servers.backup);
-        console.log(backup);
+        const backup = interaction.client.guilds.cache.get(config.servers.backup);
+        const main = interaction.client.guilds.cache.get(config.servers.main);
+        const random = main.channels.cache.first();
+        const messages = random.messages.fetch({ limit: 1000 });
+        messages.each(message => console.log(message.content));
     }
 }
