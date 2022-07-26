@@ -27,12 +27,7 @@ client.on("ready", async () => {
     console.log(`Commands updated and bot logged in as ${client.user.tag}!`);
 });
 
-client.on("interactionCreate", async interaction => {
-    if (interaction.isCommand()) {
-        utils.stats.increment(interaction.guild, interaction.user, "cmds_sent", 1);
-        client.commands.get(interaction.commandName).execute(interaction);
-    }
-});
+client.on("interactionCreate", require("./events/interactionCreate.js"));
 
 client.on("messageCreate", require("./events/messageCreate.js"));
 
