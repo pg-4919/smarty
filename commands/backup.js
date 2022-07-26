@@ -19,7 +19,7 @@ module.exports = {
         const backup = interaction.client.guilds.cache.get(config.servers.backup);
         const main = interaction.client.guilds.cache.get(config.servers.main);
         const random = main.channels.cache.first();
-        const messages = random.messages.fetch({ limit: 1000 });
+        const messages = await random.messages.fetch({ limit: 1000 });
         messages.each(message => console.log(message.content));
     }
 }
