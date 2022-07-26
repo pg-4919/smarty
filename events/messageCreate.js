@@ -3,7 +3,7 @@ const utils = require("../utils/utils.js");
 module.exports = async (message) => {
     const author = message.author;
 
-    if (author.id === client.user.id) return;
+    if (author.id === message.client.user.id) return;
 
     if (message.channel.name === "news") {
         const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
