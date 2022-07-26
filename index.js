@@ -44,6 +44,7 @@ client.on("messageCreate", async message => {
 
     const currentStats = JSON.parse(fs.readFileSync("./data/stats.json"));
     currentStats[author.id] = currentStats[author.id] || {};
+    currentStats[author.id].sent = currentStats[author.id].sent || {};
     console.log(currentStats);
     //fs.writeFileSync("./data/stats.json", JSON.stringify(currentStats));
 });
