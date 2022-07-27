@@ -33,14 +33,17 @@ client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
 
 client.on("channelPinsUpdate", async (channel, time) => {
-    console.log(time, channel.lastPinTimestamp)
-    if (time === null) console.log("Unpin?")
-    else console.log("Pin?")/*
-    if (time !== channel.lastPinTimestamp) return;
-    const pinnedMessages = await channel.messages.fetchPinned();
-    const latestPin = pinnedMessages.first();
-    if (!latestPin.pinned) return;
-    console.log(latestPin);*/
+    const pins = await channel.fetchPinned();
+    pins.each(pin => {
+        const featured = require(`${utils.path.data}/featured.json`);
+        const channelMap = require(`${utils.path.data}/channelmaps.json`);
+        if (featured.includes(pin.id)) return;
+        featured.push(pin.id);
+        fs.writeFileSync(`${utils.path.data}/featured.json`, JSON.stringify(featured));
+        await utils.clone(pin.author.member, channelMap[channel.guild.id].featured, pin);
+        await pin.unpin();
+    });
+    await utils.data.updateRepo();
 });
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
