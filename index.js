@@ -34,7 +34,7 @@ client.on("messageCreate", events.messageCreate);
 
 client.on("channelPinsUpdate", async (channel, time) => {
     const pins = await channel.fetchPinned();
-    pins.each(pin => {
+    pins.each(async pin => {
         const featured = require(`${utils.path.data}/featured.json`);
         const channelMap = require(`${utils.path.data}/channelmaps.json`);
         if (featured.includes(pin.id)) return;
