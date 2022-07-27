@@ -40,7 +40,7 @@ client.on("channelPinsUpdate", async (channel, time) => {
         if (featured.includes(pin.id)) return;
         featured.push(pin.id);
         fs.writeFileSync(`${utils.path.data}/featured.json`, JSON.stringify(featured));
-        await utils.clone(pin.author.member, channel.guild.channels.cache.get(channelMap[channel.guild.id].featured), pin);
+        await utils.clone(pin.member, channel.guild.channels.cache.get(channelMap[channel.guild.id].featured), pin);
         await pin.unpin();
     });
     await utils.data.updateRepo();
