@@ -50,7 +50,6 @@ client.on("messageDelete", async message => {
     const channelMap = require(`${utils.path.assets}/channelmaps.json`);
     if (message.channel.id = channelMap[message.guild.id].featured) {
         const featured = require(`${utils.path.data}/featured.json`);
-        if (featured.indexOf(message.id) === -1) return;
         featured.splice(featured.indexOf(message.id), 0)
         fs.writeFileSync(`${utils.path.data}/featured.json`, JSON.stringify(featured));
         await utils.clone(pin.member, channel.guild.channels.cache.get(channelMap[channel.guild.id].featured), pin);
