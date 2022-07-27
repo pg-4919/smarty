@@ -35,6 +35,8 @@ client.on("messageCreate", events.messageCreate);
 client.on("channelPinsUpdate", async (channel, time) => {
     const pins = await channel.messages.fetchPinned();
     console.log("Pins fetched")
+
+    
     pins.each(async pin => {
         console.log("ITERATIVUH")
         const featured = require(`${utils.path.data}/featured.json`);
