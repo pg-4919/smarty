@@ -36,7 +36,7 @@ client.on("channelPinsUpdate", async (channel, time) => {
     const pins = await channel.messages.fetchPinned();
     pins.each(async pin => {
         const featured = require(`${utils.path.data}/featured.json`);
-        const channelMap = require(`${utils.path.data}/channelmaps.json`);
+        const channelMap = require(`${utils.path.assets}/channelmaps.json`);
         if (featured.includes(pin.id)) return;
         featured.push(pin.id);
         fs.writeFileSync(`${utils.path.data}/featured.json`, JSON.stringify(featured));
