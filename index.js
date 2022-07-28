@@ -32,16 +32,6 @@ client.on("interactionCreate", events.interactionCreate);
 
 client.on("messageCreate", events.messageCreate);
 
-client.on("channelPinsUpdate", async (channel, time) => {
-    const pins = await channel.messages.fetchPinned();
-    pins.each(async pin => {
-        try { const channelMap = require(`${utils.path.assets}/channelmaps.json`);
-        await utils.clone(pin.member, channel.guild.channels.cache.get(channelMap[channel.guild.id].featured), pin);
-        await pin.unpin(); } catch (err) { console.log(err) }
-    });
-    await utils.data.updateRepo();
-});
-
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
 
