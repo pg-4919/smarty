@@ -7,10 +7,14 @@ module.exports = {
         const exec = require("child_process").exec;
 
         return new Promise((resolve, reject) => {
-            exec(`cd ${root} && cd ../ && ./update-repo`, (err, out) => {
-                if (err) return reject(err);
-                resolve(out);
-            });
+            try {
+                exec(`cd ${root} && cd ../ && ./update-repo`, (err, out) => {
+                    if (err) return resolve(err);
+                    resolve(out);
+                });
+            } catch (err) {
+                resolve(err);
+            }
         })
     }
 }
