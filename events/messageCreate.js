@@ -9,6 +9,6 @@ module.exports = async (message) => {
     if (message.channel.name === "news") {
         const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
         await utils.clone(message.member, chat, message);
-        if (!message.mentions.everyone) message.delete().catch(() => {/**/});
+        if (!message.mentions.everyone) message.delete().catch(err => console.log(err));
     }
 }
