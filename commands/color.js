@@ -11,7 +11,7 @@ module.exports = {
     async execute(interaction) {
         const hex = interaction.options.getString("hex").replace("#", "");
         if (!/^[0-9A-F]{6}$/i.test(hex)) {
-            const embed = new discord.MessageEmbed()
+            const embed = new discord.EmbedBuilder()
                 .setColor("#FF0000")
                 .setTimestamp()
                 .setDescription(`Not a valid hex code.`)
@@ -20,7 +20,7 @@ module.exports = {
         } else {
             const rolemaps = require(`${utils.path.assets}/rolemaps.json`);
             interaction.guild.roles.edit(rolemaps[interaction.user.id], { color: hex }).then(() => {
-                const embed = new discord.MessageEmbed()
+                const embed = new discord.EmbedBuilder()
                     .setColor("#636363")
                     .setTimestamp()
                     .setDescription(`You changed your color to #${hex}.`)

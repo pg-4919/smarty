@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("See the latest changes to Smarty.")
         .toJSON(),
     async execute(interaction) {
-        const embed = new discord.MessageEmbed()
+        const embed = new discord.EmbedBuilder()
             .setColor("#636363")
             .setTitle("Changelog")
             .setDescription("You are currently on version 1.1.0 of Smarty Infdev.")

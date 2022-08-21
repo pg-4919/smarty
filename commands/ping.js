@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("Check how laggy the bot is")
         .toJSON(),
     async execute(interaction) {
-        const embed = new discord.MessageEmbed()
+        const embed = new discord.EmbedBuilder()
             .setColor("#636363")
             .setTimestamp()
             .setDescription(`The bot is up and latency is ${Date.now() - interaction.createdTimestamp} ms.`)

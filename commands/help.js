@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("Stop. Get some help.")
         .toJSON(),
     async execute(interaction) {
-        const embed = new discord.MessageEmbed()
+        const embed = new discord.EmbedBuilder()
             .setColor("#636363")
             .setTitle("Commands")
             .addFields(
