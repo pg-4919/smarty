@@ -1,10 +1,9 @@
-const builders = require("@discordjs/builders");
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
 module.exports = {
     name: "color",
-    data: new builders.SlashCommandBuilder()
+    data: new discord.SlashCommandBuilder()
         .setName("color")
         .setDescription("Change the color of your name")
         .addStringOption(option => option.setName("hex").setDescription("The hex code of the color").setRequired(true))

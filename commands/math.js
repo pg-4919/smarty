@@ -1,4 +1,3 @@
-const builders = require("@discordjs/builders");
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 const mexpr = require("math-expression-evaluator")
@@ -6,7 +5,7 @@ const mexpr = require("math-expression-evaluator")
 module.exports = {
     name: "math",
 
-    data: new builders.SlashCommandBuilder()
+    data: new discord.SlashCommandBuilder()
         .setName("math")
         .setDescription("Evaluate a mathematical expression")
         .addStringOption(option => option.setName("expr").setDescription("The expression to evaluate").setRequired(true))

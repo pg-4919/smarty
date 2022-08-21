@@ -4,7 +4,7 @@ const utils = require("./utils/utils.js");
 const events = require("./events/events.js")
 const fs = require("fs");
 
-const client = new discord.Client({ intents: [new discord.Intents(32767)] });
+const client = new Client({ intents: [discord.GatewayIntentBits.Guilds] });
 
 client.commands = new discord.Collection(); //command files
 

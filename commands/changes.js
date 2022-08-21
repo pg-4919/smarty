@@ -1,10 +1,9 @@
-const builders = require("@discordjs/builders");
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
 module.exports = {
     name: "changes",
-    data: new builders.SlashCommandBuilder()
+    data: new discord.SlashCommandBuilder()
         .setName("changes")
         .setDescription("See the latest changes to Smarty.")
         .toJSON(),

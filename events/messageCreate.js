@@ -11,6 +11,4 @@ module.exports = async (message) => {
         await utils.clone(message.member, chat, message);
         if (!message.mentions.everyone) message.delete().catch(() => {/**/});
     }
-
-    utils.stats.increment(message.guild, author, "msgs_sent", 1);
 }
