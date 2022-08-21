@@ -11,4 +11,7 @@ module.exports = async (message) => {
         await utils.clone(message.member, chat, message);
         if (!message.mentions.everyone) message.delete().catch(err => console.log(err));
     }
+
+    console.log(message);
+    return;
 }
