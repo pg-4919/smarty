@@ -32,23 +32,25 @@ module.exports = {
         const user = interaction.user;
         const guild = interaction.guild;
 
+        let impersonators;
+
         switch (interaction.options.getSubcommand()) {
             case "start":
-                let impersonators = require(`${utils.path.temp}/impersonate.json`);
+                impersonators = require(`${utils.path.temp}/impersonate.json`);
                 impersonators[user.id] = interaction.options.getUser("person").id;
                 fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
                 await interaction.reply({content: impersonators[user.id], ephemeral: true});
                 break;
 
             case "stop":
-                let impersonators = require(`${utils.path.temp}/impersonate.json`);
+                impersonators = require(`${utils.path.temp}/impersonate.json`);
                 delete impersonators[user.id];
                 fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
                 await interaction.reply({content: "alright", ephemeral: true});
                 break;
 
             case "view":
-                let impersonators = require(`${utils.path.temp}/impersonate.json`);
+                impersonators = require(`${utils.path.temp}/impersonate.json`);
                 if (impersonators.length > 0) {
                     const output = [];
 
