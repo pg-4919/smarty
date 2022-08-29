@@ -5,7 +5,7 @@ module.exports = async (member, channel, message) => {
     
     await webhook.send({
         files: [...message.attachments.values()],
-        content: message.content || "⠀",
+        content: message.content || " ",
         username: member.displayName,
         avatarURL: member.displayAvatarURL(),
         allowedMentions: { parse: [] }
