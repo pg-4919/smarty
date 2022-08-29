@@ -57,7 +57,15 @@ module.exports = {
                         output.push(`${impersonator} is impersonating ${target}`);
                     })
 
-                    await interaction.reply(output.join("\n"));
+                    const embed = new discord.EmbedBuilder()
+                        .setColor("#636363")
+                        .addFields(
+                            { name: "Current impersonations:", value: output.join("\n") }
+                        )
+                        .setTimestamp()
+                        .setFooter({ text: "exposed the impersonators", iconURL: interaction.member.user.avatarURL() });
+                    
+                    await interaction.reply({ embeds: [embed]});
                 } else {
                     await interaction.reply("No one is impersonating anyone");
                 }
