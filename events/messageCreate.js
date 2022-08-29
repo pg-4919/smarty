@@ -17,11 +17,9 @@ module.exports = async (message) => {
 
     if (author.id in impersonators && channel.name !== "news") {
         const target = guild.members.cache.get(author.id);
-        console.log(target);
-        console.log(typeof target);
         if (typeof target === undefined) return;
-        utils.clone(message.member, channel, message);
-        await message.delete();
+        utils.clone(target, channel, message);
+        message.delete().catch(err => console.log(err));
     }
 
     return;
