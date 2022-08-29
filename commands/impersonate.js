@@ -1,5 +1,6 @@
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
+const fs = require("fs");
 
 module.exports = {
     name: "impersonate",
@@ -20,14 +21,18 @@ module.exports = {
             .setDescription("Stop impersonating someone")
         )
         .toJSON(),
+        
     async execute(interaction) {
         switch (interaction.options.getSubcommand()) {
             case "start":
-                interaction.reply({content: "ok", ephemeral: true});
+                const impersonators = require(`${utils.path.temp}/impersonate.json`);
+                impersonators[interaction.user.id] = interaction.options.getUser("person").id;
+                fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
+                await interaction.reply({content: impersonators[interaction.user.id], ephemeral: true});
                 break;
 
             case "stop":
-                interaction.reply({content: "alright", ephemeral: true});
+                await interaction.reply({content: "alright", ephemeral: true});
                 break;
         }
     }
