@@ -58,7 +58,7 @@ module.exports = {
 
                 await interaction.reply(output.join("\n"));
 
-                }
+                break;
         }
     }
 }
