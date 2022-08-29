@@ -6,7 +6,7 @@ module.exports = async (message) => {
     fs.writeFileSync(`${utils.path.temp}/impersonators.json`, "{}");
 
     const commands = [];
-    const commandFiles = fs.readdirSync(`${__dirname}/commands`);
+    const commandFiles = fs.readdirSync(utils.path.commands);
 
     for (const file of commandFiles) {
         const command = require(`${utils.path.commands}/${file}`);
