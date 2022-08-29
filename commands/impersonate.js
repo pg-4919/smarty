@@ -50,7 +50,7 @@ module.exports = {
             case "view":
                 const output = [];
 
-                impersonators.keys().forEach(key => {
+                Object.keys(impersonators).forEach(key => {
                     const impersonator = guild.members.cache.get(key).nickname;
                     const target = guild.members.cache.get(impersonators[key]).nickname;
                     output.push(`${impersonator} is impersonating ${target}`);
