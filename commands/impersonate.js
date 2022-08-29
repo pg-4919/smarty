@@ -59,9 +59,8 @@ module.exports = {
 
                     const embed = new discord.EmbedBuilder()
                         .setColor("#636363")
-                        .addFields(
-                            { name: "Current impersonations:", value: output.join("\n") }
-                        )
+                        .setTitle("Current impersonations")
+                        .setDescription(output.join("\n"))
                         .setTimestamp()
                         .setFooter({ text: "exposed the impersonators", iconURL: interaction.member.user.avatarURL() });
                     
