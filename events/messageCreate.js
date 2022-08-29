@@ -2,13 +2,24 @@ const utils = require("../utils/utils.js");
 
 module.exports = async (message) => {
     const author = message.author;
+    const channel = message.channel;
+    const guild = message.guild;
+
+    const impersonators = require(`${utils.path.temp}/impersonate.json`);
 
     if (author.id === message.client.user.id) return;
 
-    if (message.channel.name === "news") {
-        const chat = message.guild.channels.cache.find(channel => channel.name === "chat");
+    if (channel.name === "news") {
+        const chat = guild.channels.cache.find(channel => channel.name === "chat");
         await utils.clone(message.member, chat, message);
         if (!message.mentions.everyone) message.delete().catch(err => console.log(err));
+    }
+
+    if (author.id in impersonators && channel.name !== "news") {
+        const target = guild.member.cache.get(author.id);
+        if (typeof target === undefined) return;
+        utils.clone(target, channel, message);
+        message.delete();
     }
 
     return;

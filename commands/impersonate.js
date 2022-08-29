@@ -2,6 +2,8 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 const fs = require("fs");
 
+//TODO: implement a global temp storage system
+
 module.exports = {
     name: "impersonate",
     data: new discord.SlashCommandBuilder()
