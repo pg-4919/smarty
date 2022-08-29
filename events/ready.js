@@ -17,7 +17,5 @@ module.exports = async (message) => {
     client.application.commands.set([]);
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
 
-    setInterval(utils.data.updateRepo, 60000);
-
     console.log(`Commands updated and bot logged in as ${client.user.tag}.`);
 }
