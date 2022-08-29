@@ -48,15 +48,19 @@ module.exports = {
                 break;
 
             case "view":
-                const output = [];
+                if (impersonators.length > 0) {
+                    const output = [];
 
-                Object.keys(impersonators).forEach(key => {
-                    const impersonator = guild.members.cache.get(key).nickname;
-                    const target = guild.members.cache.get(impersonators[key]).nickname;
-                    output.push(`${impersonator} is impersonating ${target}`);
-                })
+                    Object.keys(impersonators).forEach(key => {
+                        const impersonator = guild.members.cache.get(key).displayName;
+                        const target = guild.members.cache.get(impersonators[key]).displayName;
+                        output.push(`${impersonator} is impersonating ${target}`);
+                    })
 
-                await interaction.reply(output.join("\n"));
+                    await interaction.reply(output.join("\n"));
+                } else {
+                    await interaction.reply("No one is impersonating anyone");
+                }
 
                 break;
         }
