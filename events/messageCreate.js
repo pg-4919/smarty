@@ -20,7 +20,7 @@ module.exports = async (message) => {
         console.log(target);
         console.log(typeof target);
         if (typeof target === undefined) return;
-        await utils.clone(message.member, channel, message);
+        utils.clone(message.member, channel, message);
         await message.delete();
     }
 
