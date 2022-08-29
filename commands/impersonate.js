@@ -22,10 +22,15 @@ module.exports = {
             .setName("stop")
             .setDescription("Stop impersonating someone")
         )
+        .addSubcommand(subcommand => subcommand
+            .setName("view")
+            .setDescription("View current impersonations")
+        )
         .toJSON(),
         
     async execute(interaction) {
         const user = interaction.user;
+        const guild = interaction.guild;
 
         const impersonators = require(`${utils.path.temp}/impersonate.json`);
 
@@ -41,6 +46,19 @@ module.exports = {
                 fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
                 await interaction.reply({content: "alright", ephemeral: true});
                 break;
+
+            case "view":
+                const output = [];
+
+                impersonators.keys().forEach(key => {
+                    const impersonator = guild.members.cache.get(key).nickname;
+                    const target = guild.members.cache.get(impersonators[key]).nickname;
+                    output.push(`${impersonator} is impersonating ${target}`);
+                })
+
+                await interaction.reply(output.join("\n"));
+
+                }
         }
     }
 }
