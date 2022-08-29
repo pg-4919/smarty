@@ -6,5 +6,6 @@ module.exports = {
     commands: `${root}/commands`,
     data: `${root}/data`,
     events: `${root}/events`,
-    utils: `${root}/utils`
+    utils: `${root}/utils`,
+    temp: `${root}/temp`
 }

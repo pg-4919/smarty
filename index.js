@@ -16,15 +16,18 @@ const client = new discord.Client({
 });
 
 client.commands = new discord.Collection(); //command files
+client.impersonators = {};
 
 client.on("ready", async () => {
     const fs = require("fs");
+
+    fs.writeFileSync(`${utils.path.temp}/impersonators.json`, "{}");
 
     const commands = [];
     const commandFiles = fs.readdirSync(`${__dirname}/commands`);
 
     for (const file of commandFiles) {
-        const command = require(`${__dirname}/commands/${file}`);
+        const command = require(`${utils.path.commands}/${file}`);
         client.commands.set(command.data.name, command);
         commands.push(command.data);
     }
