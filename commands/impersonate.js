@@ -49,12 +49,12 @@ module.exports = {
 
             case "view":
                 if (Object.keys(impersonators).length > 0) {
-                    const output = [];
+                    const text = [];
 
                     Object.keys(impersonators).forEach(key => {
                         const impersonator = guild.members.cache.get(key).displayName;
                         const target = guild.members.cache.get(impersonators[key]).displayName;
-                        output.push(`${impersonator} is impersonating ${target}`);
+                        text.push(`${impersonator} is impersonating ${target}`);
                     })
 
                     const embed = new discord.EmbedBuilder()
