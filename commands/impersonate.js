@@ -38,7 +38,7 @@ module.exports = {
 
         switch (interaction.options.getSubcommand()) {
             case "start":
-                const target = interaction.options.getMember("person").displayName;
+                const target = interaction.options.getMember("person");
                 embed.setDescription(`Started impersonating ${target.displayName}`)
                     .setTimestamp()
                     .setFooter({ text: "became a ventriloquist", iconURL: interaction.member.user.avatarURL() });
