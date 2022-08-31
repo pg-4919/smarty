@@ -27,7 +27,7 @@ module.exports = {
             .setDescription("View current impersonations")
         )
         .toJSON(),
-        
+
     async execute(interaction) {
         const user = interaction.user;
         const guild = interaction.guild;
@@ -36,15 +36,27 @@ module.exports = {
 
         switch (interaction.options.getSubcommand()) {
             case "start":
+                const embed = new discord.EmbedBuilder()
+                    .setColor("#636363")
+                    .setDescription(`Started impersonating ${interactions.options.getMember("person").displayName}`)
+                    .setTimestamp()
+                    .setFooter({ text: "became a ventriloquist", iconURL: interaction.member.user.avatarURL() });
+                
                 impersonators[user.id] = interaction.options.getUser("person").id;
                 fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
-                await interaction.reply({content: impersonators[user.id], ephemeral: true});
+                await interaction.reply({ content: impersonators[user.id], ephemeral: true });
                 break;
 
             case "stop":
+                const embed = new discord.EmbedBuilder()
+                    .setColor("#636363")
+                    .setDescription(`Stopped impersonating ${guild.members.cache.get(impersonators[user.id]).displayName}`)
+                    .setTimestamp()
+                    .setFooter({ text: "left the criminal underworld", iconURL: interaction.member.user.avatarURL() });
+
                 delete impersonators[user.id];
                 fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
-                await interaction.reply({content: "alright", ephemeral: true});
+                await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "view":
@@ -60,11 +72,11 @@ module.exports = {
                     const embed = new discord.EmbedBuilder()
                         .setColor("#636363")
                         .setTitle("Current impersonations")
-                        .setDescription(output.join("\n"))
+                        .setDescription(text.join("\n"))
                         .setTimestamp()
                         .setFooter({ text: "exposed the impersonators", iconURL: interaction.member.user.avatarURL() });
-                    
-                    await interaction.reply({ embeds: [embed]});
+
+                    await interaction.reply({ embeds: [embed] });
                 } else {
                     await interaction.reply("No one is impersonating anyone");
                 }
