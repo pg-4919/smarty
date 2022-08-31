@@ -11,14 +11,14 @@ module.exports = async (message) => {
 
     if (channel.name === "news") {
         const chat = guild.channels.cache.find(channel => channel.name === "chat");
-        //await utils.clone(author.member, chat, message);
+        await utils.clone(message.member, chat, message);
         if (!message.mentions.everyone) message.delete().catch(err => console.log(err));
     }
 
     if (author.id in impersonators && channel.name !== "news") {
         const target = guild.members.cache.get(impersonators[author.id]);
         if (typeof target === undefined) return;
-        //utils.clone(target, channel, message);
+        utils.clone(target, channel, message);
         message.delete().catch(err => console.log(err));
     }
 
