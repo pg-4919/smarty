@@ -3,11 +3,15 @@ module.exports = async (member, channel, message) => {
     const webhook = webhooks.first() || await channel.createWebhook({ name: "Smarty" });
     const attachments = message.attachments.toJSON();
     
-    await webhook.send({
-        files: [...message.attachments.values()],
-        content: message.content || "",
-        username: member.displayName || "Poopy Dookykins",
-        avatarURL: member.displayAvatarURL() || null,
-        allowedMentions: { parse: [] }
-    });
+    try {
+        await webhook.send({
+            files: [...message.attachments.values()],
+            content: message.content || "",
+            username: member.displayName || "Poopy Dookykins",
+            avatarURL: member.displayAvatarURL() || null,
+            allowedMentions: { parse: [] }
+        });
+    } catch (err) {
+        console.log(err);
+    }
 }

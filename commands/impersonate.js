@@ -29,7 +29,6 @@ module.exports = {
         .toJSON(),
 
     async execute(interaction) {
-        return interaction.reply("No.")
         const user = interaction.user;
         const guild = interaction.guild;
 
@@ -46,7 +45,7 @@ module.exports = {
                 
                 impersonators[user.id] = target.user.id;
                 fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
-                await interaction.reply({ content: impersonators[user.id], ephemeral: true });
+                await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "stop":
