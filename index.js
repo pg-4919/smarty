@@ -13,7 +13,11 @@ const client = new discord.Client({
         discord.GatewayIntentBits.MessageContent,
         discord.GatewayIntentBits.GuildMessageReactions
     ],
-    partials: [discord.Partials.Channel],
+    partials: [,
+        discord.Partials.Message,
+        discord.Partials.Channel,
+        discord.Partials.Reaction
+    ],
 });
 
 client.commands = new discord.Collection(); //command files
@@ -22,6 +26,6 @@ client.impersonators = {};
 client.on("ready", events.ready);
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
-client.on("messageReactionAdd.js", events.messageReactionAdd);
+client.on("messageReactionAdd", events.messageReactionAdd);
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
