@@ -28,7 +28,7 @@ module.exports = {
         )
         .toJSON(),
 
-    async execute(interaction) {
+    async respond(interaction) {
         const user = interaction.user;
         const guild = interaction.guild;
 

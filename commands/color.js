@@ -8,7 +8,7 @@ module.exports = {
         .setDescription("Change the color of your name")
         .addStringOption(option => option.setName("hex").setDescription("The hex code of the color").setRequired(true))
         .toJSON(),
-    async execute(interaction) {
+    async respond(interaction) {
         const hex = interaction.options.getString("hex").replace("#", "");
         if (!/^[0-9A-F]{6}$/i.test(hex)) {
             const embed = new discord.EmbedBuilder()

@@ -7,7 +7,7 @@ module.exports = {
         .setName("help")
         .setDescription("Stop. Get some help.")
         .toJSON(),
-    async execute(interaction) {
+    async respond(interaction) {
         const embed = new discord.EmbedBuilder()
             .setColor("#636363")
             .setTitle("Commands")

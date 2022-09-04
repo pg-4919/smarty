@@ -7,7 +7,7 @@ module.exports = {
         .setName("ping")
         .setDescription("Check how laggy the bot is")
         .toJSON(),
-    async execute(interaction) {
+    async respond(interaction) {
         const embed = new discord.EmbedBuilder()
             .setColor("#636363")
             .setTimestamp()

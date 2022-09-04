@@ -1,6 +1,6 @@
 {
     "stats": {
         "msgs_sent": ["has sent", "messages."],
-        "cmds_sent": ["has executed", "commands."]
+        "cmds_sent": ["has respondd", "commands."]
     }
 }
