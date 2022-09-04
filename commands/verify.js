@@ -15,7 +15,7 @@ module.exports = {
         const captcha = new discord.TextInputBuilder()
 			.setCustomId("captcha")
 			.setLabel("Enter the following text: ")
-			.setStyle(TextInputStyle.Short);
+			.setStyle(discord.TextInputStyle.Short);
 
         modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
 
