@@ -28,6 +28,7 @@ module.exports = {
         const string = modal.fields.getTextInputValue("captcha").toLowerCase();
         if (string === captchas.get(modal.user.id)) modal.reply("correct");
         else modal.reply("false");
+        captchas.delete(modal.user.id);
         return;
     }
 }
