@@ -16,6 +16,11 @@ module.exports = {
 			.setCustomId("captcha")
 			.setLabel("Enter the following text: ")
 			.setStyle(TextInputStyle.Short);
+
+        modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
+
+		// Show the modal to the user
+		await interaction.showModal(modal);
     },
     async modal(modal) {
         console.log(modal);
