@@ -1,5 +1,8 @@
 const discord = require("discord.js");
+const crypto = require("crypto");
 const utils = require("../utils/utils.js");
+
+const global = []
 
 module.exports = {
     name: "verify",
@@ -14,16 +17,18 @@ module.exports = {
 
         const captcha = new discord.TextInputBuilder()
 			.setCustomId("captcha")
-			.setLabel("Enter the following text: ")
+			.setLabel(`Enter the following text: ${crypto.randomBytes(3).toString("hex")}`)
 			.setStyle(discord.TextInputStyle.Short);
 
         modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
 
 		// Show the modal to the user
+
+        global.push("WEFWEF")
 		await interaction.showModal(modal);
     },
     async modal(modal) {
-        console.log(modal);
+        console.log(global);
         modal.reply("poop")
     }
 }
