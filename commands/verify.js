@@ -2,7 +2,7 @@ const discord = require("discord.js");
 const crypto = require("crypto");
 const utils = require("../utils/utils.js");
 
-const global = []
+const captchas = new discord.Collection();
 
 module.exports = {
     name: "verify",
@@ -11,24 +11,23 @@ module.exports = {
         .setDescription("Verify yourself and get the Human role")
         .toJSON(),
     async respond(interaction) {
+        const string = crypto.randomBytes(3).toString("hex");
         const modal = new discord.ModalBuilder()
             .setCustomId("verify")
             .setTitle("Verify yourself");
-
         const captcha = new discord.TextInputBuilder()
 			.setCustomId("captcha")
-			.setLabel(`Enter the following text: ${crypto.randomBytes(3).toString("hex")}`)
+			.setLabel(`Enter the following text: ${string}`)
 			.setStyle(discord.TextInputStyle.Short);
 
+        captchas.set(interaction.user.id, string);
         modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
-
-		// Show the modal to the user
-
-        global.push("WEFWEF")
-		await interaction.showModal(modal);
+		return interaction.showModal(modal);
     },
     async modal(modal) {
-        console.log(global);
-        modal.reply("poop")
+        const string = interaction.fields.getTextInputValue("captcha");
+        if (string === captchas.get(modal.user.id)) modal.reply("correct");
+        else modal.reply("false");
+        return;
     }
 }
