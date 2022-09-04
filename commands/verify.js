@@ -28,8 +28,16 @@ module.exports = {
     },
     async modal(modal) {
         const string = modal.fields.getTextInputValue("captcha").toLowerCase();
-        if (string !== captchas.get(modal.user.id)) return;
-        modal.reply("correct");
+        const humans = modal.guild.roles.cache.filter(role => role.name === "Humans");
+        if (string === captchas.get(modal.user.id)) {
+            modal.member.roles.add(humans);
+            const embed = new discord.EmbedBuilder()
+                .setColor("#636363")
+                .setTimestamp()
+                .setDescription(`You were successfully verified.`)
+                .setFooter({ text: "verified themselves", iconURL: interaction.member.user.avatarURL() });
+            modal.reply({ embeds: [embed] });
+        }
         captchas.delete(modal.user.id);
         return;
     }
