@@ -25,7 +25,7 @@ module.exports = {
 		return interaction.showModal(modal);
     },
     async modal(modal) {
-        const string = interaction.fields.getTextInputValue("captcha");
+        const string = modals.fields.getTextInputValue("captcha");
         if (string === captchas.get(modal.user.id)) modal.reply("correct");
         else modal.reply("false");
         return;
