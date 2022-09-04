@@ -36,7 +36,7 @@ module.exports = {
                 .setTimestamp()
                 .setDescription(`You were successfully verified.`)
                 .setFooter({ text: "verified themselves", iconURL: modal.member.user.avatarURL() });
-            modal.reply({ embeds: [embed] });
+            modal.reply({ embeds: [embed], ephemeral: true });
         }
         captchas.delete(modal.user.id);
         return;

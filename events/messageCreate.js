@@ -7,6 +7,8 @@ module.exports = async (message) => {
 
     const impersonators = require(`${utils.path.temp}/impersonate.json`);
 
+    if (channel.name === "verify") return message.delete();
+
     if (author.id === message.client.user.id) return;
 
     if (channel.name === "news") {
