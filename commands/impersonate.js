@@ -54,10 +54,10 @@ module.exports = {
                 break;
 
             case "view":
-                if (Object.keys(impersonators).length > 0) {
+                if (impersonators.length > 0) {
                     const text = [];
 
-                    Object.keys(impersonators).forEach(key => {
+                    impersonators.keys.forEach(key => {
                         const impersonator = guild.members.cache.get(key).displayName;
                         const target = guild.members.cache.get(impersonators.get(key)).displayName;
                         text.push(`${impersonator} is impersonating ${target}`);
