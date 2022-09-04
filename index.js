@@ -1,5 +1,4 @@
 const discord = require("discord.js");
-const config = require("./assets/config.json");
 const utils = require("./utils/utils.js");
 const events = require("./events/events.js")
 const fs = require("fs");
