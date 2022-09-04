@@ -18,7 +18,10 @@ module.exports = {
         const captcha = new discord.TextInputBuilder()
 			.setCustomId("captcha")
 			.setLabel(`Enter the following text: ${string}`)
-			.setStyle(discord.TextInputStyle.Short);
+			.setStyle(discord.TextInputStyle.Short)
+            .setMinLength(6)
+            .setMaxLength(6)
+            .setRequired(true)
 
         captchas.set(interaction.user.id, string);
         modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
@@ -26,8 +29,8 @@ module.exports = {
     },
     async modal(modal) {
         const string = modal.fields.getTextInputValue("captcha").toLowerCase();
-        if (string === captchas.get(modal.user.id)) modal.reply("correct");
-        else modal.reply("false");
+        if (string !== captchas.get(modal.user.id)) return;
+        modal.reply("correct");
         captchas.delete(modal.user.id);
         return;
     }
