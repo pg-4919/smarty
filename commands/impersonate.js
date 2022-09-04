@@ -2,7 +2,7 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 const fs = require("fs");
 
-//TODO: implement a global temp storage system
+const impersonators = new discord.Collection();
 
 module.exports = {
     name: "impersonate",
@@ -32,8 +32,6 @@ module.exports = {
         const user = interaction.user;
         const guild = interaction.guild;
 
-        const impersonators = require(`${utils.path.temp}/impersonate.json`);
-
         const embed = new discord.EmbedBuilder().setColor("#636363").setTimestamp();
 
         switch (interaction.options.getSubcommand()) {
@@ -43,17 +41,15 @@ module.exports = {
                     .setTimestamp()
                     .setFooter({ text: "became a ventriloquist", iconURL: interaction.member.user.avatarURL() });
                 
-                impersonators[user.id] = target.user.id;
-                fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
+                impersonators.set(user.id, target.user.id);
                 await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "stop":
-                embed.setDescription(`Stopped impersonating ${guild.members.cache.get(impersonators[user.id]).displayName}`)
+                embed.setDescription(`Stopped impersonating ${guild.members.cache.get(impersonators.get(user.id)).displayName}`)
                     .setFooter({ text: "left the criminal underworld", iconURL: interaction.member.user.avatarURL() });
 
-                delete impersonators[user.id];
-                fs.writeFileSync(`${utils.path.temp}/impersonate.json`, JSON.stringify(impersonators));
+                impersonators.delete(user.id)
                 await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
@@ -63,7 +59,7 @@ module.exports = {
 
                     Object.keys(impersonators).forEach(key => {
                         const impersonator = guild.members.cache.get(key).displayName;
-                        const target = guild.members.cache.get(impersonators[key]).displayName;
+                        const target = guild.members.cache.get(impersonators.get(key)).displayName;
                         text.push(`${impersonator} is impersonating ${target}`);
                     })
 
