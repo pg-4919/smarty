@@ -35,7 +35,7 @@ module.exports = {
                 .setColor("#636363")
                 .setTimestamp()
                 .setDescription(`You were successfully verified.`)
-                .setFooter({ text: "verified themselves", iconURL: interaction.member.user.avatarURL() });
+                .setFooter({ text: "verified themselves", iconURL: modal.member.user.avatarURL() });
             modal.reply({ embeds: [embed] });
         }
         captchas.delete(modal.user.id);
