@@ -20,7 +20,6 @@ module.exports = {
 			.setLabel(`Enter the following text: ${string}`)
 			.setStyle(discord.TextInputStyle.Short)
             .setMinLength(6)
-            .setMaxLength(6)
             .setRequired(true)
 
         captchas.set(interaction.user.id, string);
