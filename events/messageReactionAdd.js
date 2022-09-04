@@ -1,6 +1,7 @@
 const utils = require("../utils/utils.js");
 
 module.exports = async (reaction, user) => {
+    await reaction.fetch();
     console.log(reaction);
     if (reaction.emoji.name !== "pushpin") return;
     const starred = reaction.message.guild.channels.cache.find(channel => channel.name === "starred");
