@@ -22,6 +22,6 @@ client.impersonators = {};
 client.on("ready", events.ready);
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
-client.on("messageReactionAdd.js", events.messageReactionAdd.js);
+client.on("messageReactionAdd.js", events.messageReactionAdd);
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");

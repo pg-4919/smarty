@@ -1,5 +1,6 @@
 module.exports = {
     interactionCreate: require("./interactionCreate.js"),
     messageCreate: require("./messageCreate.js"),
-    ready: require("./ready.js")
+    ready: require("./ready.js"),
+    messageReactionAdd: require("./messageReactionAdd.js"),
 }
