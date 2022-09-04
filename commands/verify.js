@@ -12,7 +12,7 @@ module.exports = {
             .setCustomId("verify")
             .setTitle("Verify yourself");
 
-        const captcha = new TextInputBuilder()
+        const captcha = new discord.TextInputBuilder()
 			.setCustomId("captcha")
 			.setLabel("Enter the following text: ")
 			.setStyle(TextInputStyle.Short);
