@@ -11,6 +11,7 @@ const client = new discord.Client({
         discord.GatewayIntentBits.GuildBans,
         discord.GatewayIntentBits.GuildMessages,
         discord.GatewayIntentBits.MessageContent,
+        discord.GatewayIntentBits.GuildMessageReactions
     ],
     partials: [discord.Partials.Channel],
 });
@@ -21,5 +22,6 @@ client.impersonators = {};
 client.on("ready", events.ready);
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
+client.on("messageReactionAdd.js", events.messageReactionAdd.js);
 
 client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
