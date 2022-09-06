@@ -11,14 +11,23 @@ module.exports = {
     async respond(interaction) {
         const hex = interaction.options.getString("hex").replace("#", "");
         const embed = new discord.EmbedBuilder();
+        const member = interaction.member;
+        const guild = interaction.guild;
 
         if (!/^[0-9A-F]{6}$/i.test(hex)) {
             embed.setColor("#FF0000")
                 .setTimestamp()
                 .setDescription(`Not a valid hex code.`)
-                .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
+                .setFooter({ text: "did a stupid", iconURL: member.user.avatarURL() });
         } else {
-            const customRole = interaction.member.roles.cache.filter(role => role.name === "Humans").first();
+            const customRole = member.roles.cache.filter(role => role.name === "Humans").first();
+            if (typeof customRole === undefined) {
+                member.roles.add(await guild.roles.create({
+                    name: member.displayName,
+                    color: hex,
+                    position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position - 1
+                }));
+            }
             embed.setColor("#636363")
                 .setTimestamp()
                 .setDescription(`#${JSON.stringify(customRole)}.`)
