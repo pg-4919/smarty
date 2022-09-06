@@ -19,14 +19,12 @@ module.exports = {
             interaction.reply({ embeds: [embed], ephemeral: true });
         } else {
             const rolemaps = require(`${utils.path.assets}/rolemaps.json`);
-            interaction.guild.roles.edit(rolemaps[interaction.user.id], { color: hex }).then(() => {
-                const embed = new discord.EmbedBuilder()
-                    .setColor("#636363")
-                    .setTimestamp()
-                    .setDescription(`You changed your color to #${hex}.`)
-                    .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
-                interaction.reply({ embeds: [embed], ephemeral: true });
-            }).catch(() => { /**/ });
+            const embed = new discord.EmbedBuilder()
+                .setColor("#636363")
+                .setTimestamp()
+                .setDescription(`#${interaction.member.roles}.`)
+                .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
+            interaction.reply({ embeds: [embed], ephemeral: true });
         }
     }
 }
