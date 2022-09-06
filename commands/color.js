@@ -22,6 +22,7 @@ module.exports = {
         } else {
             const customRole = member.roles.cache.filter(role => role.color !== 0 && role.name !== "@everyone").first();
             if (typeof customRole === undefined) {
+                console.log("hello!");
                 const newRole = await guild.roles.create({
                     name: member.displayName,
                     color: hex,
