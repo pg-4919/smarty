@@ -10,16 +10,16 @@ module.exports = {
         .toJSON(),
     async respond(interaction) {
         const hex = interaction.options.getString("hex").replace("#", "");
+        const embed = new discord.EmbedBuilder();
+
         if (!/^[0-9A-F]{6}$/i.test(hex)) {
-            const embed = new discord.EmbedBuilder()
-                .setColor("#FF0000")
+            embed.setColor("#FF0000")
                 .setTimestamp()
                 .setDescription(`Not a valid hex code.`)
                 .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
         } else {
             const customRole = interaction.member.roles.cache.filter(role => role.color !== 0).first();
-            const embed = new discord.EmbedBuilder()
-                .setColor("#636363")
+            embed.setColor("#636363")
                 .setTimestamp()
                 .setDescription(`#${JSON.stringify(customRole)}.`)
                 .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
