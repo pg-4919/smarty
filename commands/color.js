@@ -22,7 +22,7 @@ module.exports = {
             const embed = new discord.EmbedBuilder()
                 .setColor("#636363")
                 .setTimestamp()
-                .setDescription(`#${interaction.member.roles}.`)
+                .setDescription(`#${JSON.stringify(interaction.member.roles)}.`)
                 .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
             interaction.reply({ embeds: [embed], ephemeral: true });
         }
