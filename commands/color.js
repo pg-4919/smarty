@@ -18,7 +18,7 @@ module.exports = {
                 .setDescription(`Not a valid hex code.`)
                 .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
         } else {
-            const customRole = interaction.member.roles.cache.filter(role => role.color !== 0).first();
+            const customRole = interaction.member.roles.cache.filter(role => role.name === "Humans").first();
             embed.setColor("#636363")
                 .setTimestamp()
                 .setDescription(`#${JSON.stringify(customRole)}.`)
