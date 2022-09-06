@@ -4,7 +4,7 @@ const utils = require("../utils/utils.js");
 module.exports = {
     name: "archive",
     data: new discord.SlashCommandBuilder()
-        .setName("help")
+        .setName("archive")
         .setDescription("Stop. Get some help.")
         .toJSON(),
     async respond(interaction) {
