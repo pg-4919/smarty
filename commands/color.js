@@ -9,7 +9,7 @@ module.exports = {
         .addStringOption(option => option.setName("hex").setDescription("The hex code of the color").setRequired(true))
         .toJSON(),
     async respond(interaction) {
-        const hex = (interaction.options.getString("hex").replace("#", "") === "000000") ? interaction.options.getString("hex").replace("#", "") : "000001";
+        const hex = (interaction.options.getString("hex").replace("#", "") === "000000") ? "000001" : interaction.options.getString("hex").replace("#", "");
         const embed = new discord.EmbedBuilder();
         const member = interaction.member;
         const guild = interaction.guild;
@@ -21,13 +21,13 @@ module.exports = {
                 .setFooter({ text: "did a stupid", iconURL: member.user.avatarURL() });
         } else {
 
-            const customRole = member.roles.cache.filter(role => role.color !== 0).first() || 
+            const customRole = member.roles.cache.filter(role => role.color !== 0).first() ||
                 await guild.roles.create({
                     name: member.displayName,
                     color: hex,
                     position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position + 1
                 });
-            
+
             member.roles.add(customRole); //catch new roles
 
             embed.setColor("#636363")
