@@ -17,18 +17,18 @@ module.exports = {
         if (!/^[0-9A-F]{6}$/i.test(hex)) {
             embed.setColor("#FF0000")
                 .setTimestamp()
-                .setDescription(`Not a valid hex code. (You can't set your color to black because of Discord's design.)`)
-                .setFooter({ text: "did a stupid", iconURL: member.user.avatarURL() });
+                .setDescription(`Not a valid hex code.`)
+                .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
         } else {
 
             const customRole = member.roles.cache.filter(role => role.color !== 0).first() ||
                 await guild.roles.create({
                     name: member.displayName,
-                    color: hex,
                     position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position + 1
                 });
 
-            member.roles.add(customRole); //catch new roles
+            member.roles.add(customRole);
+            customRole.setColor(hex);
 
             embed.setColor("#636363")
                 .setTimestamp()
