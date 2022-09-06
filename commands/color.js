@@ -22,13 +22,11 @@ module.exports = {
         } else {
             const customRole = member.roles.cache.filter(role => role.color !== 0 && role.name !== "@everyone").first();
             if (customRole === undefined) {
-                console.log("hello!");
-                const newRole = await guild.roles.create({
+                member.roles.add(await guild.roles.create({
                     name: member.displayName,
                     color: hex,
                     position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position + 1
-                });
-                return interaction.reply(JSON.stringify(newRole));
+                }));
             }
             console.log(typeof customRole)
             embed.setColor("#636363")
