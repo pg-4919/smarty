@@ -20,7 +20,7 @@ module.exports = {
                 .setDescription(`Not a valid hex code.`)
                 .setFooter({ text: "did a stupid", iconURL: member.user.avatarURL() });
         } else {
-            const customRole = member.roles.cache.filter(role => role.color !== 0).first();
+            const customRole = member.roles.cache.filter(role => role.color !== 0 && role.name !== "@everyone").first();
             if (typeof customRole === undefined) {
                 const newRole = await guild.roles.create({
                     name: member.displayName,
