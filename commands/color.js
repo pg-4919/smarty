@@ -9,17 +9,18 @@ module.exports = {
         .addStringOption(option => option.setName("hex").setDescription("The hex code of the color").setRequired(true))
         .toJSON(),
     async respond(interaction) {
-        const hex = interaction.options.getString("hex").replace("#", "");
+        const hex = (interaction.options.getString("hex").replace("#", "") === "000000") ? interaction.options.getString("hex").replace("#", "") : "000001";
         const embed = new discord.EmbedBuilder();
         const member = interaction.member;
         const guild = interaction.guild;
 
-        if (!/^[0-9A-F]{6}$/i.test(hex) || ["000000", "#000000"].includes(hex)) {
+        if (!/^[0-9A-F]{6}$/i.test(hex)) {
             embed.setColor("#FF0000")
                 .setTimestamp()
                 .setDescription(`Not a valid hex code. (You can't set your color to black because of Discord's design.)`)
                 .setFooter({ text: "did a stupid", iconURL: member.user.avatarURL() });
         } else {
+
             const customRole = member.roles.cache.filter(role => role.color !== 0).first() || 
                 await guild.roles.create({
                     name: member.displayName,
@@ -31,7 +32,7 @@ module.exports = {
 
             embed.setColor("#636363")
                 .setTimestamp()
-                .setDescription(`You changed <@&${customRole.id}>'s color to ${hex}`)
+                .setDescription(`You changed <@&${customRole.id}>'s color to #${hex}.`)
                 .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
         }
         return interaction.reply({ embeds: [embed], ephemeral: true });
