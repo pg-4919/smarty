@@ -2,7 +2,6 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
 module.exports = {
-    name: "archive",
     data: new discord.SlashCommandBuilder()
         .setName("archive")
         .setDescription("Stop. Get some help.")

@@ -1,8 +1,7 @@
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
-module.exports = {
-    name: "color",
+module.exports = { 
     data: new discord.SlashCommandBuilder()
         .setName("color")
         .setDescription("Change the color of your name")
@@ -12,6 +11,7 @@ module.exports = {
             .setRequired(true)
         )
         .toJSON(),
+
     async respond(interaction) {
         const hex = (interaction.options.getString("hex").replace("#", "") === "000000") ?
             "000001" : interaction.options.getString("hex").replace("#", ""); //black hex replacement
@@ -27,7 +27,7 @@ module.exports = {
                 .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
         } else {
             //find custom role & create role if none
-            const customRole = member.roles.cache.filter(role => role.color !== 0).first() ||
+            const customRole = member.roles.cache.find(role => role.color !== 0) ||
                 await guild.roles.create({
                     name: member.displayName,
                     position: guild.roles.cache.find(

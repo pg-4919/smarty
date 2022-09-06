@@ -5,11 +5,11 @@ const utils = require("../utils/utils.js");
 const captchas = new discord.Collection();
 
 module.exports = {
-    name: "verify",
     data: new discord.SlashCommandBuilder()
         .setName("verify")
         .setDescription("Verify yourself and get the Human role")
         .toJSON(),
+        
     async respond(interaction) {
         const string = crypto.randomBytes(3).toString("hex");
         const modal = new discord.ModalBuilder()
@@ -24,11 +24,13 @@ module.exports = {
 
         captchas.set(interaction.user.id, string);
         modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
+
 		return interaction.showModal(modal);
     },
     async modal(modal) {
         const string = modal.fields.getTextInputValue("captcha").toLowerCase();
         const humans = modal.guild.roles.cache.filter(role => role.name === "Humans");
+
         if (string === captchas.get(modal.user.id)) {
             modal.member.roles.add(humans);
             const embed = new discord.EmbedBuilder()
@@ -38,7 +40,7 @@ module.exports = {
                 .setFooter({ text: "verified themselves", iconURL: modal.member.user.avatarURL() });
             modal.reply({ embeds: [embed], ephemeral: true });
         }
-        captchas.delete(modal.user.id);
-        return;
+
+        return captchas.delete(modal.user.id);
     }
 }

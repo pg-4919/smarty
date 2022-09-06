@@ -5,7 +5,6 @@ const fs = require("fs");
 const impersonators = new discord.Collection();
 
 module.exports = {
-    name: "impersonate",
     data: new discord.SlashCommandBuilder()
         .setName("impersonate")
         .setDescription("Impersonate another user")
