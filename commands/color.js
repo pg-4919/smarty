@@ -31,7 +31,7 @@ module.exports = {
 
             embed.setColor("#636363")
                 .setTimestamp()
-                .setDescription(`You changed <@&${customRole.id}'s color to ${hex}`)
+                .setDescription(`You changed <@&${customRole.id}>'s color to ${hex}`)
                 .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
         }
         return interaction.reply({ embeds: [embed], ephemeral: true });
