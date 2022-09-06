@@ -16,14 +16,14 @@ module.exports = {
                 .setTimestamp()
                 .setDescription(`Not a valid hex code.`)
                 .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
-            interaction.reply({ embeds: [embed], ephemeral: true });
         } else {
+            const customRole = interaction.member.roles.cache.filter(role => role.color !== 0).first();
             const embed = new discord.EmbedBuilder()
                 .setColor("#636363")
                 .setTimestamp()
-                .setDescription(`#${JSON.stringify(interaction.member.roles.cache)}.`)
+                .setDescription(`#${JSON.stringify(customRole)}.`)
                 .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
-            interaction.reply({ embeds: [embed], ephemeral: true });
         }
+        interaction.reply({ embeds: [embed], ephemeral: true });
     }
 }
