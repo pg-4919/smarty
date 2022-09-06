@@ -22,17 +22,18 @@ module.exports = {
         } else {
             const customRole = member.roles.cache.filter(role => role.color !== 0).first();
             if (typeof customRole === undefined) {
-                await member.roles.add(await guild.roles.create({
+                const newRole = await guild.roles.create({
                     name: member.displayName,
                     color: hex,
                     position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position + 1
-                }));
+                });
+                return interaction.reply(newRole);
             }
             embed.setColor("#636363")
                 .setTimestamp()
                 .setDescription(`#${JSON.stringify(customRole)}.`)
                 .setFooter({ text: "changed their color", iconURL: interaction.member.user.avatarURL() });
         }
-        interaction.reply({ embeds: [embed], ephemeral: true });
+        return interaction.reply({ embeds: [embed], ephemeral: true });
     }
 }
