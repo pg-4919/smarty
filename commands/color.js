@@ -22,7 +22,7 @@ module.exports = {
         } else {
             const customRole = member.roles.cache.filter(role => role.color !== 0).first();
             if (typeof customRole === undefined) {
-                member.roles.add(await guild.roles.create({
+                await member.roles.add(await guild.roles.create({
                     name: member.displayName,
                     color: hex,
                     position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position + 1
