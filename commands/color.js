@@ -18,7 +18,6 @@ module.exports = {
                 .setFooter({ text: "did a stupid", iconURL: interaction.member.user.avatarURL() });
             interaction.reply({ embeds: [embed], ephemeral: true });
         } else {
-            const rolemaps = require(`${utils.path.assets}/rolemaps.json`);
             const embed = new discord.EmbedBuilder()
                 .setColor("#636363")
                 .setTimestamp()
