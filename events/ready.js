@@ -16,7 +16,7 @@ module.exports = async (client) => {
 
     client.application.commands.set([]);
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
-    client.guilds.cache.each(utils.purge);
+    client.guilds.cache.each(utils.roles.purge);
 
     console.log(`Commands updated and bot logged in as ${client.user.tag}.`);
 }
