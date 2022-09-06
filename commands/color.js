@@ -20,14 +20,14 @@ module.exports = {
                 .setDescription(`Not a valid hex code. (You can't set your color to black because of Discord's design.)`)
                 .setFooter({ text: "did a stupid", iconURL: member.user.avatarURL() });
         } else {
-            const customRole = member.roles.cache.filter(role => role.color !== 0).first();
-            if (customRole === undefined) {
-                member.roles.add(await guild.roles.create({
+            const customRole = member.roles.cache.filter(role => role.color !== 0).first() || 
+                await guild.roles.create({
                     name: member.displayName,
                     color: hex,
                     position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position + 1
-                }));
-            }
+                });
+            
+            member.roles.add(customRole); //catch new roles
 
             embed.setColor("#636363")
                 .setTimestamp()
