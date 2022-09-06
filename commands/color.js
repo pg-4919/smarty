@@ -27,7 +27,7 @@ module.exports = {
                     color: hex,
                     position: guild.roles.cache.find(role => role.name === "Bots" && role.color === 0).position + 1
                 });
-                return interaction.reply(newRole);
+                return interaction.reply(JSON.stringify(newRole));
             }
             embed.setColor("#636363")
                 .setTimestamp()
