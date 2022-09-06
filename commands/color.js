@@ -29,6 +29,7 @@ module.exports = {
                 });
                 return interaction.reply(JSON.stringify(newRole));
             }
+            console.log(customRole)
             embed.setColor("#636363")
                 .setTimestamp()
                 .setDescription(`#${JSON.stringify(customRole)}.`)
