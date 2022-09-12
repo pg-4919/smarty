@@ -14,6 +14,6 @@ module.exports = {
             .setDescription(`The bot is up and latency is ${Date.now() - interaction.createdTimestamp} ms.`)
             .setFooter({ text: "pinged the bot", iconURL: interaction.member.user.avatarURL() });
         
-        await interaction.editReply({ embeds: [embed]});
+        await interaction.reply({ embeds: [embed]});
     }
 }
