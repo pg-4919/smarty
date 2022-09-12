@@ -7,7 +7,7 @@ module.exports = {
         .setDescription("Check how laggy the bot is")
         .toJSON(),
     async respond(interaction) {
-        await interaction.deferReply();
+        interaction.deferReply();
 
         const embed = new discord.EmbedBuilder()
             .setColor("#636363")
