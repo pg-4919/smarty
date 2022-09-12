@@ -33,6 +33,8 @@ module.exports = {
 
         const embed = new discord.EmbedBuilder().setColor("#636363").setTimestamp();
 
+        await interaction.deferReply();
+
         switch (interaction.options.getSubcommand()) {
             case "start":
                 const target = interaction.options.getMember("person");
@@ -41,7 +43,7 @@ module.exports = {
                     .setFooter({ text: "became a ventriloquist", iconURL: interaction.member.user.avatarURL() });
                 
                 impersonators.set(user.id, target.user.id);
-                await interaction.reply({ embeds: [embed], ephemeral: true });
+                await interaction.editReply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "stop":
@@ -49,7 +51,7 @@ module.exports = {
                     .setFooter({ text: "left the criminal underworld", iconURL: interaction.member.user.avatarURL() });
 
                 impersonators.delete(user.id)
-                await interaction.reply({ embeds: [embed], ephemeral: true });
+                await interaction.editReply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "view":
@@ -66,9 +68,9 @@ module.exports = {
                         .setDescription(text.join("\n"))
                         .setFooter({ text: "exposed the impersonators", iconURL: interaction.member.user.avatarURL() });
 
-                    await interaction.reply({ embeds: [embed] });
+                    await interaction.editReply({ embeds: [embed] });
                 } else {
-                    await interaction.reply("No one is impersonating anyone");
+                    await interaction.editReply("No one is impersonating anyone");
                 }
 
                 break;
