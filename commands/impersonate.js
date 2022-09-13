@@ -43,7 +43,7 @@ module.exports = {
                     .setFooter({ text: "became a ventriloquist", iconURL: member.avatarURL() });
                 
                 impersonations.set(member.user.id, { imposter: member, target: target });
-                await interaction.editReply({ embeds: [embed], ephemeral: true });
+                await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "stop":
