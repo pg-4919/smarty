@@ -28,6 +28,7 @@ module.exports = {
                 .setDescription("The person to impersonate")
                 .setRequired(true)
             )
+            .setDescription("Impersonate someone")
         )
         .addSubcommand(subcommand => subcommand
             .setName("stop").setDescription("Stop spoofing")
