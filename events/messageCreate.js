@@ -5,14 +5,13 @@ module.exports = async (message) => {
     const channel = message.channel;
     const guild = message.guild;
     
-    /*
     const impersonators = require(`${utils.path.commands}/impersonate.js`).fetch();
     if (impersonators.has(author.id) && channel.name !== "news") {
         const target = impersonators.get(author.id).target;
         if (typeof target === undefined) return;
         utils.clone(target, channel, message);
         message.delete().catch(err => console.log(err));
-    }*/
+    }
 
     if (channel.name === "verify") return await message.delete().catch(() => { /* */ });
 
