@@ -29,11 +29,11 @@ module.exports = {
                 .setRequired(true)
             )
         )
-        .addSubcommand(subcommand => 
-            subcommand.setName("stop").setDescription("Stop spoofing")
+        .addSubcommand(subcommand => subcommand
+            .setName("stop").setDescription("Stop spoofing")
         )
-        .addSubcommand(subcommand => 
-            subcommand.setName("view").setDescription("View current spoofs")
+        .addSubcommand(subcommand => subcommand
+            .setName("view").setDescription("View current spoofs")
         )
         .toJSON(),
 
