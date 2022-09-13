@@ -29,12 +29,12 @@ module.exports = {
                 .setRequired(true)
             )
         )
-        .addSubcommand(subcommand => {
-            subcommand.setName("stop")
-        })
-        .addSubcommand(subcommand => {
-            subcommand.setName("view")
-        })
+        .addSubcommand(subcommand => 
+            subcommand.setName("stop").setDescription("Stop spoofing")
+        )
+        .addSubcommand(subcommand => 
+            subcommand.setName("view").setDescription("View current spoofs")
+        )
         .toJSON(),
 
     async respond(interaction) {
