@@ -71,6 +71,7 @@ module.exports = {
                     const summary = [];
 
                     spoofs.each(spoof => {
+                        console.log(spoof);
                         const imposterId = spoof.imposter.id;
                         const targetId = spoof.target.id;
                         summary.push(`<@${imposterId}> is impersonating <@${targetId}>`);
@@ -81,7 +82,7 @@ module.exports = {
                         .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
 
                     interaction.reply({ embeds: [embed] });
-                    
+
                 } else {
                     embed.setDescription("No one is currently impersonating anyone.")
                         .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
