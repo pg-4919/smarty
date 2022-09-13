@@ -2,35 +2,41 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 const fs = require("fs");
 
-const impersonations = new discord.Collection();
+const spoofs = new discord.Collection();
+
+/*
+Notes:
+
+The spoof command uses the global storage variable spoofs,
+which is a discord collection with structure of { id: spoof }.
+A spoof is further broken down into { imposter: member, target: member }
+where both values are of type discord.GuildMember. 
+
+Furthermore, this command demonstrates two conventions used in 
+Smarty: subcommand parsing using switch statements and display of
+members in embeds using mentions.
+*/
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
-        .setName("impersonate")
-        .setDescription("Impersonate another member")
+        .setName("spoof")
+        .setDescription("Impersonate someone else")
         .addSubcommand(subcommand => subcommand
             .setName("start")
-            .setDescription("Start impersonating someone")
             .addUserOption(option => option
                 .setName("person")
                 .setDescription("The person to impersonate")
                 .setRequired(true)
             )
         )
-        .addSubcommand(subcommand => subcommand
-            .setName("stop")
-            .setDescription("Stop impersonating someone")
-        )
-        .addSubcommand(subcommand => subcommand
-            .setName("view")
-            .setDescription("View current impersonations")
-        )
+        .addSubcommand(subcommand => subcommand.setName("stop"))
+        .addSubcommand(subcommand => subcommand.setName("view"))
         .toJSON(),
 
     async respond(interaction) {
         const member = interaction.member;
         const guild = interaction.guild;
-        const embed = new discord.EmbedBuilder()
+        const embed = new discord.EmbedBuilder() //placing embed builder here prevents duplicate code
             .setColor("#2F3136")
             .setTimestamp();
 
@@ -38,34 +44,34 @@ module.exports = {
             case "start":
                 const target = interaction.options.getMember("person");
 
-                embed.setDescription(`Started impersonating ${target.displayName}`)
+                embed.setDescription(`Started impersonating <@${target.id}>`)
                     .setTimestamp()
-                    .setFooter({ text: "became a ventriloquist", iconURL: member.avatarURL() });
+                    .setFooter({ text: `became ${target.displayName}`, iconURL: member.avatarURL() });
                 
-                impersonations.set(member.user.id, { imposter: member, target: target });
+                spoofs.set(member.user.id, { imposter: member, target: target });
                 await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "stop":
-                embed.setDescription(`Stopped impersonating ${impersonations.get(member.id).imposter.displayName}`)
+                embed.setDescription(`Stopped impersonating <@${spoofs.get(member.id).imposter.id}>`)
                     .setFooter({ text: "left the criminal underworld", iconURL: member.avatarURL() });
 
-                impersonations.delete(member.user.id)
+                spoofs.delete(member.user.id)
                 await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "view":
-                if (impersonations.length > 0) {
-                    const text = [];
+                if (spoofs.length > 0) {
+                    const summary = [];
 
-                    impersonations.each(impersonation => {
-                        const imposter = impersonation.imposter.displayName;
-                        const target = impersonation.target.displayName;
-                        text.push(`${impersonator} is impersonating ${target}`);
+                    spoofs.each(spoof => {
+                        const imposterId = spoof.imposter.id;
+                        const targetId = spoof.target.id;
+                        summary.push(`<@${imposterId}> is impersonating <@${targetId}>`);
                     })
 
                     embed.setTitle("Current impersonations")
-                        .setDescription(text.join("\n"))
+                        .setDescription(summary.join("\n"))
                         .setFooter({ text: "was the imposter", iconURL: member.avatarURL() });
 
                     await interaction.reply({ embeds: [embed] });
@@ -76,6 +82,6 @@ module.exports = {
     },
 
     fetch() {
-        return impersonations;
+        return spoofs;
     }
 }
