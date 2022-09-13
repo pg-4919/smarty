@@ -35,13 +35,16 @@ module.exports = {
         )
         .addSubcommand(subcommand => subcommand
             .setName("view").setDescription("View current spoofs")
-            
+
         )
         .toJSON(),
 
     async respond(interaction) {
         const member = interaction.member;
+        const user = interaction.user;
         const guild = interaction.guild;
+        const id = user.id;
+
         const embed = new discord.EmbedBuilder() //placing embed builder here prevents duplicate code
             .setColor("#2F3136")
             .setTimestamp();
@@ -52,17 +55,17 @@ module.exports = {
 
                 embed.setDescription(`Started impersonating <@${target.id}>`)
                     .setTimestamp()
-                    .setFooter({ text: `became ${target.displayName}`, iconURL: member.user.avatarURL() });
-                
-                spoofs.set(member.user.id, { imposter: member, target: target });
+                    .setFooter({ text: `became ${target.displayName}`, iconURL: user.avatarURL() });
+
+                spoofs.set(id, { imposter: member, target: target });
                 await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "stop":
-                embed.setDescription(`Stopped impersonating <@${spoofs.get(member.id).imposter.id}>`)
-                    .setFooter({ text: "left the criminal underworld", iconURL: member.user.avatarURL() });
+                embed.setDescription(`Stopped impersonating <@${spoofs.get(id).imposter.id}>`)
+                    .setFooter({ text: "left the criminal underworld", iconURL: user.avatarURL() });
 
-                spoofs.delete(member.user.id)
+                spoofs.delete(id);
                 await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
@@ -78,10 +81,15 @@ module.exports = {
 
                     embed.setTitle("Current impersonations")
                         .setDescription(summary.join("\n"))
-                        .setFooter({ text: "was the imposter", iconURL: member.user.avatarURL() });
+                        .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
 
                     await interaction.reply({ embeds: [embed] });
-                } else await interaction.reply("No one is impersonating anyone")
+                } else {
+                    embed.setDescription("No one is currently impersonating anyone.")
+                        .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
+
+                    await interaction.reply({ embeds: [embed] });
+                }
 
                 break;
         }
