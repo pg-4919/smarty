@@ -11,7 +11,7 @@ module.exports = {
         .addSubcommand(subcommand => subcommand
             .setName("start")
             .setDescription("Start impersonating someone")
-            .addmemberOption(option => option
+            .addUserOption(option => option
                 .setName("person")
                 .setDescription("The person to impersonate")
                 .setRequired(true)
