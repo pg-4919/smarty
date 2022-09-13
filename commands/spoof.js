@@ -20,18 +20,18 @@ members in embeds using mentions.
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("spoof")
-        .setDescription("Impersonate someone else")
+        .setDescription("Become another person")
         .addSubcommand(subcommand => subcommand
             .setName("start")
             .addUserOption(option => option
-                .setName("person")
-                .setDescription("The person to impersonate")
+                .setName("target")
+                .setDescription("Who to impersonate")
                 .setRequired(true)
             )
-            .setDescription("Impersonate someone")
+            .setDescription("Begin impersonating someone")
         )
         .addSubcommand(subcommand => subcommand
-            .setName("stop").setDescription("Stop spoofing")
+            .setName("end").setDescription("Stop spoofing")
         )
         .addSubcommand(subcommand => subcommand
             .setName("view").setDescription("View current spoofs")
@@ -51,7 +51,7 @@ module.exports = {
 
         switch (interaction.options.getSubcommand()) {
             case "start":
-                const target = interaction.options.getMember("person");
+                const target = interaction.options.getMember("target");
 
                 embed.setDescription(`Started impersonating <@${target.id}>`)
                     .setTimestamp()
