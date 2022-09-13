@@ -67,7 +67,7 @@ module.exports = {
                 break;
 
             case "view":
-                if (spoofs.length > 0) {
+                if (spoofs.size > 0) {
                     const summary = [];
 
                     spoofs.each(spoof => {
