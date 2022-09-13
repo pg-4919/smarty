@@ -34,6 +34,7 @@ module.exports = {
         )
         .addSubcommand(subcommand => subcommand
             .setName("view").setDescription("View current spoofs")
+            
         )
         .toJSON(),
 
