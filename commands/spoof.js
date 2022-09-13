@@ -29,8 +29,12 @@ module.exports = {
                 .setRequired(true)
             )
         )
-        .addSubcommand(subcommand => subcommand.setName("stop"))
-        .addSubcommand(subcommand => subcommand.setName("view"))
+        .addSubcommand(subcommand => {
+            subcommand.setName("stop")
+        })
+        .addSubcommand(subcommand => {
+            subcommand.setName("view")
+        })
         .toJSON(),
 
     async respond(interaction) {
