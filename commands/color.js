@@ -15,16 +15,16 @@ module.exports = {
     async respond(interaction) {
         const hex = (interaction.options.getString("hex").replace("#", "") === "000000") ?
             "000001" : interaction.options.getString("hex").replace("#", ""); //black hex replacement
-        const embed = new discord.EmbedBuilder();
+        const embed = new discord.EmbedBuilder().setTimestamp().setColor("#FF0000");
         const member = interaction.member;
         const guild = interaction.guild;
 
         if (!/^[0-9A-F]{6}$/i.test(hex)) { //check if hex code is valid
-            embed
-                .setColor("#FF0000")
+            embed.setColor("#FF0000")
                 .setTimestamp()
                 .setDescription(`Not a valid hex code.`)
                 .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
+
         } else {
             //find custom role & create role if none
             const customRole = member.roles.cache.find(role => role.color !== 0) ||
@@ -38,8 +38,7 @@ module.exports = {
             member.roles.add(customRole);
             customRole.setColor(hex);
 
-            embed
-                .setColor("#2F3136")
+            embed.setColor("#2F3136")
                 .setTimestamp()
                 .setDescription(`You changed <@&${customRole.id}>'s color to #${hex}.`)
                 .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });

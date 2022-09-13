@@ -6,6 +6,7 @@ module.exports = {
         .setName("help")
         .setDescription("Stop. Get some help.")
         .toJSON(),
+        
     async respond(interaction) {
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
@@ -19,6 +20,7 @@ module.exports = {
             )
             .setTimestamp()
             .setFooter({ text: "checked the changelog", iconURL: interaction.member.user.avatarURL() });
-        interaction.reply({ embeds: [embed]});
+
+        return interaction.reply({ embeds: [embed]});
     }
 }

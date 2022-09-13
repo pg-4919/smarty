@@ -30,13 +30,8 @@ module.exports = {
             )
             .setDescription("Begin impersonating someone")
         )
-        .addSubcommand(subcommand => subcommand
-            .setName("end").setDescription("Stop spoofing")
-        )
-        .addSubcommand(subcommand => subcommand
-            .setName("view").setDescription("View current spoofs")
-
-        )
+        .addSubcommand(subcommand => subcommand.setName("end").setDescription("Stop spoofing"))
+        .addSubcommand(subcommand => subcommand.setName("view").setDescription("View current spoofs"))
         .toJSON(),
 
     async respond(interaction) {
@@ -58,7 +53,8 @@ module.exports = {
                     .setFooter({ text: `became ${target.displayName}`, iconURL: user.avatarURL() });
 
                 spoofs.set(id, { imposter: member, target: target });
-                await interaction.reply({ embeds: [embed], ephemeral: true });
+                interaction.reply({ embeds: [embed], ephemeral: true });
+
                 break;
 
             case "stop":
@@ -66,7 +62,8 @@ module.exports = {
                     .setFooter({ text: "left the criminal underworld", iconURL: user.avatarURL() });
 
                 spoofs.delete(id);
-                await interaction.reply({ embeds: [embed], ephemeral: true });
+                interaction.reply({ embeds: [embed], ephemeral: true });
+
                 break;
 
             case "view":
@@ -77,22 +74,25 @@ module.exports = {
                         const imposterId = spoof.imposter.id;
                         const targetId = spoof.target.id;
                         summary.push(`<@${imposterId}> is impersonating <@${targetId}>`);
-                    })
+                    });
 
                     embed.setTitle("Current impersonations")
                         .setDescription(summary.join("\n"))
                         .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
 
-                    await interaction.reply({ embeds: [embed] });
+                    interaction.reply({ embeds: [embed] });
+                    
                 } else {
                     embed.setDescription("No one is currently impersonating anyone.")
                         .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
 
-                    await interaction.reply({ embeds: [embed] });
+                    interaction.reply({ embeds: [embed] });
                 }
 
                 break;
         }
+
+        return;
     },
 
     fetch() {
