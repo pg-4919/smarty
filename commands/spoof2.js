@@ -21,14 +21,10 @@ module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("spooftwo")
         .setDescription("Impersonate someone else")
-        .addSubcommand(subcommand => subcommand
-            .setName("start")
-            .addUserOption(option => option
-                .setName("person")
-                .setDescription("The person to impersonate")
-                .setRequired(true)
-            )
-            .setDescription("Impersonate someone")
+        .addUserOption(option => option
+            .setName("person")
+            .setDescription("The person to impersonate")
+            .setRequired(true)
         )
         .addSubcommand(subcommand => subcommand
             .setName("stop").setDescription("Stop spoofing")
