@@ -39,7 +39,7 @@ module.exports = {
             customRole.setColor(hex);
 
             embed
-                .setColor("#636363")
+                .setColor("#2F3136")
                 .setTimestamp()
                 .setDescription(`You changed <@&${customRole.id}>'s color to #${hex}.`)
                 .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });

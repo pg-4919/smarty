@@ -9,7 +9,7 @@ module.exports = {
     async respond(interaction) {
 
         const embed = new discord.EmbedBuilder()
-            .setColor("#636363")
+            .setColor("#2F3136")
             .setTimestamp()
             .setDescription(`The bot is up and latency is ${Date.now() - interaction.createdTimestamp} ms.`)
             .setFooter({ text: "pinged the bot", iconURL: interaction.member.user.avatarURL() });

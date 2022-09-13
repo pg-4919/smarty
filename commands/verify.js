@@ -34,7 +34,7 @@ module.exports = {
         if (string === captchas.get(modal.user.id)) {
             modal.member.roles.add(humans);
             const embed = new discord.EmbedBuilder()
-                .setColor("#636363")
+                .setColor("#2F3136")
                 .setTimestamp()
                 .setDescription(`You were successfully verified.`)
                 .setFooter({ text: "verified themselves", iconURL: modal.member.user.avatarURL() });

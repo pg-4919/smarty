@@ -31,7 +31,7 @@ module.exports = {
         const user = interaction.user;
         const guild = interaction.guild;
 
-        const embed = new discord.EmbedBuilder().setColor("#636363").setTimestamp();
+        const embed = new discord.EmbedBuilder().setColor("#2F3136").setTimestamp();
 
         await interaction.deferReply();
 

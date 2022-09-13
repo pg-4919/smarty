@@ -8,7 +8,7 @@ module.exports = {
         .toJSON(),
     async respond(interaction) {
         const embed = new discord.EmbedBuilder()
-            .setColor("#636363")
+            .setColor("#2F3136")
             .setTitle("Commands")
             .addFields(
                 { name: "/help", value: "R e c e i v e   h e l p." },
