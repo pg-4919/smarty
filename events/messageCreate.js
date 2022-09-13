@@ -5,7 +5,7 @@ module.exports = async (message) => {
     const channel = message.channel;
     const guild = message.guild;
     
-    const impersonators = require(`${utils.path.commands}/impersonate.js`).fetch();
+    const impersonators = require(`${utils.path.commands}/spoof.js`).fetch();
     if (impersonators.has(author.id) && channel.name !== "news") {
         const target = impersonators.get(author.id).target;
         if (typeof target === undefined) return;
