@@ -58,9 +58,9 @@ module.exports = {
                 if (impersonations.length > 0) {
                     const text = [];
 
-                    impersonations.each(impersonator => {
-                        const impersonator = impersonator.imposter.displayName;
-                        const target = impersonator.target.displayName;
+                    impersonations.each(impersonation => {
+                        const imposter = impersonation.imposter.displayName;
+                        const target = impersonation.target.displayName;
                         text.push(`${impersonator} is impersonating ${target}`);
                     })
 
