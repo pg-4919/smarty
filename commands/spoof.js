@@ -52,7 +52,7 @@ module.exports = {
 
                 embed.setDescription(`Started impersonating <@${target.id}>`)
                     .setTimestamp()
-                    .setFooter({ text: `became ${target.displayName}`, iconURL: member.avatarURL() });
+                    .setFooter({ text: `became ${target.displayName}`, iconURL: member.user.avatarURL() });
                 
                 spoofs.set(member.user.id, { imposter: member, target: target });
                 await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -60,7 +60,7 @@ module.exports = {
 
             case "stop":
                 embed.setDescription(`Stopped impersonating <@${spoofs.get(member.id).imposter.id}>`)
-                    .setFooter({ text: "left the criminal underworld", iconURL: member.avatarURL() });
+                    .setFooter({ text: "left the criminal underworld", iconURL: member.user.avatarURL() });
 
                 spoofs.delete(member.user.id)
                 await interaction.reply({ embeds: [embed], ephemeral: true });
@@ -78,7 +78,7 @@ module.exports = {
 
                     embed.setTitle("Current impersonations")
                         .setDescription(summary.join("\n"))
-                        .setFooter({ text: "was the imposter", iconURL: member.avatarURL() });
+                        .setFooter({ text: "was the imposter", iconURL: member.user.avatarURL() });
 
                     await interaction.reply({ embeds: [embed] });
                 } else await interaction.reply("No one is impersonating anyone")
