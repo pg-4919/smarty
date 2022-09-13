@@ -57,7 +57,7 @@ module.exports = {
 
                 break;
 
-            case "stop":
+            case "end":
                 embed.setDescription(`Stopped impersonating <@${spoofs.get(id).imposter.id}>`)
                     .setFooter({ text: "left the criminal underworld", iconURL: user.avatarURL() });
 
@@ -71,7 +71,6 @@ module.exports = {
                     const summary = [];
 
                     spoofs.each(spoof => {
-                        console.log(spoof);
                         const imposterId = spoof.imposter.id;
                         const targetId = spoof.target.id;
                         summary.push(`<@${imposterId}> is impersonating <@${targetId}>`);
