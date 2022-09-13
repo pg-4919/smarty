@@ -2,16 +2,16 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 const fs = require("fs");
 
-const impersonators = new discord.Collection();
+const impersonations = new discord.Collection();
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("impersonate")
-        .setDescription("Impersonate another user")
+        .setDescription("Impersonate another member")
         .addSubcommand(subcommand => subcommand
             .setName("start")
             .setDescription("Start impersonating someone")
-            .addUserOption(option => option
+            .addmemberOption(option => option
                 .setName("person")
                 .setDescription("The person to impersonate")
                 .setRequired(true)
@@ -28,52 +28,54 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const user = interaction.user;
+        const member = interaction.member;
         const guild = interaction.guild;
-
-        const embed = new discord.EmbedBuilder().setColor("#2F3136").setTimestamp();
-
-        await interaction.deferReply();
+        const embed = new discord.EmbedBuilder()
+            .setColor("#2F3136")
+            .setTimestamp();
 
         switch (interaction.options.getSubcommand()) {
             case "start":
                 const target = interaction.options.getMember("person");
+
                 embed.setDescription(`Started impersonating ${target.displayName}`)
                     .setTimestamp()
-                    .setFooter({ text: "became a ventriloquist", iconURL: interaction.member.user.avatarURL() });
+                    .setFooter({ text: "became a ventriloquist", iconURL: member.avatarURL() });
                 
-                impersonators.set(user.id, target.user.id);
+                impersonations.set(member.user.id, { imposter: member, target: target });
                 await interaction.editReply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "stop":
-                embed.setDescription(`Stopped impersonating ${guild.members.cache.get(impersonators.get(user.id)).displayName}`)
-                    .setFooter({ text: "left the criminal underworld", iconURL: interaction.member.user.avatarURL() });
+                embed.setDescription(`Stopped impersonating ${impersonations.get(member.id).imposter.displayName}`)
+                    .setFooter({ text: "left the criminal underworld", iconURL: member.avatarURL() });
 
-                impersonators.delete(user.id)
-                await interaction.editReply({ embeds: [embed], ephemeral: true });
+                impersonations.delete(member.user.id)
+                await interaction.reply({ embeds: [embed], ephemeral: true });
                 break;
 
             case "view":
-                if (impersonators.length > 0) {
+                if (impersonations.length > 0) {
                     const text = [];
 
-                    impersonators.keys.forEach(key => {
-                        const impersonator = guild.members.cache.get(key).displayName;
-                        const target = guild.members.cache.get(impersonators.get(key)).displayName;
+                    impersonations.each(impersonator => {
+                        const impersonator = impersonator.imposter.displayName;
+                        const target = impersonator.target.displayName;
                         text.push(`${impersonator} is impersonating ${target}`);
                     })
 
                     embed.setTitle("Current impersonations")
                         .setDescription(text.join("\n"))
-                        .setFooter({ text: "exposed the impersonators", iconURL: interaction.member.user.avatarURL() });
+                        .setFooter({ text: "was the imposter", iconURL: member.avatarURL() });
 
-                    await interaction.editReply({ embeds: [embed] });
-                } else {
-                    await interaction.editReply("No one is impersonating anyone");
-                }
+                    await interaction.reply({ embeds: [embed] });
+                } else await interaction.reply("No one is impersonating anyone")
 
                 break;
         }
+    },
+
+    fetch() {
+        return impersonations;
     }
 }
