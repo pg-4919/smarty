@@ -19,7 +19,7 @@ module.exports = {
 
         const target = interaction.options.getMember("target") || member;
 
-        const avatarUrl = target.displayAvatarURL();
+        const avatarUrl = target.displayAvatarURL({ size: 4096 });
 
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
