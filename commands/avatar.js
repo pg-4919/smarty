@@ -21,7 +21,8 @@ module.exports = {
 
         const avatarUrl = target.displayAvatarURL();
 
-        const embed = new discord.EmbedBuilder.setColor("#2F3136")
+        const embed = new discord.EmbedBuilder()
+            .setColor("#2F3136")
             .setImage(avatarUrl)
             .setTimestamp()
             .setFooter({ text: `enhanced ${target.displayName}'s face`, iconURL: member.displayAvatarURL() });
