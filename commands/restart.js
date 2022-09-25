@@ -18,7 +18,7 @@ module.exports = {
 
         return setTimeout(() => {
             process.on("exit", () => {
-                require("child_process").exec(`cd ${utils.root} && npm start`)
+                require("child_process").exec(`tatch smarty && cd ${utils.root} && npm start`)
             });
             process.exit();
         }, 5000);
