@@ -3,7 +3,7 @@ const utils = require("../utils/utils.js");
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
-        .setName("help")
+        .setName("restart")
         .setDescription("Stop. Get some help.")
         .toJSON(),
         
