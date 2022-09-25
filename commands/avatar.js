@@ -11,6 +11,18 @@ module.exports = {
             .setDescription("Whose avatar to enhance (leave blank for yourself)")
             .setRequired(false)
         )
+        .addStringOption(option =>
+            option.setName("extension")
+                .setDescription("What file type to display the image as")
+                .setRequired(false)
+                .addChoices(
+                    { name: "png", value: "png" },
+                    { name: "jpg", value: "jpg" },
+                    { name: "jpeg", value: "jpeg" },
+                    { name: "webp", value: "webp" },
+                    { name: "gif", value: "gif"}
+                )
+        )
         .toJSON(),
 
     async respond(interaction) {
@@ -18,14 +30,15 @@ module.exports = {
         const guild = interaction.guild;
 
         const target = interaction.options.getMember("target") || member;
+        const extension = interaction.options.getString("filetype") || "png";
 
-        const avatarUrl = target.displayAvatarURL({ size: 4096 });
+        const avatarUrl = target.displayAvatarURL({ size: 4096, extension: extension });
 
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
             .setImage(avatarUrl)
             .setTimestamp()
-            .setFooter({ text: `enhanced ${target.displayName}'s face`, iconURL: member.displayAvatarURL() });
+            .setFooter({ text: `enhanced ${target.displayName}"s face`, iconURL: member.displayAvatarURL() });
 
         interaction.reply({ embeds: [embed] });
 
