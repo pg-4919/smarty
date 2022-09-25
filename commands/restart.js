@@ -16,12 +16,20 @@ module.exports = {
 
         await interaction.reply({ embeds: [embed], ephemeral: true });
 
-        return setTimeout(() => {
-            process.on("exit", () => {
-                require("child_process").exec(`tatch smarty && cd ${utils.root} && npm start`)
+        process.on("exit", () => {
+            require("child_process").exec(`tatch smarty && cd ${utils.root} && npm start`, (error, stdout, stderr) => {
+                if (error) {
+                    console.log(`error: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.log(`stderr: ${stderr}`);
+                    return;
+                }
+                console.log(`stdout: ${stdout}`);
             });
-            process.exit();
-        }, 5000);
+        });
+        process.exit();
     }
 }
 
