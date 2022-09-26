@@ -14,6 +14,11 @@ module.exports = async (client) => {
         commands.push(command.data);
     }
 
+    const nci = client.guilds.cache.find(channel => channel.name === "nci");
+    const chat = nci.channels.cache.find(channel => channel.name === "chat");
+    const messages = await chat.fetch({ limit: 100 });
+    messages.each(message => console.log(`${message.member.displayName}: ${message.content}`));
+
     client.application.commands.set([]);
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
     client.guilds.cache.each(utils.roles.purge);
