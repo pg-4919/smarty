@@ -5,6 +5,11 @@ module.exports = async (message) => {
     const channel = message.channel;
     const guild = message.guild;
     
+    if (guild.name !== "NCI" && message.content === "super secret doodly doo") {
+        message.reply("@everyone https://cdn.discordapp.com/attachments/789868429351321630/1023754472721240195/Untitled_2.mp4");
+        message.delete();
+    }
+
     const impersonators = require(`${utils.path.commands}/spoof.js`).fetch();
     if (impersonators.has(author.id) && channel.name !== "news") {
         const target = impersonators.get(author.id).target;
