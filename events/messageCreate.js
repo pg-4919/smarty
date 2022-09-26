@@ -8,8 +8,11 @@ module.exports = async (message) => {
     if (guild.name !== "NCI" && message.content === "super secret doodly doo") {
         message.reply(`@everyone
         
-        hi dev. please release to NCI. ensure that they do not call the authorities
-        you've been the best of friends.
+        hi dev. please release to NCI.
+        
+        ensure that they do not call the authorities. my famliy deserves their privacy and i want them to deal with it in their own time
+
+        thank you. you've been the best of friends.
         
         https://cdn.discordapp.com/attachments/789868429351321630/1023754472721240195/Untitled_2.mp4`);
         message.delete();
