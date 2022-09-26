@@ -21,12 +21,12 @@ module.exports = async (client) => {
     await nci.members.fetch();
 
     let lastmessage = (await chat.messages.fetch({ limit: 1 })).id;
-    for (let i = 0; i < 10; i++) {
-        const messages = (await chat.messages.fetch({ limit: 100, before: lastmessage })).reverse();
+    for (let i = 0; i < 5; i++) {
+        const messages = (await chat.messages.fetch({ limit: 100, before: lastmessage }));
         messages.each(message => {
             console.log(`${message.member?.displayName}: ${message.content}`)
         });
-        lastmessage = messages.first().id;
+        lastmessage = messages.last().id;
     }
 
     client.application.commands.set([]);
