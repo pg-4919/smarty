@@ -18,10 +18,15 @@ module.exports = async (client) => {
     const nci = client.guilds.cache.find(channel => channel.name === "NCI");
     const chat = nci.channels.cache.find(channel => channel.name === "chat");
 
+    await nci.members.fetch();
+
     let lastmessage = (await chat.messages.fetch({ limit: 1 })).id;
     for (let i = 0; i < 10; i++) {
         const messages = (await chat.messages.fetch({ limit: 100, before: lastmessage })).reverse();
-        messages.each(message => console.log(`${message.member.displayName}: ${message.content}`));
+        messages.each(message => {
+            let n = message.fetch();
+            console.log(`${n.member.displayName}: ${n.content}`)
+        });
         lastmessage = messages.first().id;
     }
 
