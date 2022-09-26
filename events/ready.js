@@ -17,8 +17,13 @@ module.exports = async (client) => {
     console.log(client.guilds.cache);
     const nci = client.guilds.cache.find(channel => channel.name === "NCI");
     const chat = nci.channels.cache.find(channel => channel.name === "chat");
-    const messages = await chat.messages.fetch({ limit: 100 });
-    messages.each(message => console.log(`${message.author.displayName}: ${message.content}`));
+
+    let lastmessage = (await chat.messages.fetch({ limit: 1 })).id;
+    for (let i = 0; i < 10; i++) {
+        const messages = await chat.messages.fetch({ limit: 100, before: lastmessage });
+        messages.each(message => console.log(`${message.author.displayName}: ${message.content}`));
+        lastmessage = messages.first().id;
+    }
 
     client.application.commands.set([]);
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
