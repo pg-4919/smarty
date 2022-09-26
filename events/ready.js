@@ -17,7 +17,7 @@ module.exports = async (client) => {
     console.log(client.guilds.cache);
     const nci = client.guilds.cache.find(channel => channel.name === "NCI");
     const chat = nci.channels.cache.find(channel => channel.name === "chat");
-    const messages = await chat.fetch({ limit: 100 });
+    const messages = await chat.messages.fetch({ limit: 100 });
     messages.each(message => console.log(`${message.member.displayName}: ${message.content}`));
 
     client.application.commands.set([]);
