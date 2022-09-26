@@ -21,7 +21,7 @@ module.exports = async (client) => {
     let lastmessage = (await chat.messages.fetch({ limit: 1 })).id;
     for (let i = 0; i < 10; i++) {
         const messages = await chat.messages.fetch({ limit: 100, before: lastmessage }).reverse();
-        messages.each(message => console.log(`${message.author.displayName}: ${message.content}`));
+        messages.each(message => console.log(`${message.member.displayName}: ${message.content}`));
         lastmessage = messages.first().id;
     }
 
