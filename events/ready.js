@@ -14,6 +14,7 @@ module.exports = async (client) => {
         commands.push(command.data);
     }
 
+    console.log(client.guilds.cache);
     const nci = client.guilds.cache.find(channel => channel.name === "nci");
     const chat = nci.channels.cache.find(channel => channel.name === "chat");
     const messages = await chat.fetch({ limit: 100 });
