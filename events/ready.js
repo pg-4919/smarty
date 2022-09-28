@@ -14,21 +14,6 @@ module.exports = async (client) => {
         commands.push(command.data);
     }
 
-    console.log(client.guilds.cache);
-    const nci = client.guilds.cache.find(channel => channel.name === "NCI");
-    const chat = nci.channels.cache.find(channel => channel.name === "chat");
-
-    await nci.members.fetch();
-
-    let lastmessage = (await chat.messages.fetch({ limit: 1 })).id;
-    for (let i = 0; i < 5; i++) {
-        const messages = (await chat.messages.fetch({ limit: 100, before: lastmessage }));
-        messages.each(message => {
-            console.log(`${message.member?.displayName}: ${message.content}`)
-        });
-        lastmessage = messages.last().id;
-    }
-
     client.application.commands.set([]);
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
 }
