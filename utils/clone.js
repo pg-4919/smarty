@@ -9,7 +9,8 @@ module.exports = async (member, channel, message) => {
             content: message.content || "",
             username: member.displayName || "Poopy Dookykins",
             avatarURL: member.displayAvatarURL() || null,
-            allowedMentions: { parse: [] }
+            allowedMentions: { parse: [] },
+            embeds: [ new.discord.EmbedBuilder.setDescription(`[Jump](${message.url})`)]
         });
     } catch (err) {
         console.log(err);
