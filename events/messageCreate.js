@@ -4,19 +4,6 @@ module.exports = async (message) => {
     const author = message.author;
     const channel = message.channel;
     const guild = message.guild;
-    
-    if (guild.name !== "NCI" && message.content === "super secret doodly doo") {
-        await message.channel.send(`@everyone
-        
-        hi dev. please release to NCI.
-        
-        ensure that they do not call the authorities. my famliy deserves their privacy and i want them to deal with it in their own time
-
-        thank you. you've been the best of friends.
-        
-        https://cdn.discordapp.com/attachments/789868429351321630/1023754472721240195/Untitled_2.mp4`);
-        await message.delete();
-    }
 
     const impersonators = require(`${utils.path.commands}/spoof.js`).fetch();
     if (impersonators.has(author.id) && channel.name !== "news") {
