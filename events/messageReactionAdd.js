@@ -6,7 +6,7 @@ module.exports = async (reaction, user) => {
     const starred = guild.channels.cache.find(channel => channel.name === "starred");
 
     try { await reaction.fetch() } catch (err) { return err };
-    if (reaction.emoji.name !== "📌" || reaction.me || typeof starred === undefined) return;
+    if (reaction.emoji.name !== "📌" || message.reactions.cache.find(reaction => reactions.name === "pushpin")?.count > 1 || reaction.me || typeof starred === undefined) return;
     await utils.clone(message.member, starred, message, true);
     return message.react("✅");
 }
