@@ -7,6 +7,6 @@ module.exports = async (reaction, user) => {
 
     try { await reaction.fetch() } catch (err) { return err };
     if (reaction.emoji.name !== "📌" || reaction.me || typeof starred === undefined) return;
-    await utils.clone(guild.members.cache.get(user.id), starred, message);
+    await utils.clone(guild.members.cache.get(user.id), starred, message, true);
     return message.react("✅");
 }
