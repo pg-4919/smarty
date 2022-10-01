@@ -8,11 +8,10 @@ module.exports = async (member, channel, message) => {
     try {
         await webhook.send({
             files: [...message.attachments.values()],
-            content: message.content + `[Jump](${message.url})` || "",
+            content: message.content + ` [Jump](${message.url})` || "",
             username: member.displayName || "Poopy Dookykins",
             avatarURL: member.displayAvatarURL() || null,
-            allowedMentions: { parse: [] },
-            embeds: [ new discord.EmbedBuilder().setDescription(`[Jump](${message.url})`)]
+            allowedMentions: { parse: [] }
         });
     } catch (err) {
         console.log(err);
