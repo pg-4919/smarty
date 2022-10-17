@@ -13,6 +13,6 @@ module.exports = {
         
         const attachment = new discord.AttachmentBuilder(myCaptcha.buffer);
         
-        return interaction.reply({ content: myCaptcha.text, files: [ {attachment: myCaptcha.buffer} ]});
+        return interaction.reply({ content: myCaptcha.text, files: [ {attachment: attachment} ]});
     }
 }
