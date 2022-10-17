@@ -35,7 +35,7 @@ module.exports = {
         member.roles.add(customRole);
         
         if (hex) {
-            if (!/^[0-9A-F]{6}$/i.test(hex)) { //check if hex code is valid
+            if (!/^[0-9A-F]{6}$/i.test(color)) { //check if hex code is valid
                 embed.setColor("#FF0000")
                     .setTimestamp()
                     .setDescription(`Not a valid hex code.`)
