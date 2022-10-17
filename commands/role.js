@@ -40,12 +40,20 @@ module.exports = {
                     .setTimestamp()
                     .setDescription(`Not a valid hex code.`)
                     .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
+            } else {
+                const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "")
+                await customRole.setColor(hex);
             }
-            const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "")
-            await customRole.setColor(hex);
         }
 
-        if (name && name.length <= 100) await customRole.setName(name);
+        if (name) {
+            if (name.length > 100) {
+                embed.setColor("#FF0000")
+                    .setTimestamp()
+                    .setDescription(`Name must be 100 characters or fewer.`)
+                    .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
+            } else await customRole.setName(name);
+        }
 
         embed.setColor("#2F3136")
             .setTimestamp()
