@@ -3,18 +3,24 @@ const utils = require("../utils/utils.js");
 
 module.exports = { 
     data: new discord.SlashCommandBuilder()
-        .setName("color")
-        .setDescription("Change the color of your name")
+        .setName("role")
+        .setDescription("Change your role's name and color")
         .addStringOption(option => option
             .setName("hex")
             .setDescription("The hex code of the color")
-            .setRequired(true)
+            .setRequired(false)
+        )
+        .addStringOption(option => option
+            .setName("name")
+            .setDescription("What to change your role's name to")
+            .setRequired(false)
         )
         .toJSON(),
 
     async respond(interaction) {
         const hex = (interaction.options.getString("hex").replace("#", "") === "000000") ?
             "000001" : interaction.options.getString("hex").replace("#", ""); //black hex replacement
+        const name = interaction.options.getString("name");
         const embed = new discord.EmbedBuilder().setTimestamp().setColor("#FF0000");
         const member = interaction.member;
         const guild = interaction.guild;
@@ -28,15 +34,22 @@ module.exports = {
         } else {
             //find custom role & create role if none
             const customRole = member.roles.cache.find(role => role.color !== 0) ||
-                await guild.roles.create({
-                    name: member.displayName,
-                    position: guild.roles.cache.find(
-                        role => role.name === "Bots" && role.color === 0
-                    ).position + 1
-                });
-            
-            member.roles.add(customRole);
-            customRole.setColor(hex);
+                    await guild.roles.create({
+                        name: member.displayName,
+                        position: guild.roles.cache.find(
+                            role => role.name === "Bots" && role.color === 0
+                        ).position + 1
+                    });
+
+            if (color) {
+                member.roles.add(customRole);
+                customRole.setColor(hex);
+            }
+
+            if (name) {
+                member.roles.add(customRole);
+                customRole.setName(name);
+            }
 
             embed.setColor("#2F3136")
                 .setTimestamp()
