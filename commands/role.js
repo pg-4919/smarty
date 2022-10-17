@@ -7,12 +7,12 @@ module.exports = {
         .setDescription("Change your role's name and color")
         .addStringOption(option => option
             .setName("color")
-            .setDescription("The hex code of the color")
+            .setDescription("What to change the role's color to")
             .setRequired(false)
         )
         .addStringOption(option => option
             .setName("name")
-            .setDescription("What to change your role's name to")
+            .setDescription("What to change the role's name to")
             .setRequired(false)
         )
         .toJSON(),
@@ -34,6 +34,12 @@ module.exports = {
             });
         member.roles.add(customRole);
 
+        embed.setColor("#2F3136")
+            .setTimestamp()
+            .setDescription(`<@&${customRole.id}> updated.`)
+            .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
+        await customRole.setColor(hex);
+
         if (color) {
             if (!/^[0-9A-F]{6}$/i.test(color)) { //check if hex code is valid
                 embed.setColor("#FF0000")
@@ -42,11 +48,6 @@ module.exports = {
                     .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
             } else {
                 const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "");
-                embed.setColor("#2F3136")
-                    .setTimestamp()
-                    .setDescription(`<@&${customRole.id}> updated.`)
-                    .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
-                await customRole.setColor(hex);
             }
         }
 
