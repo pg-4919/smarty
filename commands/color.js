@@ -47,6 +47,7 @@ module.exports = {
             }
 
             if (name) {
+                console.log("tawefawef");
                 member.roles.add(customRole);
                 customRole.setName(name);
             }
