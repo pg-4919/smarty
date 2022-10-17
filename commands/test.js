@@ -4,7 +4,7 @@ const utils = require("../utils/utils.js");
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
-        .setName("ping")
+        .setName("test")
         .setDescription("Check how laggy the bot is")
         .toJSON(),
 
