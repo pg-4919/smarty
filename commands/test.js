@@ -17,7 +17,7 @@ module.exports = {
             .setDescription(`The bot is up and latency is ${Date.now() - interaction.createdTimestamp} ms.`)
             .setFooter({ text: "pinged the bot", iconURL: interaction.member.user.avatarURL() });
 
-        const attachment = new discord.MessageAttachment(myCaptcha.buffer, "thing.png");
+        const attachment = new discord.AttachmentBuilder(myCaptcha.buffer);
         
         return interaction.reply({ content: myCaptcha.text, attachments: [attachment ]});
     }
