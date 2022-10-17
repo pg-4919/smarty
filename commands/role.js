@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
-module.exports = { 
+module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("role")
         .setDescription("Change your role's name and color")
@@ -26,14 +26,14 @@ module.exports = {
 
         //find custom role & create role if none
         const customRole = member.roles.cache.find(role => role.color !== 0) ||
-                await guild.roles.create({
-                    name: member.displayName,
-                    position: guild.roles.cache.find(
-                        role => role.name === "Bots" && role.color === 0
-                    ).position + 1
-                });
+            await guild.roles.create({
+                name: member.displayName,
+                position: guild.roles.cache.find(
+                    role => role.name === "Bots" && role.color === 0
+                ).position + 1
+            });
         member.roles.add(customRole);
-        
+
         if (color) {
             if (!/^[0-9A-F]{6}$/i.test(color)) { //check if hex code is valid
                 embed.setColor("#FF0000")
@@ -42,18 +42,16 @@ module.exports = {
                     .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
             }
             const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "")
-            
-            customRole.setColor(hex);
+            await customRole.setColor(hex);
         }
 
-        if (name) customRole.setName(name);
+        if (name && name.length <= 100) await customRole.setName(name);
 
         embed.setColor("#2F3136")
             .setTimestamp()
             .setDescription(`<@&${customRole.id}> updated.`)
             .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
 
-            return interaction.reply({ embeds: [embed], ephemeral: true });
- 
+        return interaction.reply({ embeds: [embed], ephemeral: true });
     }
 }
