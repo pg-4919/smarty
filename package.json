@@ -1,6 +1,7 @@
 {
     "dependencies": {
-        "discord.js": "^14.2.0"
+        "discord.js": "^14.2.0",
+        "discord.js-captcha": "^3.0.4"
     },
     "name": "smarty",
     "version": "1.2.0",
