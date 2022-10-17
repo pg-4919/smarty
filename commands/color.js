@@ -24,43 +24,42 @@ module.exports = {
         const member = interaction.member;
         const guild = interaction.guild;
 
-        
-            //find custom role & create role if none
-            const customRole = member.roles.cache.find(role => role.color !== 0) ||
-                    await guild.roles.create({
-                        name: member.displayName,
-                        position: guild.roles.cache.find(
-                            role => role.name === "Bots" && role.color === 0
-                        ).position + 1
-                    });
+        //find custom role & create role if none
+        const customRole = member.roles.cache.find(role => role.color !== 0) ||
+                await guild.roles.create({
+                    name: member.displayName,
+                    position: guild.roles.cache.find(
+                        role => role.name === "Bots" && role.color === 0
+                    ).position + 1
+                });
 
-            console.log(name);
+        console.log(name);
 
-            if (hex) {
-                if (!/^[0-9A-F]{6}$/i.test(hex)) { //check if hex code is valid
-                    embed.setColor("#FF0000")
-                        .setTimestamp()
-                        .setDescription(`Not a valid hex code.`)
-                        .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
-        
-                }
-                hex = (hex.replace("#", "") === "000000") ? "000001" : interaction.options.getString("hex").replace("#", "")
-                member.roles.add(customRole);
-                customRole.setColor(hex);
+        if (hex) {
+            if (!/^[0-9A-F]{6}$/i.test(hex)) { //check if hex code is valid
+                embed.setColor("#FF0000")
+                    .setTimestamp()
+                    .setDescription(`Not a valid hex code.`)
+                    .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
+    
             }
-
-            if (name) {
-                
-                member.roles.add(customRole);
-                customRole.setName(name);
-            }
-
-            embed.setColor("#2F3136")
-                .setTimestamp()
-                .setDescription(`You changed <@&${customRole.id}>'s color to #${hex}.`)
-                .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
+            hex = (hex.replace("#", "") === "000000") ? "000001" : interaction.options.getString("hex").replace("#", "")
+            member.roles.add(customRole);
+            customRole.setColor(hex);
         }
 
-        return interaction.reply({ embeds: [embed], ephemeral: true });
+        if (name) {
+            
+            member.roles.add(customRole);
+            customRole.setName(name);
+        }
+
+        embed.setColor("#2F3136")
+            .setTimestamp()
+            .setDescription(`You changed <@&${customRole.id}>'s color to #${hex}.`)
+            .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
+
+            return interaction.reply({ embeds: [embed], ephemeral: true });
+ 
     }
 }
