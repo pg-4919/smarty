@@ -6,7 +6,7 @@ module.exports = {
         .setName("role")
         .setDescription("Change your role's name and color")
         .addStringOption(option => option
-            .setName("hex")
+            .setName("color")
             .setDescription("The hex code of the color")
             .setRequired(false)
         )
@@ -18,7 +18,7 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const hex = interaction.options.getString("hex");
+        const color = interaction.options.getString("color");
         const name = interaction.options.getString("name");
         const embed = new discord.EmbedBuilder().setTimestamp().setColor("#FF0000");
         const member = interaction.member;
@@ -41,7 +41,7 @@ module.exports = {
                     .setDescription(`Not a valid hex code.`)
                     .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
             }
-            hex = (hex.replace("#", "") === "000000") ? "000001" : interaction.options.getString("hex").replace("#", "")
+            const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "")
             
             customRole.setColor(hex);
         }
