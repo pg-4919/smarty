@@ -18,8 +18,7 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const hex = (interaction.options.getString("hex").replace("#", "") === "000000") ?
-            "000001" : interaction.options.getString("hex").replace("#", ""); //black hex replacement
+        const hex = interaction.options.getString("hex"); //black hex replacement
         const name = interaction.options.getString("name");
         const embed = new discord.EmbedBuilder().setTimestamp().setColor("#FF0000");
         const member = interaction.member;
@@ -41,7 +40,8 @@ module.exports = {
                         ).position + 1
                     });
 
-            if (color) {
+            if (hex) {
+                hex = (hex.replace("#", "") === "000000") ? "000001" : interaction.options.getString("hex").replace("#", "")
                 member.roles.add(customRole);
                 customRole.setColor(hex);
             }
