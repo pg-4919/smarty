@@ -19,6 +19,6 @@ module.exports = {
 
         const attachment = new discord.AttachmentBuilder(myCaptcha.buffer);
         
-        return interaction.reply({ content: myCaptcha.text, attachments: [attachment ]});
+        return interaction.reply({ content: myCaptcha.text, attachments: [attachment.attachment ]});
     }
 }
