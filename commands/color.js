@@ -40,6 +40,8 @@ module.exports = {
                         ).position + 1
                     });
 
+            console.log(name);
+
             if (hex) {
                 hex = (hex.replace("#", "") === "000000") ? "000001" : interaction.options.getString("hex").replace("#", "")
                 member.roles.add(customRole);
@@ -47,7 +49,7 @@ module.exports = {
             }
 
             if (name) {
-                console.log("tawefawef");
+                
                 member.roles.add(customRole);
                 customRole.setName(name);
             }
