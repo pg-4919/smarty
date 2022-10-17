@@ -32,31 +32,25 @@ module.exports = {
                         role => role.name === "Bots" && role.color === 0
                     ).position + 1
                 });
-
-        console.log(name);
-
+        member.roles.add(customRole);
+        
         if (hex) {
             if (!/^[0-9A-F]{6}$/i.test(hex)) { //check if hex code is valid
                 embed.setColor("#FF0000")
                     .setTimestamp()
                     .setDescription(`Not a valid hex code.`)
                     .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
-    
             }
             hex = (hex.replace("#", "") === "000000") ? "000001" : interaction.options.getString("hex").replace("#", "")
-            member.roles.add(customRole);
+            
             customRole.setColor(hex);
         }
 
-        if (name) {
-            
-            member.roles.add(customRole);
-            customRole.setName(name);
-        }
+        if (name) customRole.setName(name);
 
         embed.setColor("#2F3136")
             .setTimestamp()
-            .setDescription(`You changed <@&${customRole.id}>'s color to #${hex}.`)
+            .setDescription(`<@&${customRole.id}> updated.`)
             .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
 
             return interaction.reply({ embeds: [embed], ephemeral: true });
