@@ -51,6 +51,13 @@ module.exports = async (client) => {
         const identifier = `${dateSent.getMonth()}${dateSent.getDate()}${dateSent.getYear()}` 
         if (!(identifier in rankings)) rankings[identifier] = 0;
         rankings[identifier] += 1;
-        console.log(rankings);
     })
+
+    let top = { count: 0 };
+
+    Object.keys(rankings).forEach(identifier => {
+        if (rankings[identifier] > top.count) top = { identifier: identifier, count: rankings[identifier] }
+    })
+
+    console.log(top);
 }
