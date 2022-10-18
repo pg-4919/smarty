@@ -32,7 +32,7 @@ module.exports = async (client) => {
                 options.before = last_id;
             }
     
-            const messages = await channel.messages.fetch(options).filter(message => message.mentions.everyone);
+            const messages = (await channel.messages.fetch(options)).filter(message => message.mentions.everyone);
             
             sum_messages.push(...messages.toJSON());
             console.log(`Fetched: ${messages.size}`);
