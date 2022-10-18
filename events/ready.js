@@ -21,7 +21,7 @@ module.exports = async (client) => {
     client.application.commands.set(global);
 
 
-    async function getAll(channel, limit = 500) {
+    async function getAll(channel, limit = 1000) {
         const sum_messages = [];
         let last_id;
     
@@ -43,5 +43,14 @@ module.exports = async (client) => {
         return sum_messages;
     }
     const all = await getAll(client.guilds.cache.get("803315311663251537").channels.cache.get("997661924546322472"));
-    all.forEach(message => console.log(message.content))
+
+    const rankings = {};
+
+    all.forEach(message => {
+        const dateSent = message.createdAt();
+        const identifier = `${dateSent.getMonth()}${dateSent.getDate()}${dateSent.getYear()}` 
+        if (!rankings[identifier]) rankings[identifier] = 0;
+        rankings[identifier] += 1;
+        console.log(rankings.identifier);
+    })
 }
