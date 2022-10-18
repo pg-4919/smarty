@@ -38,7 +38,7 @@ module.exports = async (client) => {
             console.log(`Fetched: ${messages.size}`);
             last_id = messages.last().id;
     
-            if (sum_messages >= limit) break;
+            if (sum_messages.length >= limit) break;
         }
     
         return sum_messages;
