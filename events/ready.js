@@ -21,7 +21,7 @@ module.exports = async (client) => {
     client.application.commands.set(global);
 
 
-    async function getAll(channel, limit = 1000) {
+    async function getAll(channel, limit = 1000000) {
         const sum_messages = [];
         let last_id;
     
