@@ -19,46 +19,4 @@ module.exports = async (client) => {
 
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
     client.application.commands.set(global);
-
-
-    async function getAll(channel, limit = 571) {
-        const sum_messages = [];
-        let last_id;
-    
-        while (true) {
-            const options = { limit: 100 };
-
-            if (last_id) {
-                options.before = last_id;
-            }
-    
-            const messages = (await channel.messages.fetch(options));
-            
-            sum_messages.push(...messages.filter(message => message.mentions.everyone).toJSON());
-            console.log(`Fetched: ${messages.size}`);
-            last_id = messages.last().id;
-    
-            if (sum_messages.length >= limit) break;
-        }
-    
-        return sum_messages;
-    }
-    const all = await getAll(client.guilds.cache.get("803315311663251537").channels.cache.get("965977788093960202"));
-
-    const rankings = {};
-
-    all.forEach(message => {
-        const dateSent = message.createdAt;
-        const identifier = `M:${dateSent.getMonth() + 1} D:${dateSent.getDate()} Y:${dateSent.getFullYear()}` 
-        if (!(identifier in rankings)) rankings[identifier] = 0;
-        rankings[identifier] += 1;
-    })
-
-    let top = { count: 0 };
-
-    Object.keys(rankings).forEach(identifier => {
-        if (rankings[identifier] > top.count) top = { identifier: identifier, count: rankings[identifier] }
-    })
-
-    console.log(top);
 }
