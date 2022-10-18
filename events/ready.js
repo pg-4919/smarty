@@ -42,7 +42,7 @@ module.exports = async (client) => {
     
         return sum_messages;
     }
-    const all = await getAll(client.guilds.cache.get("803315311663251537").channels.cache.get("813137569218691132"));
+    const all = await getAll(client.guilds.cache.get("803315311663251537").channels.cache.get("965977788093960202"));
 
     const rankings = {};
 
