@@ -49,7 +49,7 @@ module.exports = async (client) => {
     all.forEach(message => {
         const dateSent = message.createdAt;
         const identifier = `${dateSent.getMonth()}${dateSent.getDate()}${dateSent.getYear()}` 
-        if (!rankings[identifier]) rankings[identifier] = 0;
+        if (!rankings.has(identifier)) rankings[identifier] = 0;
         rankings[identifier] += 1;
         console.log(rankings.identifier);
     })
