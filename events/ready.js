@@ -31,7 +31,7 @@ module.exports = async (client) => {
                 options.before = last_id;
             }
     
-            const messages = await channel.fetchMessages(options);
+            const messages = await channel.fetch(options);
             sum_messages.push(...messages.array());
             last_id = messages.last().id;
     
