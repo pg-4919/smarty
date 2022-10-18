@@ -51,6 +51,6 @@ module.exports = async (client) => {
         const identifier = `${dateSent.getMonth()}${dateSent.getDate()}${dateSent.getYear()}` 
         if (!(identifier in rankings)) rankings[identifier] = 0;
         rankings[identifier] += 1;
-        console.log(rankings.identifier);
+        console.log(rankings);
     })
 }
