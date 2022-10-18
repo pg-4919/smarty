@@ -48,7 +48,7 @@ module.exports = async (client) => {
 
     all.forEach(message => {
         const dateSent = message.createdAt;
-        const identifier = `${dateSent.getMonth()}${dateSent.getDate()}${dateSent.getYear()}` 
+        const identifier = `M:${dateSent.getMonth()} D:${dateSent.getDate()} Y:${dateSent.getYear()}` 
         if (!(identifier in rankings)) rankings[identifier] = 0;
         rankings[identifier] += 1;
     })
