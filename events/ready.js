@@ -41,5 +41,5 @@ module.exports = async (client) => {
         return sum_messages;
     }
 
-    console.log(getAll(guild.channels.cache.find(channel => channel.name === "news")).length);
+    console.log(getAll(client.guilds.cache.get("803315311663251537").channels.cache.get("997661924546322472")).length);
 }
