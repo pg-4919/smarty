@@ -34,7 +34,7 @@ module.exports = async (client) => {
     
             const messages = await channel.messages.fetch(options);
             sum_messages.push(...messages.toJSON());
-            console.log(messages);
+            console.log(messages.size);
             last_id = messages.last().id;
     
             if (messages.size != 100 || sum_messages >= limit) break;
