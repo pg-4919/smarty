@@ -25,7 +25,7 @@ module.exports = {
             .setColor("#2F3136")
             .setImage(avatarUrl)
             .setTimestamp()
-            .setFooter({ text: `enhanced an avatar`, iconURL: member.displayAvatarURL() });
+            .setFooter({ iconURL: member.displayAvatarURL() });
 
         interaction.reply({ embeds: [embed] });
 
