@@ -8,7 +8,7 @@ module.exports = {
         .toJSON(),
     async respond(interaction) {
         const { guild, channel, member, user, options } = interaction;
-        const categories = guild.channels.cache.filter(channel => channel.type === "category");
+        const categories = guild.channels.cache.filter(channel => channel.type === 4);
         //const cloned = channel.clone();
         console.log(categories);
         const archives = categories.find(category => category.name === "archives");
