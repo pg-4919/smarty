@@ -24,7 +24,7 @@ module.exports = {
         const roles = target.roles;
         const overrides = "878033546848108606";
 
-        if (user.id !== "") {
+        if (user.id !== "789695310875197460") {
             interaction.reply({
                 embeds: [ embed.setDescription(`This command is Peter-only.`) ],
                 ephemeral: true
