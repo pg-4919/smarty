@@ -24,8 +24,10 @@ module.exports = {
         const roles = target.roles;
         const overrides = "878033546848108606";
 
-        if (user.id !== "") 
+        if (user.id !== "") {
             interaction.reply({ embeds: [ embed.setDescription(`This command is Peter-only.`) ]});
+            return;
+        }
         
         if (roles.cache.has(overrides)) roles.remove(overrides);
         else roles.add(overrides)
