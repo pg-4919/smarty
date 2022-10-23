@@ -46,7 +46,7 @@ module.exports = {
                 .setColor("#2F3136")
                 .setTimestamp()
                 .setDescription(`You were successfully verified.`)
-                .setFooter({ text: "verified themselves", iconURL: modal.member.user.avatarURL() });
+                .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
             modal.member.roles.add(humans);
             modal.reply({ embeds: [embed], ephemeral: true });

@@ -49,8 +49,7 @@ module.exports = {
                 const target = interaction.options.getMember("target");
 
                 embed.setDescription(`Started impersonating <@${target.id}>`)
-                    .setTimestamp()
-                    .setFooter({ text: `became ${target.displayName}`, iconURL: user.avatarURL() });
+                    .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
                 spoofs.set(id, { imposter: member, target: target });
                 interaction.reply({ embeds: [embed], ephemeral: true });
@@ -59,7 +58,7 @@ module.exports = {
 
             case "end":
                 embed.setDescription(`Stopped impersonating <@${spoofs.get(id).imposter.id}>`)
-                    .setFooter({ text: "left the criminal underworld", iconURL: user.avatarURL() });
+                    .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
                 spoofs.delete(id);
                 interaction.reply({ embeds: [embed], ephemeral: true });
@@ -78,13 +77,13 @@ module.exports = {
 
                     embed.setTitle("Current impersonations")
                         .setDescription(summary.join("\n"))
-                        .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
+                        .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
                     interaction.reply({ embeds: [embed] });
 
                 } else {
                     embed.setDescription("No one is currently impersonating anyone.")
-                        .setFooter({ text: "was the imposter", iconURL: user.avatarURL() });
+                        .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
                     interaction.reply({ embeds: [embed] });
                 }
