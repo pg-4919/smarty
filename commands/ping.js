@@ -10,6 +10,8 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
+        const member = interaction.member;
+        
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
             .setTimestamp()
