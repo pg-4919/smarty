@@ -36,7 +36,7 @@ module.exports = {
         else roles.add(overrides)
 
         interaction.reply({
-            embeds: [ embed.setDescription(`Changed the status of ${target.nickname}`) ],
+            embeds: [ embed.setDescription(`Changed the status of <@${target.id}>`) ],
             ephemeral: true
         });
 
