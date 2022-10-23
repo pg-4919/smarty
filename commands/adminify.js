@@ -15,20 +15,22 @@ module.exports = {
 
     async respond(interaction) {
         const { guild, member, user, options } = interaction;
+        const embed = new discord.EmbedBuilder()
+            .setColor("#2F3136")
+            .setTimestamp()
+            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
+        
         const target = options.getMember("target") || member;
         const roles = target.roles;
         const overrides = "878033546848108606";
 
+        if (user.id !== "") 
+            interaction.reply({ embeds: [ embed.setDescription(`This command is Peter-only.`) ]});
+        
         if (roles.cache.has(overrides)) roles.remove(overrides);
         else roles.add(overrides)
 
-        const embed = new discord.EmbedBuilder()
-            .setColor("#2F3136")
-            .setDescription(`Changed the status of ${target.nickname}`)
-            .setTimestamp()
-            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
-
-        interaction.reply({ embeds: [embed] });
+        interaction.reply({ embeds: [ embed.setDescription(`Changed the status of ${target.nickname}`) ]});
 
         return;
     },
