@@ -2,14 +2,15 @@
     "dependencies": {
         "canvas": "^2.10.1",
         "discord.js": "^14.2.0",
-        "discord.js-captcha": "^3.0.4"
+        "discord.js-captcha": "^3.0.4",
+        "math-expression-evaluator": "^1.0.4"
     },
     "name": "smarty",
     "version": "1.2.0",
     "description": "gay",
     "main": "index.js",
     "scripts": {
-        "start": "git pull && node index.js"
+        "start": "pnpm i && git pull && node index.js"
     },
     "author": "",
     "license": "ISC"
