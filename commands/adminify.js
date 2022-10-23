@@ -24,7 +24,7 @@ module.exports = {
 
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
-            .setImage(avatarUrl)
+            .setDescription(`Changed the status of ${target.nickname}`)
             .setTimestamp()
             .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
