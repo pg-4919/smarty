@@ -12,6 +12,7 @@ module.exports = {
         //const cloned = channel.clone();
         console.log(categories)
         const archives = categories.find(category => category.name === "archives");
+        console.log(archives);
         //channel.setParent();
         interaction.reply({ content: "please stop", ephemeral: true });
     }
