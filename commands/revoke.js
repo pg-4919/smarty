@@ -8,11 +8,11 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const guild = interaction.guild;
-        guild.invites.fetch();
-        const invites = guild.invites.cache;
+        const { guild, member, user, options } = interaction;
+        
+        const invites = guild.invites.fetch();
 
-        if (interaction.user.username !== "pg_4919") return;
+        if (user.username !== "pg_4919") return;
 
         invites.each(invite => invite.delete);
 
@@ -20,7 +20,7 @@ module.exports = {
             .setColor("#2F3136")
             .setTimestamp()
             .setDescription(`Revoked all invites`)
-            .setFooter({ text: "revoked invites", iconURL: interaction.member.user.avatarURL() });
+            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
         
         return interaction.reply({ embeds: [embed]});
     }
