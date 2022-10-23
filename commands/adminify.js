@@ -4,7 +4,7 @@ const fs = require("fs");
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
-        .setName("avatar")
+        .setName("adminify")
         .setDescription("Toggle Overrides status (Peter only)")
         .addUserOption(option => option
             .setName("target")
