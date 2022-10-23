@@ -9,11 +9,9 @@ module.exports = {
     async respond(interaction) {
         const { guild, channel, member, user, options } = interaction;
         const categories = guild.channels.cache.filter(channel => channel.type === 4);
-        //const cloned = channel.clone();
-        console.log(categories)
+        const cloned = channel.clone();
         const archives = categories.find(category => category.name === "archives");
-        console.log(archives);
-        //channel.setParent();
+        channel.setParent(archives);
         interaction.reply({ content: "please stop", ephemeral: true });
     }
 }
