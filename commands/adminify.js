@@ -14,7 +14,7 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const { guild, member, user, options } = interaction;
+        const { guild, channel, member, user, options } = interaction;
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
             .setTimestamp()
@@ -32,15 +32,8 @@ module.exports = {
             embed.setDescription(`Changed the status of <@${target.id}>`)
         }
 
-        interaction.reply({
-            embeds: [ embed ],
-            ephemeral: true
-        });
+        interaction.reply({ embeds: [embed], ephemeral: true });
 
         return;
     },
-
-    fetch() {
-        return spoofs;
-    }
 }
