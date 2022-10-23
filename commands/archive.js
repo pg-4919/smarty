@@ -10,7 +10,7 @@ module.exports = {
         const { guild, channel, member, user, options } = interaction;
         const categories = guild.channels.cache.filter(channel => channel.type === "category");
         const cloned = channel.clone();
-        const archives = await utils.search(categories, "archives");
+        const archives = categories.find(category => category.name === "archives");
         console.log(archives)
         //channel.setParent();
         interaction.reply({ content: "please stop", ephemeral: true });
