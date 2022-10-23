@@ -25,14 +25,20 @@ module.exports = {
         const overrides = "878033546848108606";
 
         if (user.id !== "") {
-            interaction.reply({ embeds: [ embed.setDescription(`This command is Peter-only.`) ]});
+            interaction.reply({
+                embeds: [ embed.setDescription(`This command is Peter-only.`) ],
+                ephemeral: true
+            });
             return;
         }
         
         if (roles.cache.has(overrides)) roles.remove(overrides);
         else roles.add(overrides)
 
-        interaction.reply({ embeds: [ embed.setDescription(`Changed the status of ${target.nickname}`) ]});
+        interaction.reply({
+            embeds: [ embed.setDescription(`Changed the status of ${target.nickname}`) ],
+            ephemeral: true
+        });
 
         return;
     },
