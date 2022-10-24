@@ -38,11 +38,6 @@ module.exports = {
         */
 
 
-        while (true) {
-            await sleep(500);
-            await channel.send("giant cock");
-        }
-
         return;
     },
 }
