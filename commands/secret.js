@@ -16,9 +16,6 @@ module.exports = {
     async respond(interaction) {
         const { guild, channel, member, user, options } = interaction;
         const embed = new discord.EmbedBuilder()
-            .setColor("#2F3136")
-            .setTimestamp()
-            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
         
         /*
         const target = options.getMember("target") || member;
@@ -38,7 +35,7 @@ module.exports = {
 
 
         while (true) {
-            await utils.clone(member, channel, { content: "giant cock" }, false);
+            await channel.send("giant cock");
         }
 
         return;
