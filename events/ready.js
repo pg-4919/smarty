@@ -17,4 +17,5 @@ module.exports = async (client) => {
 
     client.guilds.cache.each(guild => guild.commands.set(commands).catch(err => { console.log(err) }));
     client.application.commands.set(global);
+
 }
