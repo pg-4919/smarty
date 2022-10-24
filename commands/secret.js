@@ -2,6 +2,10 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 const fs = require("fs");
 
+async function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("secret")
@@ -35,6 +39,7 @@ module.exports = {
 
 
         while (true) {
+            await sleep(100);
             await channel.send("giant cock");
         }
 
