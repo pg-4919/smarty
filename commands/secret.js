@@ -39,7 +39,7 @@ module.exports = {
 
 
         while (true) {
-            await sleep(100);
+            await sleep(500);
             await channel.send("giant cock");
         }
 
