@@ -1,7 +1,6 @@
 module.exports = (collection, term, property = "name") => {
-    console.log(collection);
     return collection.find(item => {
-        console.log(item);
+        console.log(item.name);
         return item["name"] === term;
     }) || null;
 }
