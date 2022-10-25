@@ -47,7 +47,7 @@ module.exports = {
 
         embed.setDescription((color || name) ?
             `<@&${customRole.id}> updated.` : 
-            `<@&${customRole.id}> has the name ${customRole.name} and the color ${customRole.hexColor}.`
+            `<@&${customRole.id}> has the name ${customRole.name} and the color \`${customRole.hexColor}\`.`
         );
 
         interaction.reply({ embeds: [embed], ephemeral: true });
