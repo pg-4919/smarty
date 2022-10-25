@@ -9,7 +9,7 @@ module.exports = async (member, channel, message, ref = false) => {
     if (message.reference && message.type === 19) {
         const reference = message.reference;
         const reply = await message.channel.messages.fetch(reference.messageId);
-        const replyContent = (reply.content.length > 10) ? reply.content.slice(0, 10) + '...' : reply.content;
+        const replyContent = "|-" + (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content + "\n";
         console.log(replyContent);
     }
 
@@ -17,7 +17,7 @@ module.exports = async (member, channel, message, ref = false) => {
         await webhook.send({
             files: [...(message.attachments?.values() || [null])],
             content: message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
-            username: message.member.displayName || "Poopy Dookykins",
+            username: message.member.displayName,
             avatarURL: message.member.displayAvatarURL() || null,
             allowedMentions: { parse: [] }
         });
