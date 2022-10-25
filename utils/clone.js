@@ -19,7 +19,7 @@ module.exports = async (member, channel, message, ref = false) => {
     try {
         await webhook.send({
             files: [...(message.attachments?.values() || [null])],
-            content: "" + discord.italic(replyContent) + "\n" + message.client.emojis.resolve("down:1034553094354255953") + message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
+            content: "" + discord.italic(replyContent) + "\n" + message.client.emojis.get("<down:1034553094354255953>") + message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
             username: message.member.displayName,
             avatarURL: message.member.displayAvatarURL() || null,
             allowedMentions: { parse: [] }
