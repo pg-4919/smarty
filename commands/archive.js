@@ -24,11 +24,9 @@ module.exports = {
             }
 
             
-            /*
             console.log(archives);
             channel.setParent(archives);
-            */
-            console.log(archives);
+            
             interaction.reply({ content: "please stop", ephemeral: true });
         } catch (err) {
             console.log(err);
