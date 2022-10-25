@@ -14,25 +14,19 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const member = interaction.member;
-        const guild = interaction.guild;
-
-        const target = interaction.options.getMember("target") || member;
-
-        const avatarUrl = target.displayAvatarURL({ size: 4096 });
-
+        const { guild, channel, member, user, options } = interaction;
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
-            .setImage(avatarUrl)
             .setTimestamp()
             .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
+
+        const target = options.getMember("target") || member;
+        const avatar = target.displayAvatarURL({ size: 4096 });
+
+        embed.setImage(avatar);
 
         interaction.reply({ embeds: [embed] });
 
         return;
-    },
-
-    fetch() {
-        return spoofs;
     }
 }

@@ -10,12 +10,12 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const member = interaction.member;
+        const { member, createdTimestamp } = interaction;
         
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
             .setTimestamp()
-            .setDescription(`The bot is up and latency is ${Date.now() - interaction.createdTimestamp} ms.`)
+            .setDescription(`The bot is up and latency is ${Date.now() - createdTimestamp} ms.`)
             .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
         
         return interaction.reply({ embeds: [embed]});

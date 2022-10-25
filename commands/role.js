@@ -18,56 +18,40 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const color = interaction.options.getString("color");
-        const name = interaction.options.getString("name");
-        const embed = new discord.EmbedBuilder().setTimestamp().setColor("#FF0000");
-        const member = interaction.member;
-        const guild = interaction.guild;
+        const { guild, channel, member, user, options } = interaction;
+        const embed = new discord.EmbedBuilder()
+            .setColor("#2F3136")
+            .setTimestamp()
+            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
-        //find custom role & create role if none
+        const color = options.getString("color");
+        const name = options.getString("name");
+
         const customRole = member.roles.cache.find(role => role.color !== 0) ||
-            await guild.roles.create({
+            (await guild.roles.create({
                 name: member.displayName,
-                position: guild.roles.cache.find(
-                    role => role.name === "Bots" && role.color === 0
-                ).position + 1
-            });
+                position: guild.roles.cache.get("813138438013452348").position + 1
+            })).setColor("FFFFFF");
         member.roles.add(customRole);
 
-        embed.setColor("#2F3136")
-            .setTimestamp()
-            .setDescription(`<@&${customRole.id}> updated.`)
-            .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
-        await customRole.setColor(hex);
-
+        embed.setDescription(`<@&${customRole.id}> updated.`);
+        
         if (color) {
-            if (!/^[0-9A-F]{6}$/i.test(color)) { //check if hex code is valid
-                embed.setColor("#FF0000")
-                    .setTimestamp()
-                    .setDescription(`Not a valid hex code.`)
-                    .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
-            } else {
-                const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "");
-            }
+            if (!/^[0-9A-F]{6}$/i.test(color)) embed.setDescription(`Not a valid hex code.`)
+            else const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "");
+            customRole.setColor(hex);
         }
 
         if (name) {
-            if (name.length > 100) {
-                embed.setColor("#FF0000")
-                    .setTimestamp()
-                    .setDescription(`Name must be 100 characters or fewer.`)
-                    .setFooter({ text: "did a whoopsie", iconURL: member.user.avatarURL() });
-            } else {
-                embed.setColor("#2F3136")
-                    .setTimestamp()
-                    .setDescription(`<@&${customRole.id}> updated.`)
-                    .setFooter({ text: "changed their color", iconURL: member.user.avatarURL() });
+            if (name.length > 100) embed.setDescription(`Name must be 100 characters or fewer.`)
+            else {
+                embed.setDescription(`<@&${customRole.id}> updated.`);
                 await customRole.setName(name);
             }
         }
 
-        
+        interaction.reply({ embeds: [embed], ephemeral: true });
 
-        return interaction.reply({ embeds: [embed], ephemeral: true });
+        return;
     }
 }
