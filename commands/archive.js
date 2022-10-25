@@ -16,7 +16,6 @@ module.exports = {
 
             await channel.setName(`${channel.name}-archive-1`);
             const previous = utils.search.byName(archives.children.cache, channel.name);
-            console.log(previous);
             
             if (previous) {
                 const catalog = `${channel.name}-archive-${parseInt(previous.name.split("-")[-1]) + 1}`;
