@@ -45,9 +45,10 @@ module.exports = {
             else await customRole.setName(name);
         }
 
-        if (!color && !name) {
-            embed.setDescription(`<@&${customRole.id}> has name ${customRole.name} and color ${customRole.color}.`);
-        } else embed.setDescription(`<@&${customRole.id}> updated.`);
+        embed.setDescription((color || name) ?
+            `<@&${customRole.id}> updated.` : 
+            `<@&${customRole.id}> has name ${customRole.name} and color ${customRole.color}.`
+        );
 
         interaction.reply({ embeds: [embed], ephemeral: true });
 
