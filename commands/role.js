@@ -38,7 +38,7 @@ module.exports = {
         
         if (color) {
             if (!/^[0-9A-F]{6}$/i.test(color)) embed.setDescription(`Not a valid hex code.`)
-            else const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", "");
+            else { const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", ""); }
             customRole.setColor(hex);
         }
 
