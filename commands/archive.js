@@ -12,6 +12,7 @@ module.exports = {
         const categories = guild.channels.cache.filter(channel => channel.type === 4);
         const cloned = channel.clone();
         const archives = utils.search(categories, "name", "archives");
+        console.log(archives);
         channel.setParent(archives);
         interaction.reply({ content: "please stop", ephemeral: true });
     }
