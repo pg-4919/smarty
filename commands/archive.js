@@ -12,11 +12,12 @@ module.exports = {
             const { guild, channel, member, user, options } = interaction;
             const categories = guild.channels.cache.filter(channel => channel.type === 4);
             const archives = utils.search.byName(categories, "archives");
-            const cloned = await channel.clone();
+            //const cloned = await channel.clone();
 
             await channel.setName(`${channel.name}-archive-1`);
             const previous = utils.search.byName(archives.children.cache, channel.name);
             console.log(previous);
+            
             if (previous) {
                 const catalog = `${channel.name}-archive-${parseInt(previous.name.split("-")[-1]) + 1}`;
                 console.log(catalog);
