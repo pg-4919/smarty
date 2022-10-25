@@ -6,10 +6,11 @@ module.exports = async (member, channel, message, ref = false) => {
     const attachments = message.attachments?.toJSON();
     
     let content = message.content;
+    let replyContent;
     if (message.reference && message.type === 19) {
         const reference = message.reference;
         const reply = await message.channel.messages.fetch(reference.messageId);
-        const replyContent = "|-" + (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content + "\n";
+        replyContent = "|-" + (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content + "\n";
         console.log(replyContent);
     }
 
