@@ -44,10 +44,7 @@ module.exports = {
 
         if (name) {
             if (name.length > 100) embed.setDescription(`Name must be 100 characters or fewer.`)
-            else {
-                embed.setDescription(`<@&${customRole.id}> updated.`);
-                await customRole.setName(name);
-            }
+            else await customRole.setName(name);
         }
 
         interaction.reply({ embeds: [embed], ephemeral: true });
