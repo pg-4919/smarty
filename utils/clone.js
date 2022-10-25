@@ -11,15 +11,16 @@ module.exports = async (member, channel, message, ref = false) => {
         const reference = message.reference;
         const reply = await message.channel.messages.fetch(reference.messageId);
         replyContent = (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
-        console.log(replyContent);
     }
+
+    console.log(client.emojis.cache)
 
 
 
     try {
         await webhook.send({
             files: [...(message.attachments?.values() || [null])],
-            content: "" + discord.italic(replyContent) + "\n" + message.client.emojis.get("<down:1034553094354255953>") + message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
+            content: message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
             username: message.member.displayName,
             avatarURL: message.member.displayAvatarURL() || null,
             allowedMentions: { parse: [] }
