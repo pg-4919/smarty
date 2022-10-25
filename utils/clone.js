@@ -10,14 +10,14 @@ module.exports = async (member, channel, message, ref = false) => {
     if (message.reference && message.type === 19) {
         const reference = message.reference;
         const reply = await message.channel.messages.fetch(reference.messageId);
-        replyContent = "|-" + (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content + "\n";
+        replyContent = "|-" + (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
         console.log(replyContent);
     }
 
     try {
         await webhook.send({
             files: [...(message.attachments?.values() || [null])],
-            content: replyContent + message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
+            content: replyContent + "\n" + message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
             username: message.member.displayName,
             avatarURL: message.member.displayAvatarURL() || null,
             allowedMentions: { parse: [] }
