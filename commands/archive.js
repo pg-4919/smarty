@@ -18,9 +18,11 @@ module.exports = {
             const previous = utils.search.byName(archives.children.cache, channel.name);
             if (previous) {
                 const catalog = `${channel.name}-archive-${parseInt(previous.name.split("-")[-1]) + 1}`;
+                console.log(catalog);
                 await channel.setName(catalog);
             }
 
+            
             /*
             console.log(archives);
             channel.setParent(archives);
