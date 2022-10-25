@@ -9,5 +9,6 @@ module.exports = async (reaction, user) => {
 
     if (reaction.emoji.name !== "📌" || message.reactions.cache.find(reaction => reaction.name === "pushpin")?.me) return;
     await utils.clone(message.member, starred, message, true);
-    return message.react("📌");
+    await message.react("📌");
+    return;
 }
