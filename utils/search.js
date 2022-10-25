@@ -1,6 +1,3 @@
-module.exports = (collection, term, property = "name") => {
-    return collection.find(item => {
-        console.log(item["name"], term);
-        return item["name"] === term;
-    }) || null;
+module.exports = {
+    byName = (collection, value) => collection.find(item => item.name === value)
 }
