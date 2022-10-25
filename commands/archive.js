@@ -14,10 +14,11 @@ module.exports = {
             const archives = utils.search.byName(categories, "archives");
             const cloned = await channel.clone();
 
-            /* await channel.setName(`${channel.name}-archive-1`);
+            await channel.setName(`${channel.name}-archive-1`);
             const previous = utils.search.byName(archives.children.cache, channel.name);
             if (previous) await channel.setName(`${channel.name}-archive-${previous.name.split("-")[-1]}`);
 
+            /*
             console.log(archives);
             channel.setParent(archives);
             */
