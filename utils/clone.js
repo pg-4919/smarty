@@ -19,7 +19,8 @@ module.exports = async (member, channel, message, ref = false) => {
             content: reference + message.content + (ref ? `\n[\[jump\]](${message.url})` : "") || "",
             username: message.member.displayName,
             avatarURL: message.member.displayAvatarURL() || null,
-            allowedMentions: { parse: [] }
+            allowedMentions: { parse: [] },
+            embeds: [ ...message.embeds ]
         });
     } catch (err) {
         console.log(err);
