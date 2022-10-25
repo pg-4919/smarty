@@ -6,11 +6,12 @@ module.exports = {
         .setName("archive")
         .setDescription("Stop. Get some help.")
         .toJSON(),
+
     async respond(interaction) {
         const { guild, channel, member, user, options } = interaction;
         const categories = guild.channels.cache.filter(channel => channel.type === 4);
         const cloned = channel.clone();
-        const archives = categories.find(category => category.name === "archives");
+        const archives = utils.search(categories, "name", "archives");
         channel.setParent(archives);
         interaction.reply({ content: "please stop", ephemeral: true });
     }
