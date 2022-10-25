@@ -6,11 +6,11 @@ module.exports = async (member, channel, message, ref = false) => {
     const attachments = message.attachments?.toJSON();
     
     let content = message.content;
-    let reference;
+    let reference = "";
     if (message.reference && message.type === 19) {
         const reply = await message.channel.messages.fetch(message.reference.messageId);
         const truncated = (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
-        reference = message.member.displayName + "  " + discord.italic(truncated) + "\n\n <:down:1034553094354255953>";
+        reference = message.member.displayName + "  " + discord.italic(truncated) + "\n<:replystraight:1034563906770837564>\n<:replycurve:1034563905181208636>";
     }
 
     try {
