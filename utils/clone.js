@@ -8,7 +8,7 @@ module.exports = async (member, channel, message, ref = false) => {
     let content = message.content;
     if (message.reference && message.type === 19) {
         const reference = message.reference;
-        const reply = message.channel.messages.get(reference.messageId);
+        const reply = await message.channel.messages.fetch(reference.messageId);
         console.log(reply);
     }
 
