@@ -3,7 +3,7 @@ const utils = require("../utils/utils.js");
 module.exports = async (reaction, user) => {
     const message = reaction.message;
     const guild = message.guild;
-    const starred = guild.channels.cache.get("998594505559261284");
+    const starred = guild.channels.cache.get("1016113247662919760");
 
     try { await reaction.fetch() } catch (err) { return err };
     if (reaction.emoji.name !== "📌" || reaction.me || user.bot) return;
