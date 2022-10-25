@@ -6,11 +6,10 @@ module.exports = async (reaction, user) => {
     const starred = guild.channels.cache.get("998594505559261284");
 
     try { await reaction.fetch() } catch (err) { return err };
+    if (reaction.emoji.name !== "📌" || reaction.me || user.bot) return;
 
-    if (reaction.emoji.name !== "📌") return;
-    if (reaction.me) return;
-    if (user.bot) return;
     await message.react("📌");
     await utils.clone(message.member, starred, message, true);
+    
     return;
 }
