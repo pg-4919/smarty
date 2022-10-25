@@ -10,7 +10,7 @@ module.exports = async (member, channel, message, ref = false) => {
     if (message.reference && message.type === 19) {
         const reference = message.reference;
         const reply = await message.channel.messages.fetch(reference.messageId);
-        replyContent = (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
+        replyContent = discord.bold(reply.member.displayName) + "   " + (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
     }
 
     try {
