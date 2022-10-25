@@ -15,7 +15,7 @@ module.exports = async (member, channel, message, ref = false) => {
 
     console.log(message.client.emojis.cache.get("1034553094354255953"))
 
-    message.reply(message.client.emojis.cache.get("1034553094354255953"))
+    message.reply(message.client.emojis.cache.get("1034553094354255953").toString())
 
     try {
         await webhook.send({
