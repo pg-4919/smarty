@@ -8,7 +8,7 @@ module.exports = async (reaction, user) => {
     try { await reaction.fetch() } catch (err) { return err };
 
     if (reaction.emoji.name !== "📌") return;
-    if (message.reactions.cache.find(reaction => reaction.name === "pushpin").me) return;
+    if (message.reactions.cache.find(reaction => reaction.name === "pushpin")?.me) return;
     await message.react("📌");
     await utils.clone(message.member, starred, message, true);
     return;
