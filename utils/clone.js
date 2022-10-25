@@ -13,7 +13,7 @@ module.exports = async (member, channel, message, ref = false) => {
         replyContent = (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
     }
 
-    console.log(message.client.emojis.cache)
+    console.log(message.client.emojis.cache.get("1034553094354255953"))
 
 
 
