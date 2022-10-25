@@ -19,6 +19,7 @@ module.exports = {
             if (previous) {
                 const catalog = `${channel.name}-archive-${parseInt(previous.name.split("-")[-1]) + 1}`;
                 await channel.setName(catalog);
+            }
 
             /*
             console.log(archives);
