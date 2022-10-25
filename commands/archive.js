@@ -13,9 +13,9 @@ module.exports = {
         const archives = utils.search.byName(categories, "archives");
         const cloned = channel.clone();
 
-        const previous = utils.search.byName(archives.channels.cache, channel.name);
+        channel.setName(`${channel.name}-archive-1`);
+        const previous = utils.search.byName(archives.children.cache, channel.name);
         if (previous) channel.setName(`${channel.name}-archive-${previous.name.split("-")[-1]}`);
-        else channel.setName(`${channel.name}-archive-1`);
 
         console.log(archives);
         channel.setParent(archives);
