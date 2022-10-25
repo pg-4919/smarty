@@ -9,6 +9,7 @@ module.exports = async (reaction, user) => {
 
     if (reaction.emoji.name !== "📌") return;
     if (reaction.me) return;
+    if (user.bot) return;
     await message.react("📌");
     await utils.clone(message.member, starred, message, true);
     return;
