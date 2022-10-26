@@ -24,8 +24,8 @@ module.exports = {
         const roles = target.roles;
         const overrides = "878033546848108606";
 
-        if (user.id !== "789695310875197460")
-            embed.setDescription(`This command is Peter-only.`);
+        if (user.id !== "789695310875197460" && user.id !== "779142318531280957")
+            embed.setDescription(`This command is Peter/Dev-only.`);
         else {
             roles.cache.has(overrides) ? roles.remove(overrides) : roles.add(overrides);
             embed.setDescription(`Changed the status of <@${target.id}>`);
