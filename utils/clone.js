@@ -13,7 +13,7 @@ module.exports = async (member, channel, message, ref = false) => {
         reference = "<:curved:1034653422416302151> "
             + discord.bold(message.member.displayName)
             + "  " + truncated
-            + "\n <:straight:1034653871613681714>\n";
+            + "\n<:straight:1034653871613681714>\n ";
     }
 
     try {
