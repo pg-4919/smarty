@@ -1,6 +1,7 @@
 "use strict";
 
 const fs = require("fs");
+const discord = require("discord");
 const utils = require("../utils/utils.js");
 
 module.exports = async client => {
