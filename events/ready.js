@@ -3,9 +3,8 @@
 const fs = require("fs");
 const utils = require("../utils/utils.js");
 
-client.commands = new discord.Collection(); //command files
-
 module.exports = async client => {
+    client.commands = new discord.Collection(); //command files
     const commands = [];
     const global = [];
     const files = fs.readdirSync(utils.path.commands);
