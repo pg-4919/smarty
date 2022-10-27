@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require("fs");
-const discord = require("discord");
+const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
 module.exports = async client => {
@@ -10,7 +10,7 @@ module.exports = async client => {
     const global = [];
     const files = fs.readdirSync(utils.path.commands);
 
-    for (const file of file) {
+    for (const file of files) {
         const command = require(`${utils.path.commands}/${file}`);
         client.commands.set(command.data.name, command);
         if (command.global) global.push(command.data);

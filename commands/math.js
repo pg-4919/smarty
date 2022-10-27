@@ -1,6 +1,7 @@
 const discord = require("discord.js");
 const captcha = require("discord.js-captcha");
 const utils = require("../utils/utils.js");
+const mexp = require("math-expression-evaluator");
 
 const users = new discord.Collection();
 
@@ -17,9 +18,7 @@ module.exports = {
 
     async respond(interaction) {
         const { guild, channel, member, user, options } = interaction;
-        const expression = options.getString("expression");
-
-        
+        const expression = options.getString("expression").catch(console.log);
             
         return interaction.reply({ content: mexp.eval(expression) });
     }
