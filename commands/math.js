@@ -30,7 +30,7 @@ module.exports = {
         catch (err) { embed.setDescription(`Error: \`${err.message}\``) };
         
         await interaction.deferReply();
-        await interaction.editReply({ embeds: [embed] });
+        await interaction.editReply({ embeds: [embed], ephemeral: true });
 
         return;
     }
