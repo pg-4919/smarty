@@ -3,6 +3,9 @@ const utils = require("./utils/utils.js");
 const events = require("./events/events.js")
 const fs = require("fs");
 
+
+
+
 const client = new discord.Client({
     intents: [
         discord.GatewayIntentBits.DirectMessages,
