@@ -20,9 +20,6 @@ const client = new discord.Client({
     ],
 });
 
-client.commands = new discord.Collection(); //command files
-client.impersonators = {};
-
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
 client.on("messageReactionAdd", events.messageReactionAdd);
