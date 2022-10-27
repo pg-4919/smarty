@@ -16,17 +16,11 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const myCaptcha = await captcha.createCaptcha(4, "0123456789");
+        const { guild, channel, member, user, options } = interaction;
+        const expression = options.getString("expression");
+
         
-        const row = new ActionRowBuilder()
-			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('primary')
-					.setLabel('Click me!')
-					.setStyle(ButtonStyle.Primary),
-			);
             
-            
-        return interaction.reply({ content: myCaptcha.text, files: [ {attachment: myCaptcha.image} ]});
+        return interaction.reply({ content: mexp.eval(expression) });
     }
 }
