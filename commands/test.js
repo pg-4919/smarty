@@ -12,16 +12,21 @@ module.exports = {
 
     async respond(interaction) {
         const myCaptcha = await captcha.createCaptcha(4, "0123456789");
-        
-        const row = new ActionRowBuilder()
-			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('primary')
-					.setLabel('Click me!')
-					.setStyle(ButtonStyle.Primary),
-			);
-            
-            
-        return interaction.reply({ content: myCaptcha.text, files: [ {attachment: myCaptcha.image} ]});
+
+        const row = new discord.ActionRowBuilder()
+            .addComponents(
+                new discord.ButtonBuilder()
+                    .setCustomId('primary')
+                    .setLabel('Verify')
+                    .setStyle(discord.ButtonStyle.Primary),
+            );
+
+        users.set(interaction.user.id, myCaptcha.text);
+
+        return interaction.reply({
+            content: myCaptcha.text,
+            files: [{ attachment: myCaptcha.image }],
+            ephemeral: true
+        });
     }
 }

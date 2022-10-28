@@ -1,5 +1,4 @@
 const discord = require("discord.js");
-const utils = require("../utils/utils.js");
 
 module.exports = {
     global: true,
