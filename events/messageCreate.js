@@ -9,10 +9,10 @@ module.exports = async (message) => {
 
     if (author.id === message.client.user.id) return;
 
-    if (author.id === "789695310875197460") {
+    if (author.id === "695776178707103786") {
         //789695310875197460
-        const owner = message.client.users.fetch("789695310875197460");
-        owner.send("ballsack");
+        const owner = await guild.members.fetch("789695310875197460");
+        owner.send("helen active").catch(() => { /* */ });
     }
 
     if (channel.name === "news") {
