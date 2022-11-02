@@ -20,5 +20,7 @@ module.exports = async client => {
     client.guilds.cache.each(guild => guild.commands.set(commands));
     client.application.commands.set(global);
 
+    client.user.setActivity("with fire", { type: 0 });
+
     return;
 }
