@@ -11,7 +11,7 @@ module.exports = async (member, channel, message, ref = false) => {
         const reply = await message.channel.messages.fetch(message.reference.messageId);
         const truncated = (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
         reference = "<:curved:1034653422416302151> "
-            + discord.bold(message.member.displayName)
+            + discord.bold(reply.member.displayName)
             + "  " + truncated
             + "\n<:straight:1034653871613681714>\n ";
     }
