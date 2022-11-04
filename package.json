@@ -1,9 +1,9 @@
 {
     "dependencies": {
-        "canvas": "^2.10.1",
-        "discord.js": "^14.2.0",
+        "canvas": "^2.10.2",
+        "discord.js": "^14.6.0",
         "discord.js-captcha": "^3.0.4",
-        "math-expression-evaluator": "^1.0.4"
+        "math-expression-evaluator": "^1.4.0"
     },
     "name": "smarty",
     "version": "1.2.0",

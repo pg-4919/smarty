@@ -16,7 +16,9 @@ const client = new discord.Client({
     partials: [,
         discord.Partials.Message,
         discord.Partials.Channel,
-        discord.Partials.Reaction
+        discord.Partials.Reaction,
+        discord.Partials.User,
+        discord.Partials.GuildMember
     ],
 });
 

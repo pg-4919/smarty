@@ -7,11 +7,14 @@ module.exports = async (member, channel, message, ref = false) => {
     
     let content = message.content;
     let reference = "";
+
     if (message.reference && message.type === 19) {
         const reply = await message.channel.messages.fetch(message.reference.messageId);
-        const truncated = (reply.content.length > 30) ? reply.content.slice(0, 30) + '...' : reply.content;
+        const truncated = utils.truncate(reply.content.length);
+        const original = reply.member || reply.guild.members.fetch(reply.user.id);
+        console.log(original);
         reference = "<:curved:1034653422416302151> "
-            + discord.bold(reply.member.displayName)
+            + discord.bold(await (message.guild.members.cache.find(reply.author.id))?.displayName || reply.author.username)
             + "  " + truncated
             + "\n<:straight:1034653871613681714>\n ";
     }
