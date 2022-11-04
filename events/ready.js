@@ -17,8 +17,21 @@ module.exports = async client => {
         else commands.push(command.data);
     }
 
-    client.guilds.cache.each(guild => guild.commands.set(commands));
+    await client.guilds.cache.each(async guild => {
+        await guild.commands.set(commands);
+        await guild.members.fetch();
+        await guild.roles.fetch();
+        await guild.channels.fetch();
+    });
+
     client.application.commands.set(global);
+
+    client.config = {
+        starred: "1016113247662919760",
+        news: "997661924546322472",
+        chat: "1014256055330549842",
+        verify: "1016116460025806848"
+    }
 
     client.user.setActivity("with fire", { type: 0 });
 

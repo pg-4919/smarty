@@ -3,4 +3,5 @@ module.exports = {
     messageCreate: require("./messageCreate.js"),
     messageReactionAdd: require("./messageReactionAdd.js"),
     ready: require("./ready.js"),
+    voiceStateUpdate: require("./voiceStateUpdate.js")
 }
