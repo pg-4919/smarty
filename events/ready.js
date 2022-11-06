@@ -19,11 +19,10 @@ module.exports = async client => {
     }
 
     await client.guilds.cache.each(async guild => {
-        const { commands, members, roles, channels } = guild;
-        await commands.set(commands);
-        await members.fetch();
-        await roles.fetch();
-        await channels.fetch();
+        await guild.commands.set(commands);
+        await guild.members.fetch();
+        await guild.roles.fetch();
+        await guild.channels.fetch();
     });
 
     client.application.commands.set(global);

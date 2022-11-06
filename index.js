@@ -1,5 +1,6 @@
 const discord = require("discord.js");
 const events = require("./events/events.js");
+require("dotenv").config();
 
 const client = new discord.Client({
     intents: [
@@ -25,4 +26,4 @@ client.on("messageCreate", events.messageCreate);
 client.on("messageReactionAdd", events.messageReactionAdd);
 client.on("ready", events.ready);
 
-client.login("ODA5MTExMzAyMTk4MDAxNzI0.GCnFWc.gxTZz7zuO7AEchEpArmrdDSqQ4_htFBPKRPgws");
+client.login(process.env.TOKEN);
