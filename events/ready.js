@@ -5,7 +5,8 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
 module.exports = async client => {
-    client.commands = new discord.Collection(); //command files
+    client.commands = new discord.Collection();
+    
     const commands = [];
     const global = [];
     const files = fs.readdirSync(utils.path.commands);
@@ -18,10 +19,11 @@ module.exports = async client => {
     }
 
     await client.guilds.cache.each(async guild => {
-        await guild.commands.set(commands);
-        await guild.members.fetch();
-        await guild.roles.fetch();
-        await guild.channels.fetch();
+        const { commands, members, roles, channels } = guild;
+        await commands.set(commands);
+        await members.fetch();
+        await roles.fetch();
+        await channels.fetch();
     });
 
     client.application.commands.set(global);

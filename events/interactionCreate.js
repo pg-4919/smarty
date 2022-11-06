@@ -1,7 +1,8 @@
 const utils = require("../utils/utils.js");
 
 module.exports = async (interaction) => {
-    if (interaction.channel.name === "news") return;
-    if (interaction.isCommand()) interaction.client.commands.get(interaction.commandName).respond(interaction)//.catch(err => console.log(err));
-    if (interaction.isModalSubmit()) interaction.client.commands.get(interaction.customId.split("_")[0]).modal(interaction);
+    const { client, commandName, customId, isCommand, isModalSubmit, channel } = interaction;
+    if (channel.name === "news") return;
+    if (isCommand()) client.commands.get(commandName).respond(interaction).catch(err => console.log);
+    if (isModalSubmit()) client.commands.get(customId.split("_")[0]).modal(interaction);
 }
