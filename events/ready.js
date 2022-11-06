@@ -27,12 +27,7 @@ module.exports = async client => {
 
     client.application.commands.set(global);
 
-    client.config = {
-        starred: "1016113247662919760",
-        news: "997661924546322472",
-        chat: "1014256055330549842",
-        verify: "1016116460025806848"
-    }
+    client.config = require("../.config");
 
     client.user.setActivity("with fire", { type: 0 });
 

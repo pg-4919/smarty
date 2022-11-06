@@ -2,14 +2,15 @@ const utils = require("../utils/utils.js");
 
 module.exports = async (message) => {
     const { author, channel, client, guild } = message;
+    const { verify, news, chat } = client.config.channels;
 
-    if (channel.id === client.config.verify) return await message.delete().catch(() => { /* */ });
+    if (channel.id === verify) return await message.delete().catch(() => { /* */ });
 
     if (author.id === client.user.id) return;
 
-    if (channel.id === client.config.news) {
+    if (channel.id === news) {
         const everyone = message.mentions.everyone;
-        const chat = await guild.channels.fetch(client.config.chat);
+        const chat = await guild.channels.fetch(chat);
         await utils.clone(chat, message, everyone);
         if (!everyone) message.delete().catch(err => console.log(err));
     }

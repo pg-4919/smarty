@@ -28,27 +28,27 @@ module.exports = {
         const color = options.getString("color").replace("#", "");
         const name = options.getString("name");
 
-        const customRole = member.roles.cache.find(role => role.color !== 0) ||
+        const custom = member.roles.cache.find(role => role.color !== 0) ||
             (await guild.roles.create({
                 name: member.displayName,
-                position: guild.roles.cache.get("813138438013452348").position + 1
+                position: guild.roles.fetch(client.config.roles.bots).position + 1
             })).setColor("FFFFFF");
-        member.roles.add(customRole);
+        member.roles.add(custom);
         
         if (color) {
             if (!/^[0-9A-F]{6}$/i.test(color)) setDescription(`Not a valid hex code.`)
             else { const hex = (color === "000000") ? "000001" : color; }
-            customRole.setColor(hex);
+            custom.setColor(hex);
         }
         
         if (name) {
             if (name.length > 100) setDescription(`Name must be 100 characters or fewer.`)
-            else await customRole.setName(name);
+            else await custom.setName(name);
         }
 
         setDescription((color || name) ?
             `<@&${customRole.id}> updated.` : 
-            `<@&${customRole.id}> has the name ${customRole.name} and the color \`${customRole.hexColor}\`.`
+            `<@&${customRole.id}> has the name ${custom.name} and the color \`${custom.hexColor}\`.`
         );
 
         interaction.reply({ embeds: [embed], ephemeral: true });

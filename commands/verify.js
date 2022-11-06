@@ -35,11 +35,11 @@ module.exports = {
 
         return interaction.showModal(modal);
     },
+
     async modal(modal) {
-        const member = modal.member;
-        const user = modal.user;
-        const string = modal.fields.getTextInputValue("captcha").toLowerCase();
-        const humans = modal.guild.roles.cache.filter(role => role.name === "Humans");
+        const { member, user, fields, guild } = modal;
+        const string = fields.getTextInputValue("captcha").toLowerCase();
+        const humans = await guild.roles.fetch("1016810972415008850");
 
         if (string === captchas.get(modal.user.id)) {
             const embed = new discord.EmbedBuilder()
@@ -48,7 +48,7 @@ module.exports = {
                 .setDescription(`You were successfully verified.`)
                 .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
 
-            modal.member.roles.add(humans);
+            member.roles.add(humans);
             modal.reply({ embeds: [embed], ephemeral: true });
         }
 

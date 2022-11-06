@@ -1,4 +1,7 @@
- Logs
+# Local Smarty config
+.config
+
+# Logs
 logs
 *.log
 npm-debug.log*
