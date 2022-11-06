@@ -1,7 +1,5 @@
 const discord = require("discord.js");
-const utils = require("./utils/utils.js");
-const events = require("./events/events.js")
-const fs = require("fs");
+const events = require("./events/events.js");
 
 const client = new discord.Client({
     intents: [

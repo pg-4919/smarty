@@ -17,6 +17,7 @@ module.exports = async (destination, message, link = false) => {
         url
     } = message;
 
+
     let reftext;
     if (reference && type === 19) {
         const reply = await channel.messages.fetch(reference.messageId);

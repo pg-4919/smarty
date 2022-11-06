@@ -18,13 +18,14 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const { guild, channel, member, user, options } = interaction;
+        const { guild, member, options } = interaction;
         const embed = new discord.EmbedBuilder()
             .setColor("#2F3136")
             .setTimestamp()
             .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
+        const { setDescription } = embed;
 
-        const color = options.getString("color");
+        const color = options.getString("color").replace("#", "");
         const name = options.getString("name");
 
         const customRole = member.roles.cache.find(role => role.color !== 0) ||
@@ -35,17 +36,17 @@ module.exports = {
         member.roles.add(customRole);
         
         if (color) {
-            if (!/^[0-9A-F]{6}$/i.test(color)) embed.setDescription(`Not a valid hex code.`)
-            else { const hex = (color.replace("#", "") === "000000") ? "000001" : color.replace("#", ""); }
+            if (!/^[0-9A-F]{6}$/i.test(color)) setDescription(`Not a valid hex code.`)
+            else { const hex = (color === "000000") ? "000001" : color; }
             customRole.setColor(hex);
         }
         
         if (name) {
-            if (name.length > 100) embed.setDescription(`Name must be 100 characters or fewer.`)
+            if (name.length > 100) setDescription(`Name must be 100 characters or fewer.`)
             else await customRole.setName(name);
         }
 
-        embed.setDescription((color || name) ?
+        setDescription((color || name) ?
             `<@&${customRole.id}> updated.` : 
             `<@&${customRole.id}> has the name ${customRole.name} and the color \`${customRole.hexColor}\`.`
         );
