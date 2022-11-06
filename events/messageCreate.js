@@ -7,11 +7,6 @@ module.exports = async (message) => {
 
     if (author.id === client.user.id) return;
 
-    if (author.id === "695776178707103786") {
-        const owner = await guild.members.fetch("789695310875197460");
-        owner.send("mhm yes").catch(() => { /* */ });
-    }
-
     if (channel.id === client.config.news) {
         const everyone = message.mentions.everyone;
         const chat = await guild.channels.fetch(client.config.chat);
