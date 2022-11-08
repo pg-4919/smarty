@@ -1,3 +1,4 @@
+const { ChannelFlagsBitField } = require("discord.js");
 const utils = require("../utils/utils.js");
 
 module.exports = async (message) => {
@@ -10,8 +11,8 @@ module.exports = async (message) => {
 
     if (channel.id === news) {
         const everyone = message.mentions.everyone;
-        const chat = await guild.channels.fetch(chat);
-        await utils.clone(chat, message, everyone);
+        const channel = await guild.channels.fetch(chat);
+        await utils.clone(channel, message, everyone);
         if (!everyone) message.delete().catch(err => console.log(err));
     }
 

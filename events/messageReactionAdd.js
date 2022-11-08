@@ -1,8 +1,9 @@
 const utils = require("../utils/utils.js");
 
 module.exports = async (reaction, user) => {
-    const { client, emoji, guild, me, message } = reaction;
-    const starred = await guild.channels.fetch(client.config.channels.starred);
+    const { client, emoji, me, message } = reaction;
+    console.log(reaction);
+    const starred = await message.guild.channels.fetch(client.config?.channels.starred);
 
     try { await reaction.fetch() } catch (err) { return err };
     if (emoji.name !== "📌" || me || user.bot) return;

@@ -3,9 +3,11 @@
 const fs = require("fs");
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
+require("dotenv").config();
 
 module.exports = async client => {
     client.commands = new discord.Collection();
+    client.config = await JSON.parse(fs.readFileSync(`${process.env.SMARTY_HOME}/.config`));
     
     const commands = [];
     const global = [];
@@ -27,7 +29,8 @@ module.exports = async client => {
 
     client.application.commands.set(global);
 
-    client.config = require("../.config");
+    console.log(process.env.SMARTY_HOME)
+    
 
     client.user.setActivity("with fire", { type: 0 });
 
