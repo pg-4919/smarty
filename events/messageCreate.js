@@ -1,11 +1,10 @@
-const { ChannelFlagsBitField } = require("discord.js");
 const utils = require("../utils/utils.js");
 
-module.exports = async (message) => {
+module.exports = async message => {
     const { author, channel, client, guild } = message;
     const { verify, news, chat } = client.config.channels;
 
-    if (channel.id === verify) return await message.delete().catch(() => { /* */ });
+    if (channel.id === verify) return await message.delete().catch(console.log);
 
     if (author.id === client.user.id) return;
 
@@ -13,7 +12,7 @@ module.exports = async (message) => {
         const everyone = message.mentions.everyone;
         const channel = await guild.channels.fetch(chat);
         await utils.clone(channel, message, everyone);
-        if (!everyone) message.delete().catch(err => console.log(err));
+        if (!everyone) message.delete().catch(console.log);
     }
 
     return;

@@ -13,6 +13,8 @@ Modals should be treated as discord.Interactions.
 */
 
 module.exports = {
+    nci: true,
+
     data: new discord.SlashCommandBuilder()
         .setName("verify")
         .setDescription("Verify yourself and get the Human role")
@@ -37,12 +39,12 @@ module.exports = {
     },
 
     async modal(modal) {
-        const { member, fields, guild } = modal;
+        const { member, fields, guild, client } = modal;
         const string = fields.getTextInputValue("captcha").toLowerCase();
         const humans = await guild.roles.fetch(client.config.roles.humans);
 
         if (string === captchas.get(modal.user.id)) {
-            const embed = utils.templates.embed.setDescription(`You were successfully verified.`);
+            const embed = utils.templates.embed(member).setDescription(`You were successfully verified.`);
             member.roles.add(humans);
             modal.reply({ embeds: [embed], ephemeral: true });
         }

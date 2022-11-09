@@ -19,10 +19,7 @@ module.exports = {
 
     async respond(interaction) {
         const { guild, member, options } = interaction;
-        const embed = new discord.EmbedBuilder()
-            .setColor("#2F3136")
-            .setTimestamp()
-            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
+        const embed = new utils.templates.embed(member);
         const { setDescription } = embed;
 
         const color = options.getString("color").replace("#", "");
