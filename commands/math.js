@@ -15,10 +15,7 @@ module.exports = {
 
     async respond(interaction) {
         const { member, options } = interaction;
-        const embed = new discord.EmbedBuilder()
-            .setColor("#2F3136")
-            .setTimestamp()
-            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
+        const embed = utils.templates.embed(member);
         
         const expression = options.getString("expression");
         

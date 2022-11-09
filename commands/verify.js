@@ -25,6 +25,7 @@ module.exports = {
         const modal = new discord.ModalBuilder()
             .setCustomId("verify")
             .setTitle("Verify yourself");
+            
         const captcha = new discord.TextInputBuilder()
             .setCustomId("captcha")
             .setLabel(`Enter the following text: ${string}`)
