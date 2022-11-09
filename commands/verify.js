@@ -37,17 +37,12 @@ module.exports = {
     },
 
     async modal(modal) {
-        const { member, user, fields, guild } = modal;
+        const { member, fields, guild } = modal;
         const string = fields.getTextInputValue("captcha").toLowerCase();
-        const humans = await guild.roles.fetch("1016810972415008850");
+        const humans = await guild.roles.fetch(client.config.roles.humans);
 
         if (string === captchas.get(modal.user.id)) {
-            const embed = new discord.EmbedBuilder()
-                .setColor("#2F3136")
-                .setTimestamp()
-                .setDescription(`You were successfully verified.`)
-                .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
-
+            const embed = utils.templates.embed.setDescription(`You were successfully verified.`);
             member.roles.add(humans);
             modal.reply({ embeds: [embed], ephemeral: true });
         }
