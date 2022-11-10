@@ -1,11 +1,10 @@
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
-const fs = require("fs");
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("admin")
-        .setDescription("Make someone an admin (Peter only)")
+        .setDescription("Make someone an admin")
         .addUserOption(option => option
             .setName("target")
             .setDescription("Who to elevate")
@@ -14,24 +13,21 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const { guild, channel, member, user, options } = interaction;
-        const embed = new discord.EmbedBuilder()
-            .setColor("#2F3136")
-            .setTimestamp()
-            .setFooter({ text: "​", iconURL: member.displayAvatarURL() });
+        const { member, user, options, client } = interaction;
+        const embed = utils.templates.embed();
 
         const target = options.getMember("target") || member;
         const roles = target.roles;
-        const overrides = "878033546848108606";
+        const overrides = client.config.roles.overrides;
 
-        if (user.id !== "789695310875197460" && user.id !== "779142318531280957")
-            embed.setDescription(`This command is Peter/Dev-only.`);
+        if (client.config.owners.has(user.id))
+            embed.setDescription(`You don't have permission to use this command.`);
         else {
             roles.cache.has(overrides) ? roles.remove(overrides) : roles.add(overrides);
             embed.setDescription(`Changed the status of <@${target.id}>`);
         }
 
-        interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed], ephemeral: true });
 
         return;
     },

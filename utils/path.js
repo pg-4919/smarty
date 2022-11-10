@@ -7,6 +7,5 @@ module.exports = {
     assets: `${root}/assets`,
     commands: `${root}/commands`,
     events: `${root}/events`,
-    utils: `${root}/utils`,
-    temp: `${root}/temp`
+    utils: `${root}/utils`
 }
