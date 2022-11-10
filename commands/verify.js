@@ -4,36 +4,28 @@ const utils = require("../utils/utils.js");
 
 const captchas = new discord.Collection();
 
-/*
-Notes:
-
-The verify command uses modals, and thus establishes conventions for
-doing so. A seperate function should be used to respond to all modals.
-Modals should be treated as discord.Interactions.
-*/
-
 module.exports = {
-    nci: true,
-
     data: new discord.SlashCommandBuilder()
         .setName("verify")
         .setDescription("Verify yourself and get the Human role")
         .toJSON(),
 
     async respond(interaction) {
-        const string = crypto.randomBytes(3).toString("hex");
+        const code = crypto.randomBytes(3).toString("hex");
+
         const modal = new discord.ModalBuilder()
             .setCustomId("verify")
             .setTitle("Verify yourself");
             
         const captcha = new discord.TextInputBuilder()
             .setCustomId("captcha")
-            .setLabel(`Enter the following text: ${string}`)
+            .setLabel(`Enter the following text: ${code}`)
             .setStyle(discord.TextInputStyle.Short)
             .setMinLength(6)
+            .setMaxLength(6)
             .setRequired(true);
 
-        captchas.set(interaction.user.id, string);
+        captchas.set(interaction.user.id, { code: code, interaction: interaction });
         modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
 
         return interaction.showModal(modal);
@@ -44,12 +36,12 @@ module.exports = {
         const string = fields.getTextInputValue("captcha").toLowerCase();
         const humans = await guild.roles.fetch(client.config.roles.humans);
 
-        if (string === captchas.get(modal.user.id)) {
-            const embed = utils.templates.embed(member).setDescription(`You were successfully verified.`);
+        if (string === captchas.get(modal.user.id).code) {
+            const embed = utils.templates.embed(member).setDescription("You were successfully verified");
             member.roles.add(humans);
             modal.reply({ embeds: [embed], ephemeral: true });
         }
 
-        return captchas.delete(modal.user.id);
+        captchas.delete(modal.user.id);
     }
 }

@@ -23,6 +23,7 @@ module.exports = async client => {
     guild.members.fetch();
     guild.roles.fetch();
     guild.channels.fetch();
+    guild.invites.fetch();
 
     console.log(process.env.SMARTY_HOME);
     
