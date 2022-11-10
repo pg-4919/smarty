@@ -7,7 +7,7 @@ const captchas = new discord.Collection();
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("verify")
-        .setDescription("Verify yourself and get the Human role")
+        .setDescription("Verify yourself to access the server")
         .toJSON(),
 
     async respond(interaction) {
@@ -39,7 +39,7 @@ module.exports = {
         if (string === captchas.get(modal.user.id).code) {
             const embed = utils.templates.embed(member).setDescription("You were successfully verified");
             member.roles.add(humans);
-            modal.reply({ embeds: [embed], ephemeral: true });
+            modal.editReply({ embeds: [embed], ephemeral: true });
         }
 
         captchas.delete(modal.user.id);
