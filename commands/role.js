@@ -24,6 +24,8 @@ module.exports = {
 
         const embed = utils.templates.embed(member);
         
+        await interaction.deferReply({ ephemeral: true });
+        
         const humans = await guild.roles.fetch(client.config.roles.humans);
         const custom = await (member.roles.cache.find(role => role.color !== 0) ||
             (await guild.roles.create({ name: member.displayName, position: humans.position - 1 }))
@@ -46,7 +48,7 @@ module.exports = {
             `<@&${custom.id}> has the name ${custom.name} and the color \`${custom.hexColor}\`.`
         );
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.editReply({ embeds: [embed], ephemeral: true });
 
         return;
     }

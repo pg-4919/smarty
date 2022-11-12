@@ -19,14 +19,15 @@ module.exports = async client => {
     }
 
     const guild = await client.guilds.fetch(client.config.guild);
-    guild.commands.set(commands);
-    guild.members.fetch();
-    guild.roles.fetch();
-    guild.channels.fetch();
-    guild.invites.fetch();
+    await guild.commands.set(commands);
+    await guild.members.fetch();
+    await guild.roles.fetch();
+    await guild.channels.fetch();
+    await guild.invites.fetch();
+    await guild.emojis.fetch();
 
-    console.log(process.env.SMARTY_HOME);
-    
+    guild.roles.cache.filter(role => role.members.size === 0).each(role => role.delete());
+
     client.user.setActivity("with fire", { type: 0 });
 
     return;
