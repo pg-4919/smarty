@@ -14,7 +14,7 @@ module.exports = {
 
     async respond(interaction) {
         const { member, options } = interaction;
-        const embed = utils.templates.embed(member);
+        const embed = utils.embed(member);
         
         const choices = options.getString("choices").split(",");
         const choice = choices[utils.random(0, choices.length - 1)].trim();

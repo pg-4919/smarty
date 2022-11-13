@@ -14,7 +14,7 @@ module.exports = {
         .toJSON(),
     async respond(interaction) {
         const { guild, member, options } = interaction;
-        const embed = utils.templates.embed(member);
+        const embed = utils.embed(member);
         const name = options.getString("emoji");
         const emoji = guild.emojis.cache.find(emoji => emoji.name === name);
 

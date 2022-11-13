@@ -10,7 +10,7 @@ module.exports = {
     async respond(interaction) {
         const { member, createdTimestamp } = interaction;
         const latency = Date.now() - createdTimestamp;
-        const embed = utils.templates.embed(member).setDescription(`The bot is up and latency is \`${latency} ms\`.`)
+        const embed = utils.embed(member).setDescription(`The bot is up and latency is \`${latency} ms\`.`)
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         
         return interaction;

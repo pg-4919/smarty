@@ -1,4 +1,4 @@
-const templates = require("./templates.js")
+const templates = require("./embed.js")
 const discord = require("discord.js");
 
 function button(disabled = false) {

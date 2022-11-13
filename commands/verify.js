@@ -39,7 +39,7 @@ module.exports = {
         const humans = await guild.roles.fetch(client.config.roles.humans);
 
         if (string === captchas.get(modal.user.id).code) {
-            const embed = utils.templates.embed(member).setDescription("You were successfully verified");
+            const embed = utils.embed(member).setDescription("You were successfully verified");
             member.roles.add(humans);
             modal.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         }

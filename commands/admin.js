@@ -14,7 +14,7 @@ module.exports = {
 
     async respond(interaction) {
         const { member, user, options, client } = interaction;
-        const embed = utils.templates.embed(member);
+        const embed = utils.embed(member);
 
         const target = options.getMember("target") || member;
         const roles = target.roles;

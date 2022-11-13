@@ -4,7 +4,7 @@ module.exports = {
     search: require("./search.js"),
     sleep: require("./sleep.js"),
     truncate: require("./truncate.js"),
-    templates: require("./templates.js"),
+    embed: require("./embed.js"),
     random: require("./random.js"),
     share: require("./share.js")
 }

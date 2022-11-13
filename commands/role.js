@@ -22,7 +22,7 @@ module.exports = {
         const color = (options.getString("color") || "").replace("#", "");
         const name = options.getString("name");
 
-        const embed = utils.templates.embed(member);
+        const embed = utils.embed(member);
 
         await interaction.deferReply({ ephemeral: true });
 

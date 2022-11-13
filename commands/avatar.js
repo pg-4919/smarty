@@ -15,7 +15,7 @@ module.exports = {
 
     async respond(interaction) {
         const { member, options } = interaction;
-        const embed = utils.templates.embed(member);
+        const embed = utils.embed(member);
 
         const target = options.getMember("target") || member;
         const avatar = target.displayAvatarURL({ size: 4096 });
