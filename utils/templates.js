@@ -13,7 +13,7 @@ module.exports = {
                 new discord.ButtonBuilder()
                     .setCustomId("share")
                     .setLabel('Click me!')
-                    .setStyle(ButtonStyle.Primary),
+                    .setStyle(discord.ButtonStyle.Primary),
             );
-    }
+    },
 }
