@@ -11,10 +11,8 @@ module.exports = {
         const { member, createdTimestamp } = interaction;
         const latency = Date.now() - createdTimestamp;
         const embed = utils.templates.embed(member).setDescription(`The bot is up and latency is \`${latency} ms\`.`)
-        const reply = interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.templates.share()] });
-        reply.awaitMessageComponent(interaction => interaction.customId === "share")
-            .then(interaction => interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.templates.share()] })
-            .catch(console.log));
-        return;
+        await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
+        
+        return interaction;
     }
 }

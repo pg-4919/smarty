@@ -23,8 +23,8 @@ module.exports = {
 
         await interaction.deferReply({ ephemeral: true });
         await utils.sleep(1000);
-        await interaction.editReply({ embeds: [embed], ephemeral: true });
+        await interaction.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
 
-        return;
+        return interaction;
     }
 }

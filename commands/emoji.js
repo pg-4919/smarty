@@ -21,8 +21,8 @@ module.exports = {
         if (emoji) embed.setImage(emoji.url);
         else embed.setDescription("Couldn't find that custom emoji.");
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
 
-        return;
+        return interaction;
     }
 }

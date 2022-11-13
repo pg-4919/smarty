@@ -22,8 +22,8 @@ module.exports = {
 
         embed.setImage(avatar);
 
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
 
-        return;
+        return interaction;
     }
 }

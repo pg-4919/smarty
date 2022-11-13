@@ -23,33 +23,33 @@ module.exports = {
         const name = options.getString("name");
 
         const embed = utils.templates.embed(member);
-        
+
         await interaction.deferReply({ ephemeral: true });
-        
+
         const humans = await guild.roles.fetch(client.config.roles.humans);
         const custom = await (member.roles.cache.find(role => role.color !== 0) ||
             (await guild.roles.create({ name: member.displayName, position: humans.position - 1 }))
                 .setColor("FFFFFF"));
 
         await member.roles.add(custom);
-        
+
         if (color) {
             if (!/^[0-9A-F]{6}$/i.test(color)) embed.setDescription(`Not a valid hex code.`)
             else await custom.setColor((color === "000000") ? "000001" : color);
         }
-        
+
         if (name) {
             if (name.length > 100) embed.setDescription(`Name must be 100 characters or fewer.`)
             else await custom.setName(name);
         }
 
         embed.setDescription((color || name) ?
-            `<@&${custom.id}> updated.` : 
+            `<@&${custom.id}> updated.` :
             `<@&${custom.id}> has the name ${custom.name} and the color \`${custom.hexColor}\`.`
         );
 
-        await interaction.editReply({ embeds: [embed], ephemeral: true });
+        await interaction.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
 
-        return;
+        return interaction;
     }
 }

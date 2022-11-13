@@ -28,7 +28,9 @@ module.exports = {
         captchas.set(interaction.user.id, { code: code, interaction: interaction });
         modal.addComponents(new discord.ActionRowBuilder().addComponents(captcha));
 
-        return interaction.showModal(modal);
+        await interaction.showModal(modal);
+
+        return interaction;
     },
 
     async modal(modal) {
@@ -39,7 +41,7 @@ module.exports = {
         if (string === captchas.get(modal.user.id).code) {
             const embed = utils.templates.embed(member).setDescription("You were successfully verified");
             member.roles.add(humans);
-            modal.editReply({ embeds: [embed], ephemeral: true });
+            modal.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         }
 
         captchas.delete(modal.user.id);

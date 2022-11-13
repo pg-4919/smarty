@@ -6,4 +6,5 @@ module.exports = {
     truncate: require("./truncate.js"),
     templates: require("./templates.js"),
     random: require("./random.js"),
+    share: require("./share.js")
 }

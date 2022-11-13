@@ -23,8 +23,8 @@ module.exports = {
         catch (err) { embed.setDescription(`Error: \`${err.message}\``) }
         
         await interaction.deferReply({ ephemeral: true });
-        await interaction.editReply({ embeds: [embed], ephemeral: true });
+        await interaction.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
 
-        return;
+        return interaction;
     }
 }
