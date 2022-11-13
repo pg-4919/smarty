@@ -12,7 +12,6 @@ module.exports = {
             .setRequired(true)
         )
         .toJSON(),
-
     async respond(interaction) {
         const { guild, member, options } = interaction;
         const embed = utils.templates.embed(member);
