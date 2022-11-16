@@ -7,8 +7,7 @@ require("dotenv").config();
 
 module.exports = async client => {
     client.commands = new discord.Collection();
-    client.config = await JSON.parse(fs.readFileSync(`${process.env.SMARTY_HOME}/.config`));
-    
+
     const commands = [];
     const files = fs.readdirSync(utils.path.commands);
 
@@ -26,7 +25,12 @@ module.exports = async client => {
     await guild.invites.fetch();
     await guild.emojis.fetch();
 
-    guild.roles.cache.filter(role => role.members.size === 0).each(role => role.delete());
+    client.config = {
+        starred: process.env.NCI_CHANNEL_STARRED,
+        news: process.env.NCI_CHANNEL_NEWS,
+        chat: process.env.NCI_CHANNEL_CHAT,
+        verify: process.env.NCI_CHANNEL_VERIFY,
+    }
 
     client.user.setActivity("with fire", { type: 0 });
 

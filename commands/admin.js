@@ -24,7 +24,7 @@ module.exports = {
             embed.setDescription(`You don't have permission to use this command.`);
         else {
             roles.cache.has(overrides) ? roles.remove(overrides) : roles.add(overrides);
-            embed.setDescription(`Changed the status of <@${target.id}>`);
+            embed.setDescription(`Changed the status of <@${target.id}> to ${roles.cache.has(overrides) ? "admin" : "non-admin"}.`);
         }
 
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });

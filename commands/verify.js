@@ -16,7 +16,7 @@ module.exports = {
         const modal = new discord.ModalBuilder()
             .setCustomId("verify")
             .setTitle("Verify yourself");
-            
+
         const captcha = new discord.TextInputBuilder()
             .setCustomId("captcha")
             .setLabel(`Enter the following text: ${code}`)
@@ -34,9 +34,9 @@ module.exports = {
     },
 
     async modal(modal) {
-        const { member, fields, guild, client } = modal;
+        const { member, fields } = modal;
         const string = fields.getTextInputValue("captcha").toLowerCase();
-        const humans = await guild.roles.fetch(client.config.roles.humans);
+        const humans = modal.guild.roles.cache.filter(role => role.id == process.env.NCI_ROLE_HUMANS);
 
         if (string === captchas.get(modal.user.id).code) {
             const embed = utils.embed(member).setDescription("You were successfully verified");

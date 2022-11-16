@@ -9,6 +9,6 @@ module.exports = async (reaction, user) => {
 
     await message.react("📌");
     await utils.clone(starred, message, true);
-    
+
     return;
 }

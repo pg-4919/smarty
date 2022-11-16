@@ -16,12 +16,12 @@ module.exports = {
     async respond(interaction) {
         const { member, options } = interaction;
         const embed = utils.embed(member);
-        
+
         const expression = options.getString("expression");
-        
+
         try { embed.setDescription(`\`${utils.truncate(expression, 30)}\` = \`${mexp.eval(expression)}\``) }
         catch (err) { embed.setDescription(`Error: \`${err.message}\``) }
-        
+
         await interaction.deferReply({ ephemeral: true });
         await interaction.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
 
