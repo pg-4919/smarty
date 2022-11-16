@@ -23,11 +23,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
-      - name: config
-        run: 'echo "$CONFIG" >> "./$CONFIG_PATH"'
+      - run: 'echo "$CONFIG" >> .config'
+        shell: bash
         env:
           CONFIG: ${{ secrets.SMARTY_CONFIG }}
-          CONFIG_PATH: ${{ secrets.SMARTY_CONFIG_PATH }}
         
 
       - uses: a7ul/tar-action@v1.1.0
