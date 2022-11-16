@@ -26,11 +26,22 @@ module.exports = async client => {
     await guild.emojis.fetch();
 
     client.config = {
-        starred: process.env.NCI_CHANNEL_STARRED,
-        news: process.env.NCI_CHANNEL_NEWS,
-        chat: process.env.NCI_CHANNEL_CHAT,
-        verify: process.env.NCI_CHANNEL_VERIFY,
-    }
+        guild: process.env.NCI_GUILDID,
+        channels: {
+            starred: process.env.NCI_CHANNEL_STARRED,
+            news: process.env.NCI_CHANNEL_NEWS,
+            chat: process.env.NCI_CHANNEL_CHAT,
+            verify: process.env.NCI_CHANNEL_VERIFY,
+        },
+        roles: {
+            humans: process.env.NCI_ROLE_HUMANS,
+            overrides: process.env.NCI_ROLE_OVERRIDES,
+            bots: process.env.NCI_ROLE_BOTS
+        },
+        admins: JSON.parse(process.env.NCI_ADMINS),
+        home: "",
+        token: process.env.TOKEN
+    };
 
     client.user.setActivity("with fire", { type: 0 });
 
