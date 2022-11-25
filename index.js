@@ -1,6 +1,6 @@
 const discord = require("discord.js");
 const events = require("./events/events.js");
-require("dotenv").config();
+const fs = require("fs");    
 
 const client = new discord.Client({
     intents: [
@@ -21,9 +21,11 @@ const client = new discord.Client({
     ],
 });
 
+client.config = JSON.parse(fs.readFileSync(`.config`));
+
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
 client.on("messageReactionAdd", events.messageReactionAdd);
 client.on("ready", events.ready);
 
-client.login(process.env.TOKEN);
+client.login(client.config.token);

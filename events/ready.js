@@ -1,13 +1,11 @@
 "use strict";
 
-const fs = require("fs");
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
-require("dotenv").config();
+const fs = require("fs");
 
 module.exports = async client => {
     client.commands = new discord.Collection();
-    client.config = await JSON.parse(fs.readFileSync(`${process.env.SMARTY_HOME}/.config`));
     
     const commands = [];
     const files = fs.readdirSync(utils.path.commands);
