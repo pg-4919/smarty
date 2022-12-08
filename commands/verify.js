@@ -41,7 +41,7 @@ module.exports = {
         if (string === captchas.get(modal.user.id).code) {
             const embed = utils.embed(member).setDescription("You were successfully verified");
             member.roles.add(humans);
-            modal.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
+            await modal.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         }
 
         captchas.delete(modal.user.id);

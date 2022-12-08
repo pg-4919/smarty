@@ -12,7 +12,7 @@ module.exports = async client => {
 
     for (const file of files) {
         const command = require(`${utils.path.commands}/${file}`);
-        client.commands.set(command.data.name, command);
+        client.commands.set(command.data.name, command)
         commands.push(command.data);
     }
 

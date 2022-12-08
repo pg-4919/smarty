@@ -1,11 +1,15 @@
 const utils = require("../utils/utils.js");
 
-module.exports = async (reaction, user) => {
-    const { client, emoji, me, message } = reaction;
+module.exports = async reaction => {
+    const { client, emoji, message } = reaction;
     const starred = await message.guild.channels.fetch(client.config?.channels.starred);
 
     await reaction.fetch().catch(console.log);
-    if (emoji.name !== "📌" || me || user.bot) return;
+    if (!["📌", "⭐"].includes(emoji.name)) return;
+
+    const reactions = message.reactions.cache;
+    const pins = reactions.find(reaction => reaction.emoji.name === "📌");
+    if (pins?.me) return;
 
     await message.react("📌");
     await utils.clone(starred, message, true);
