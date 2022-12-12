@@ -6,7 +6,8 @@ const fs = require("fs");
 
 module.exports = async client => {
     client.commands = new discord.Collection();
-    
+    client.logs = [];
+
     const commands = [];
     const files = fs.readdirSync(utils.path.commands);
 
@@ -18,15 +19,18 @@ module.exports = async client => {
 
     const guild = await client.guilds.fetch(client.config.guild);
     await guild.commands.set(commands);
+
     await guild.members.fetch();
     await guild.roles.fetch();
     await guild.channels.fetch();
     await guild.invites.fetch();
     await guild.emojis.fetch();
 
-    guild.roles.cache.filter(role => role.members.size === 0).each(role => role.delete());
+    guild.roles.cache
+        .filter(role => role.members.size === 0)
+        .each(role => role.delete().catch(() => {}));
 
-    client.user.setActivity("with fire", { type: 0 });
+    await client.user.setActivity("with fire", { type: 0 });
 
     return;
 }

@@ -6,5 +6,6 @@ module.exports = {
     truncate: require("./truncate.js"),
     embed: require("./embed.js"),
     random: require("./random.js"),
-    share: require("./share.js")
+    share: require("./share.js"),
+    timestamp: require("./timestamp.js")
 }

@@ -4,10 +4,9 @@ const utils = require("../utils/utils.js");
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("admin")
-        .setDescription("Make someone an admin")
-        .addUserOption(option => option
-            .setName("target")
-            .setDescription("Who to elevate")
+        .setDescription("Toggle someone's admin status")
+        .addUserOption(option => option.setName("target")
+            .setDescription("Whose status to toggle")
             .setRequired(false)
         )
         .toJSON(),
@@ -24,7 +23,7 @@ module.exports = {
             embed.setDescription(`You don't have permission to use this command.`);
         else {
             roles.cache.has(overrides) ? roles.remove(overrides) : roles.add(overrides);
-            embed.setDescription(`Changed the status of <@${target.id}>`);
+            embed.setDescription(`Changed the status of <@${target.id}> to \`${roles.cache.has(overrides) ? "admin" : "nonadmin"}\``);
         }
 
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
