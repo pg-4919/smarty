@@ -38,6 +38,8 @@ module.exports = {
         const string = fields.getTextInputValue("captcha").toLowerCase();
         const humans = await guild.roles.fetch(client.config.roles.humans);
 
+        console.log(string, captchas.get(modal.user.id).code)
+
         if (string === captchas.get(modal.user.id).code) {
             const embed = utils.embed(member).setDescription("You were successfully verified");
             member.roles.add(humans);

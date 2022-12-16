@@ -9,6 +9,7 @@ module.exports = async (destination, message, link = false) => {
         attachments,
         author,
         channel,
+        client,
         content,
         embeds,
         member,
@@ -17,17 +18,18 @@ module.exports = async (destination, message, link = false) => {
         url
     } = message;
 
+    const { curved, straight } = client.config.emojis;
 
     let reftext = "";
     if (reference && type === 19) {
         const reply = await channel.messages.fetch(reference.messageId);
-        const { member, author } = reply;
-        const truncated = truncate(reply.content, 50);
+        const { member, author, content } = reply;
+        const truncated = truncate(content, 50);
 
-        reftext = "<:curved:1034653422416302151> "
+        reftext = `<:curved:${curved}> `
             + discord.bold(member?.displayName || author?.username || "Anonymous")
             + ` ${truncated}\n`
-            + "<:straight:1034653871613681714>\n ";
+            + `<:straight:${straight}>\n `;
     }
 
     await webhook.send({

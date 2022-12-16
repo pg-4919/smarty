@@ -1,4 +1,4 @@
 module.exports = date => {
-    const datestring = `${date.getDate()}-${d.getMonth()+1} ${d.getHours()}:${d.getMinutes()}`
+    const datestring = `${date.getDate()}-${date.getMonth()+1} ${date.getHours()}:${date.getMinutes()}`
     return datestring;
 }

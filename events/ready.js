@@ -32,5 +32,8 @@ module.exports = async client => {
 
     await client.user.setActivity("with fire", { type: 0 });
 
+    const msgs = await guild.channels.cache.get(client.config.channels.chat).messages.fetch({ limit: 100 })
+    msgs.each(msg => console.log(msg.content))
+
     return;
 }

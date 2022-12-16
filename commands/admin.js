@@ -22,7 +22,7 @@ module.exports = {
         if (!client.config.admins.includes(user.id))
             embed.setDescription(`You don't have permission to use this command.`);
         else {
-            roles.cache.has(overrides) ? roles.remove(overrides) : roles.add(overrides);
+            await roles.cache.has(overrides) ? await roles.remove(overrides) : await roles.add(overrides);
             embed.setDescription(`Changed the status of <@${target.id}> to \`${roles.cache.has(overrides) ? "admin" : "nonadmin"}\``);
         }
 

@@ -16,7 +16,8 @@ module.exports = {
     button: button,
 
     async await(interaction) {
-        const reply = await interaction.fetchReply();
+        const reply = await interaction.fetchReply().catch(() => {});
+        if (!reply) return;
         reply.awaitMessageComponent(button => button.customId === "share")
             .then(press => {
                 press.reply({ embeds: reply.embeds });
