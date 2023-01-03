@@ -32,33 +32,5 @@ module.exports = async client => {
 
     await client.user.setActivity("with fire", { type: 0 });
 
-    async function fetchAllMessages() {
-        const channel = client.channels.cache.get("1014256055330549842");
-        let messages = [];
-
-        let message = await channel.messages
-            .fetch({ limit: 1 })
-            .then(messagePage => (messagePage.size === 1 ? messagePage.at(0) : null));
-
-        while (message) {
-            await channel.messages
-                .fetch({ limit: 100, before: message.id })
-                .then(messagePage => {
-                    const long = messagePage.filter(msg => msg.content?.length >= 500);
-                    const peters = long.filter(msg => msg.author?.id === "789695310875197460");
-                    peters.forEach(msg => messages.push(msg.content));
-                    message = 0 < messagePage.size ? messagePage.at(messagePage.size - 1) : null;
-                })
-            console.log("ballers");
-        }
-
-        const peters = messages.filter(msg => msg.author?.id === "789695310875197460");
-        const long = peters.filter(msg => msg.content?.length >= 500);
-
-        return long;
-    }
-
-    (await fetchAllMessages()).forEach(msg => console.log(msg.content));
-
     return;
 }
