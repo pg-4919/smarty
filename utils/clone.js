@@ -23,11 +23,12 @@ module.exports = async (destination, message, link = false) => {
     let reftext = "";
     if (reference && type === 19) {
         const reply = await channel.messages.fetch(reference.messageId);
-        const { member, author, content } = reply;
+        const { author, content } = reply;
         const truncated = truncate(content, 50);
+        const mention = author.id ? `<@${author.id}>` : "1111111111111111111111111";
 
         reftext = `<:curved:${curved}> `
-            + discord.bold(member?.displayName || author?.username || "Anonymous")
+            + mention
             + ` ${truncated}\n`
             + `<:straight:${straight}>\n `;
     }
