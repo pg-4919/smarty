@@ -1,6 +1,26 @@
 const discord = require("discord.js");
 const truncate = require("./truncate.js");
 
+async function _reply(message) {
+    const { reference, type } = message;
+    const { curved, straight } = client.config.emojis;
+
+    if (reference && type === 19) {
+        const { author, content } = await channel.messages.fetch(reference.messageId);
+        const truncated = truncate(content, 50);
+        const mention = `<@${(author.id ? author.id : "1".repeat(19))}>`;
+
+        return `<:curved:${curved}> `
+            + mention
+            + truncated
+            + `\n<:straight:${straight}>\n `;
+    } else return "";
+}
+
+async function _link(message) {
+    
+}
+
 module.exports = async (destination, message, link = false) => {
     const webhooks = await destination.fetchWebhooks();
     const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
@@ -13,30 +33,16 @@ module.exports = async (destination, message, link = false) => {
         content,
         embeds,
         member,
-        reference,
-        type,
         url
     } = message;
 
-    const { curved, straight } = client.config.emojis;
-
-    let reftext = "";
-    if (reference && type === 19) {
-        const reply = await channel.messages.fetch(reference.messageId);
-        const { author, content } = reply;
-        const truncated = truncate(content, 50);
-        const mention = author.id ? `<@${author.id}>` : "1111111111111111111111111";
-
-        reftext = `<:curved:${curved}> `
-            + mention
-            + ` ${truncated}\n`
-            + `<:straight:${straight}>\n `;
-    }
+    const reply = await _reply(message);
+    const link = await _link(message);
 
     await webhook.send({
         allowedMentions: { parse: [] },
         avatarURL: member?.displayAvatarURL() || null,
-        content: reftext + content + (link ? `\n[\[jump\]](${url})` : "") || "",
+        content: reply + content + (link ? `\n[\[jump\]](${url})` : "") || "",
         embeds: [...embeds],
         files: [...(attachments?.values() || [null])],
         username: member?.displayName || author?.username || "Anonymous"

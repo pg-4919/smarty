@@ -1,4 +1,5 @@
 module.exports = {
+    clean: require("./clean.js"),
     clone: require("./clone.js"),
     path: require("./path.js"),
     search: require("./search.js"),
