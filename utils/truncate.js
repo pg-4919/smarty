@@ -1,4 +1,4 @@
-const clean = require("clean.js");
+const clean = require("./clean.js");
 
 module.exports = (content, length) => {
     const cleaned = clean(content);

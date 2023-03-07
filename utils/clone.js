@@ -1,8 +1,9 @@
 const discord = require("discord.js");
 const truncate = require("./truncate.js");
 
-async function _reply(message) {
-    const { reference, type } = message;
+async function _reply(message, client) {
+
+    const { channel, reference, type } = message;
     const { curved, straight } = client.config.emojis;
 
     if (reference && type === 19) {
@@ -36,9 +37,8 @@ module.exports = async (destination, message, link = false) => {
         url
     } = message;
 
-    const reply = await _reply(message);
-    const link = await _link(message);
-
+    const reply = await _reply(message, client);
+    
     await webhook.send({
         allowedMentions: { parse: [] },
         avatarURL: member?.displayAvatarURL() || null,
