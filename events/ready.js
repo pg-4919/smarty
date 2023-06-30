@@ -6,7 +6,6 @@ const fs = require("fs");
 
 module.exports = async client => {
     client.commands = new discord.Collection();
-    client.logs = [];
 
     const commands = [];
     const files = fs.readdirSync(utils.path.commands);
