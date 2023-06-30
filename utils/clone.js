@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 const truncate = require("./truncate.js");
 
-async function reply(message, client) {
+async function _reply(message, client) {
     const { channel, reference, type } = message;
     const { curved, straight } = client.config.emojis;
 
@@ -32,7 +32,7 @@ module.exports = async (destination, message, link = false) => {
         url
     } = message;
 
-    const reply = await reply(message, client);
+    const reply = await _reply(message, client);
     
     await webhook.send({
         allowedMentions: { parse: [] },
