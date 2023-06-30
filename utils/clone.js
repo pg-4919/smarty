@@ -21,6 +21,8 @@ module.exports = async (destination, message, link = false) => {
     const webhooks = await destination.fetchWebhooks();
     const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
 
+    const { curved, straight } = client.config.emojis;
+
     const {
         attachments,
         author,
@@ -29,11 +31,19 @@ module.exports = async (destination, message, link = false) => {
         content,
         embeds,
         member,
+        reference,
+        type,
         url
     } = message;
 
-    const reply = await _reply(message, client);
-    
+    let reply = "";
+    if (reference && type === 19) {
+        const { author, content } = await channel.messages.fetch(reference.messageId);
+        const truncated = truncate(content, 50);
+        const mention = `<@${(author.id ? author.id : "1".repeat(19))}>`;
+        reply = `<:curved:${curved}> ${mention}${truncated}\n<:straight:${straight}>\n `;
+    }
+
     await webhook.send({
         allowedMentions: { parse: [] },
         avatarURL: member?.displayAvatarURL() || null,
