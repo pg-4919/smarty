@@ -1,6 +1,6 @@
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
-const mexp = require("math-expression-evaluator");
+const mathjs = require("mathjs");
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
@@ -19,7 +19,7 @@ module.exports = {
         
         const expression = options.getString("expression");
         
-        try { embed.setDescription(`\`${utils.truncate(expression, 500)}\` = \`${mexp.eval(expression)}\``) }
+        try { embed.setDescription(`\`${utils.truncate(expression, 500)}\` = \`${mathjs.evaluate(expression)}\``) }
         catch (err) { embed.setDescription(`Error: \`${err.message}\``) }
         
         await interaction.deferReply({ ephemeral: true });
