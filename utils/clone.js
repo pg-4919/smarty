@@ -18,11 +18,6 @@ async function _reply(message, client) {
 }
 
 module.exports = async (destination, message, link = false) => {
-    const webhooks = await destination.fetchWebhooks();
-    const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
-
-    const { curved, straight } = client.config.emojis;
-
     const {
         attachments,
         author,
@@ -35,6 +30,10 @@ module.exports = async (destination, message, link = false) => {
         type,
         url
     } = message;
+
+    const webhooks = await destination.fetchWebhooks();
+    const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
+    const { curved, straight } = client.config.emojis;
 
     let reply = "";
     if (reference && type === 19) {
