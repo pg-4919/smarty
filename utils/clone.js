@@ -1,7 +1,10 @@
+"use strict";
+
 const discord = require("discord.js");
 const utils = require("./utils.js");
 
 module.exports = async (destination, message, link = false) => {
+    // deconstruct message into object
     const {
         attachments,
         author,
@@ -15,10 +18,13 @@ module.exports = async (destination, message, link = false) => {
         url
     } = message;
 
+    // find a webhook or create one if necessary
     const webhooks = await destination.fetchWebhooks();
     const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
-    const { curved, straight } = client.config.emojis;
+    
+    const { curved, straight } = client.config.emojis; // get the reply shaped emojis
 
+    // if the message is a reply to another one, store the replied-to message in a variable
     let reply = "";
     if (reference && type === 19) {
         const { author, content } = await channel.messages.fetch(reference.messageId);
@@ -27,15 +33,13 @@ module.exports = async (destination, message, link = false) => {
         reply = `<:curved:${curved}> ${mention}${truncated}\n<:straight:${straight}>\n `;
     }
 
-    await webhook.send({
-        allowedMentions: { parse: [] },
+    return await webhook.send({
+        allowedMentions: { parse: [] }, // make sure @everyone/@here is silenced
         avatarURL: member?.displayAvatarURL() || null,
-        content: reply + content + (link ? `\n[\[jump\]](${url})` : "") || "",
-        embeds: [...embeds],
-        files: [...(attachments?.values() || [null])],
-        username: member?.displayName || author?.username || "Anonymous",
-        flags: [ 4096 ]
+        content: `${reply}${content}${(link ? `\n[\[jump\]](${url})` : "")}` || "", // add [jump] link
+        embeds: [...embeds], // copy embeds
+        files: [...(attachments?.values() || [null])], // copy files
+        username: member?.displayName || author?.username || "Anonymous", // redundant username checks
+        flags: [ 4096 ] // set the message to silent
     }).catch(err => console.log);
-
-    return;
 }

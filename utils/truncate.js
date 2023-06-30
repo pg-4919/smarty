@@ -1,4 +1,4 @@
-const clean = require("./clean.js");
+const utils = require("./utils.js");
 
 module.exports = (content, length) => 
-    clean(content).slice(0, length) + (content.length > length ? "..." : "");
+    utils.clean(content).slice(0, length) + (content.length > length ? "..." : "");
