@@ -33,7 +33,8 @@ module.exports = async (destination, message, link = false) => {
         content: reply + content + (link ? `\n[\[jump\]](${url})` : "") || "",
         embeds: [...embeds],
         files: [...(attachments?.values() || [null])],
-        username: member?.displayName || author?.username || "Anonymous"
+        username: member?.displayName || author?.username || "Anonymous",
+        flags: [ 4096 ]
     }).catch(err => console.log);
 
     return;
