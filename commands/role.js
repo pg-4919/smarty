@@ -4,15 +4,15 @@ const utils = require("../utils/utils.js");
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("role")
-        .setDescription("Change your role's name and color")
+        .setDescription("Customize your role")
         .addStringOption(option => option
             .setName("color")
-            .setDescription("What to change the role's color to")
+            .setDescription("A hex string to change your color to")
             .setRequired(false)
         )
         .addStringOption(option => option
             .setName("name")
-            .setDescription("What to change the role's name to")
+            .setDescription("What to change your role's name to")
             .setRequired(false)
         )
         .toJSON(),
