@@ -8,9 +8,11 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const { member, createdTimestamp } = interaction;
+        const { client, member, createdTimestamp } = interaction;
         const latency = Date.now() - createdTimestamp;
-        const embed = utils.embed(member).setDescription(`The bot is up and latency is \`${latency} ms\`.`)
+        const ping = client.ws.ping;
+
+        const embed = utils.embed(member).setDescription(`The bot is up!\n- Latency is \`${latency} ms\` \n - API ping is \`${ping}\` ms.`)
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         
         return interaction;

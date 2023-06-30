@@ -16,9 +16,11 @@ module.exports = async client => {
         commands.push(command.data);
     }
 
+    // update the commands (instant updates)
     const guild = await client.guilds.fetch(client.config.guild);
     await guild.commands.set(commands);
 
+    // fetch all relevant information into cache
     await guild.members.fetch();
     await guild.roles.fetch();
     await guild.channels.fetch();
