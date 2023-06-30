@@ -19,7 +19,7 @@ module.exports = {
         
         const expression = options.getString("expression");
         
-        try { embed.setDescription(`\`${utils.truncate(expression, 500)}\` = \`${mathjs.evaluate(expression)}\``) }
+        try { embed.setDescription(`\`${utils.truncate(expression, 500, false)}\` = \`${mathjs.evaluate(expression)}\``) }
         catch (err) { embed.setDescription(`Error: \`${err.message}\``) }
         
         await interaction.deferReply({ ephemeral: true });
