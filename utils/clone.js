@@ -42,7 +42,7 @@ module.exports = async (destination, message, link = false) => {
         username: member?.displayName || author?.username || "Anonymous", // redundant username checks
         flags: [4096], // set the message to silent
         components: [
-            discord.ActionRowBuilder().addComponents(
+            new discord.ActionRowBuilder().addComponents(
                 new discord.ButtonBuilder()
                     .setLabel("Jump")
                     .setStyle(discord.ButtonStyle.Link)
