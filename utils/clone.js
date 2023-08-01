@@ -21,7 +21,7 @@ module.exports = async (destination, message, link = false) => {
     // find a webhook or create one if necessary
     const webhooks = await destination.fetchWebhooks();
     const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
-    
+
     const { curved, straight } = client.config.emojis; // get the reply shaped emojis
 
     // if the message is a reply to another one, store the replied-to message in a variable
@@ -36,10 +36,28 @@ module.exports = async (destination, message, link = false) => {
     return await webhook.send({
         allowedMentions: { parse: [] }, // make sure @everyone/@here is silenced
         avatarURL: member?.displayAvatarURL() || null,
-        content: `${reply}${content}${(link ? `\n[\[jump\]](${url})` : "")}` || "", // add [jump] link
+        content: `${reply}${content}` || "", // add [jump] link
         embeds: [...embeds], // copy embeds
         files: [...(attachments?.values() || [null])], // copy files
         username: member?.displayName || author?.username || "Anonymous", // redundant username checks
-        flags: [ 4096 ] // set the message to silent
+        flags: [4096], // set the message to silent
+        components: [
+            discord.ActionRowBuilder().addComponents(
+                new discord.ButtonBuilder()
+                    .setLabel("Jump")
+                    .setStyle(discord.ButtonStyle.Link)
+                    .setURL(url)
+            )
+        ]
     }).catch(err => console.log);
+
+    new MessageActionRow()
+        .addComponents(
+            new MessageButton()
+                .setLabel('CLICK THIS')
+                .setURL("urlhere")
+                .setStyle('LINK'),
+        );
+
+        
 }
