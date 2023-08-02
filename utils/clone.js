@@ -34,30 +34,22 @@ module.exports = async (destination, message, link = false) => {
     }
 
     return await webhook.send({
-        allowedMentions: { parse: [] }, // make sure @everyone/@here is silenced
+        allowedMentions: { parse: [] },
         avatarURL: member?.displayAvatarURL() || null,
-        content: `${reply}${content}` || "", // add [jump] link
-        embeds: [...embeds], // copy embeds
-        files: [...(attachments?.values() || [null])], // copy files
-        username: member?.displayName || author?.username || "Anonymous", // redundant username checks
-        flags: [4096], // set the message to silent
-        components: [
-            new discord.ActionRowBuilder().addComponents(
-                new discord.ButtonBuilder()
-                    .setLabel("Jump")
-                    .setStyle(discord.ButtonStyle.Link)
-                    .setURL(url)
-            )
+        content: `${reply}${content}` || "",
+        embeds: [...embeds],
+        files: [...(attachments?.values() || [null])],
+        username: member?.displayName || author?.username || "Anonymous",
+        flags: [4096],
+        components: [new discord.ActionRowBuilder().addComponents(
+            new discord.ButtonBuilder()
+                .setLabel("Original message")
+                .setStyle(discord.ButtonStyle.Link)
+                .setURL(url)
+        )
         ]
     }).catch(err => console.log);
 
-    new MessageActionRow()
-        .addComponents(
-            new MessageButton()
-                .setLabel('CLICK THIS')
-                .setURL("urlhere")
-                .setStyle('LINK'),
-        );
 
-        
+
 }
