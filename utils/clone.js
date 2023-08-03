@@ -47,7 +47,7 @@ module.exports = async (destination, message, link = false) => {
                 .setStyle(discord.ButtonStyle.Link)
                 .setURL(url)
         )
-        ] : null
+        ] : []
     }).catch(err => console.log);
 
 
