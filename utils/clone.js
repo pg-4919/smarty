@@ -41,13 +41,13 @@ module.exports = async (destination, message, link = false) => {
         files: [...(attachments?.values() || [null])],
         username: member?.displayName || author?.username || "Anonymous",
         flags: [4096],
-        components: [new discord.ActionRowBuilder().addComponents(
+        components: link ? [new discord.ActionRowBuilder().addComponents(
             new discord.ButtonBuilder()
                 .setLabel("Original message")
                 .setStyle(discord.ButtonStyle.Link)
                 .setURL(url)
         )
-        ]
+        ] : null
     }).catch(err => console.log);
 
 
