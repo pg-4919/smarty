@@ -12,7 +12,7 @@ module.exports = async reaction => {
     if (pins?.me) return;
 
     await message.react("📌");
-    await utils.clone(starred, message, true);
+    await utils.clone(message, channel, true);
     
     return;
 }

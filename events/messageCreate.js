@@ -11,7 +11,7 @@ module.exports = async message => {
     if (channel.id === news) {
         const everyone = message.mentions.everyone;
         const channel = await guild.channels.fetch(chat);
-        await utils.clone(channel, message, everyone);
+        await utils.clone(message, channel, everyone);
         if (!everyone) message.delete().catch(console.log);
         //utils.revise(message)
     }

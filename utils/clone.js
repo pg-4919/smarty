@@ -17,7 +17,7 @@ async function buildReply(message, emojis) {
     return reply;
 }
 
-module.exports = async (destination, message, link = false) => {
+module.exports = async (message, destination, link = false) => {
     const {
         attachments,
         author,
