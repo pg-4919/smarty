@@ -32,7 +32,7 @@ module.exports = async (destination, message, link = false) => {
     const webhooks = await destination.fetchWebhooks();
     const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
 
-    const link = [new discord.ActionRowBuilder().addComponents(
+    const button = [new discord.ActionRowBuilder().addComponents(
         new discord.ButtonBuilder()
             .setLabel("Original message")
             .setStyle(discord.ButtonStyle.Link)
@@ -47,7 +47,7 @@ module.exports = async (destination, message, link = false) => {
         content: `${await buildReply(reference, type) || ""}${content}` || "",
         username: member?.displayName || author?.username || "Anonymous",
 
-        components: link || []
+        components: link ? button : []
     }).catch(err => console.log);
 
 }
