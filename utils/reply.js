@@ -1,6 +1,6 @@
 module.exports = async message => {
     const { reference, type, channel, client } = message;
-    const { curved, straight } = client.configemojis;
+    const { curved, straight } = client.config.emojis;
 
     if (!(reference && type === 19)) return undefined;
 
