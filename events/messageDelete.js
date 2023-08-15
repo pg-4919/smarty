@@ -11,8 +11,6 @@ module.exports = async (filler, message) => {
         const webhook = webhooks.get(cloned.webhookId);
         if (!webhook) return;
 
-        const content = `${await utils.reply(message)} ${message.content}`
-
-        console.log(await webhook.editMessage(cloned.id, { content: content }));
+        await webhook.deleteMessage(cloned.id);
     }
 }
