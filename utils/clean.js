@@ -1,8 +1,8 @@
 "use strict";
 
-const discord = require("discord.js");
+const { Util } = require("discord.js");
 
-module.exports = content => discord.Util.escapeMarkdown(content);
+module.exports = content => Util.escapeMarkdown(content);
 
 
 //content.replace(/([*])|(\|{2,})|(_{2,})|(^(> ))/g, "").replace(/\n/g, "");
