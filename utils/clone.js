@@ -3,8 +3,8 @@
 const discord = require("discord.js");
 const truncate = require("./truncate.js");
 
-async function buildReply(reference, type) {
-    const { curved, straight } = client.config.emojis;
+async function buildReply(reference, type, emojis) {
+    const { curved, straight } = emojis;
 
     if (!(reference && type === 19)) return undefined;
 
@@ -44,7 +44,7 @@ module.exports = async (destination, message, link = false) => {
         flags: [4096],
 
         avatarURL: member?.displayAvatarURL() || null,
-        content: `${await buildReply(reference, type) || ""}${content}` || "",
+        content: `${await buildReply(reference, type, client.config.emojis) || ""}${content}` || "",
         username: member?.displayName || author?.username || "Anonymous",
 
         components: link ? button : []
