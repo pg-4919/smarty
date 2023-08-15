@@ -1,8 +1,6 @@
 {
     "dependencies": {
-        "canvas": "^2.10.2",
         "discord.js": "^14.12.1",
-        "discord.js-captcha": "^3.0.4",
         "dotenv": "^16.0.3",
         "mathjs": "^11.8.2"
     },
@@ -11,7 +9,7 @@
     "description": "gay",
     "main": "index.js",
     "scripts": {
-        "start": "pnpm i && git pull && node index.js"
+        "start": "{ pnpm i && git pull } &> /dev/null && node index.js"
     },
     "author": "",
     "license": "ISC"
