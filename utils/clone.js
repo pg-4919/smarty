@@ -50,7 +50,7 @@ module.exports = async (message, destination, link = false) => {
         components: link ? button : []
     }).catch(err => console.log);
 
-    client.cloned.set(message.id, cloned.id);
+    client.clones.set(message.id, cloned.id);
 
     return;
 
