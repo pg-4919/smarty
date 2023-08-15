@@ -42,6 +42,6 @@ module.exports = async client => {
 
     await client.user.setActivity("with nuclear weapons", { type: 0 });
 
-    console.log(require(discord.js))
+    console.log(require("discord.js"))
     return console.log("Ready to domestically terrorize multiple nation states");
 }
