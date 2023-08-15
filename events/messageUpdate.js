@@ -1,6 +1,6 @@
 const utils = require("../utils/utils.js");
 
-module.exports = async message => {
+module.exports = async (filler, message) => {
     const { author, channel, client, guild } = message;
     const { news, chat } = client.config.channels;
 
@@ -9,12 +9,10 @@ module.exports = async message => {
 
         const webhooks = await guild.fetchWebhooks();
         const webhook = webhooks.get(cloned.webhookId);
+        if (!webhook) return;
 
-        console.log(webhooks);
-        console.log(webhook);
-        console.log(cloned);
-        if (!webhook) return console.log("NOOOOOOO");
+        const content = `${utils.reply(message)} ${message.content}`
 
-        console.log(await webhook.editMessage(cloned.id, { content: "haha edited lmao" }));
+        console.log(await webhook.editMessage(cloned.id, { content: content }));
     }
 }
