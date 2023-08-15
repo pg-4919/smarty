@@ -3,19 +3,7 @@
 const discord = require("discord.js");
 const truncate = require("./truncate.js");
 const clean = require("./clean.js");
-
-async function buildReply(message, emojis) {
-    const { curved, straight } = emojis;
-    const { reference, type, channel } = message;
-
-    if (!(reference && type === 19)) return undefined;
-
-    const original = await channel.messages.fetch(reference.messageId);
-    const content = clean(truncate(original.content, 50));
-    const mention = `<@${(original.author.id || "1".repeat(19))}>`;
-    const reply = `<:curved:${curved}> ${mention} ${content}\n<:straight:${straight}>\n `;
-    return reply;
-}
+const reply = require("./reply.js");
 
 module.exports = async (message, destination, link = false) => {
     const {
@@ -44,7 +32,7 @@ module.exports = async (message, destination, link = false) => {
         flags: [4096],
 
         avatarURL: member?.displayAvatarURL() || null,
-        content: `${await buildReply(message, client.config.emojis) || ""}${content}` || "",
+        content: `${await reply(message, client.config.emojis) || ""}${content}` || "",
         username: member?.displayName || author?.username || "Anonymous",
 
         components: link ? button : []
