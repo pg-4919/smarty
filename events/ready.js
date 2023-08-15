@@ -4,7 +4,7 @@ const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 const fs = require("fs");
 
-async function updateCommands() {
+async function updateCommands(client, guild) {
     const commands = [];
     const files = fs.readdirSync(utils.path.commands);
 
@@ -14,11 +14,10 @@ async function updateCommands() {
         commands.push(command.data);
     });
 
-    const guild = await client.guilds.fetch(client.config.guild);
     await guild.commands.set(commands);
 }
 
-async function updateCaches() {
+async function updateCaches(guild) {
     await guild.members.fetch();
     await guild.roles.fetch();
     await guild.channels.fetch();
@@ -27,11 +26,12 @@ async function updateCaches() {
 }
 
 module.exports = async client => {
+    const guild = await client.guilds.fetch(client.config.guild);
     client.commands = new discord.Collection();
     client.clones = new discord.Collection();
 
-    await updateCommands();
-    await updateCaches();
+    await updateCommands(client, guild);
+    await updateCaches(guild);
 
     guild.roles.cache
         .filter(role => role.members.size === 0)
