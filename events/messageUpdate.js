@@ -15,6 +15,6 @@ module.exports = async message => {
         console.log(cloned);
         if (!webhook) return console.log("NOOOOOOO");
 
-        console.log(await webhook.edit(cloned.id, { content: "haha edited lmao" }));
+        console.log(await webhook.editMessage(cloned.id, { content: "haha edited lmao" }));
     }
 }
