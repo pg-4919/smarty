@@ -1,6 +1,5 @@
 const discord = require("discord.js");
 const events = require("./events/events.js");
-const fs = require("fs");    
 
 const client = new discord.Client({
     intents: [
@@ -21,7 +20,7 @@ const client = new discord.Client({
     ],
 });
 
-client.config = JSON.parse(fs.readFileSync(`.config`));
+client.config = require(`.config`);
 
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);

@@ -30,7 +30,7 @@ module.exports = async (destination, message, link = false) => {
         const { author, content } = await channel.messages.fetch(reference.messageId);
         const truncated = truncate(content, 50);
         const mention = `<@${(author.id ? author.id : "1".repeat(19))}>`;
-        reply = `<:curved:${curved}> ${mention}${truncated}\n<:straight:${straight}>\n `;
+        reply = `<:curved:${curved}>  ${mention}${truncated}\n<:straight:${straight}>\n `;
     }
 
     return await webhook.send({

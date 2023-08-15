@@ -3,7 +3,6 @@
 const discord = require("discord.js");
 
 module.exports = async (client, message) => {
-
     const { id } = message;
     const { chat } = client.config;
 

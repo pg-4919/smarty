@@ -30,7 +30,6 @@ module.exports = {
         const custom = await (member.roles.cache.find(role => role.color !== 0) ||
             (await guild.roles.create({ name: member.displayName, position: humans.position - 1 }))
                 .setColor("FFFFFF"));
-
         await member.roles.add(custom);
 
         if (color) {
