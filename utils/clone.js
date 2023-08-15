@@ -1,8 +1,6 @@
 "use strict";
 
 const discord = require("discord.js");
-const truncate = require("./truncate.js");
-const clean = require("./clean.js");
 const reply = require("./reply.js");
 
 module.exports = async (message, destination, link = false) => {

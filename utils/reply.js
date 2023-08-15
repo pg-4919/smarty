@@ -1,3 +1,6 @@
+const truncate = require("./truncate.js");
+const clean = require("./clean.js");
+
 module.exports = async message => {
     const { reference, type, channel, client } = message;
     const { curved, straight } = client.config.emojis;
