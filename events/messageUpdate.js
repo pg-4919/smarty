@@ -13,8 +13,8 @@ module.exports = async message => {
         console.log(webhooks);
         console.log(webhook);
         console.log(cloned);
-        if (!webhook) return;
+        if (!webhook) return console.log("NOOOOOOO");
 
-        webhook.edit(cloned.id, "haha edited lmao");
+        webhook.edit(cloned.id, "haha edited lmao").catch(console.log);
     }
 }
