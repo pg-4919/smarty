@@ -38,7 +38,7 @@ module.exports = async (message, destination, link = false) => {
             .setStyle(discord.ButtonStyle.Link)
             .setURL(url))]
 
-    return await webhook.send({
+    const cloned = await webhook.send({
         allowedMentions: { parse: [] },
         embeds: [...embeds],
         flags: [4096],
@@ -49,5 +49,9 @@ module.exports = async (message, destination, link = false) => {
 
         components: link ? button : []
     }).catch(err => console.log);
+
+    client.cloned.set(message.id, cloned.id);
+
+    return;
 
 }
