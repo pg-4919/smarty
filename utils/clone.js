@@ -43,7 +43,7 @@ module.exports = async (destination, message, link = false) => {
         flags: [4096],
 
         avatarURL: member?.displayAvatarURL() || null,
-        content: `${await buildReply(reference, type, client.config.emojis) || ""}${content}` || "",
+        content: `${await buildReply(message, client.config.emojis) || ""}${content}` || "",
         username: member?.displayName || author?.username || "Anonymous",
 
         components: link ? button : []
