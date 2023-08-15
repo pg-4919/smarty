@@ -20,7 +20,7 @@ const client = new discord.Client({
     ],
 });
 
-client.config = require(`.config`);
+client.config = JSON.parse(fs.readFileSync(".config"));
 
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);

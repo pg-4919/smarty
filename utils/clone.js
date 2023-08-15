@@ -50,6 +50,4 @@ module.exports = async (destination, message, link = false) => {
         ] : []
     }).catch(err => console.log);
 
-
-
 }
