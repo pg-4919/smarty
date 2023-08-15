@@ -10,7 +10,9 @@ module.exports = async message => {
         const webhooks = await guild.fetchWebhooks();
         const webhook = webhooks.get(cloned.webhookId);
 
+        console.log(webhooks);
         console.log(webhook);
+        console.log(cloned);
         if (!webhook) return;
 
         webhook.edit(cloned, "haha edited lmao");
