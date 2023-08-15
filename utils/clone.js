@@ -2,6 +2,7 @@
 
 const discord = require("discord.js");
 const truncate = require("./truncate.js");
+const clean = require("./clean.js");
 
 async function buildReply(message, emojis) {
     const { curved, straight } = emojis;
