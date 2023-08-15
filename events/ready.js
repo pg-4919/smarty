@@ -37,7 +37,7 @@ module.exports = async client => {
         .filter(role => role.members.size === 0)
         .each(role => role.delete().catch(() => { }));
 
-    await client.user.setActivity("with fire", { type: 0 });
+    await client.user.setActivity("with nuclear weapons", { type: 0 });
 
     return console.log("Ready to domestically terrorize multiple nation states");
 }
