@@ -14,6 +14,6 @@ module.exports = async (filler, message) => {
         const reply = await utils.reply(message) || "";
         const content = `${reply} ${message.content}`
 
-        console.log(await webhook.editMessage(cloned.id, { content: content }));
+        await webhook.editMessage(cloned.id, { allowedMentions: { parse: [] }, content: content });
     }
 }
