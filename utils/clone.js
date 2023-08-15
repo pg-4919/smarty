@@ -27,6 +27,7 @@ module.exports = async (message, destination, link = false) => {
     const cloned = await webhook.send({
         allowedMentions: { parse: [] },
         embeds: [...embeds],
+        files: [...(attachments?.values() || [null])],
         flags: [4096],
 
         avatarURL: member?.displayAvatarURL() || null,
