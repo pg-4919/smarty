@@ -10,10 +10,10 @@ async function buildReply(message, emojis) {
 
     if (!(reference && type === 19)) return undefined;
 
-    const { author, content } = await channel.messages.fetch(reference.messageId);
-    const cleanedContent = clean(truncate(content, 50));
-    const mention = `<@${(author.id ? author.id : "1".repeat(19))}>`;
-    const reply = `<:curved:${curved}>  ${mention}${cleanedContent}\n<:straight:${straight}>\n `;
+    const original = await channel.messages.fetch(reference.messageId);
+    const content = clean(truncate(original.content, 50));
+    const mention = `<@${(original.author.id || "1".repeat(19))}>`;
+    const reply = `<:curved:${curved}> ${mention} ${cleanedContent} \n <:straight:${straight}> \n `;
     return reply;
 }
 
