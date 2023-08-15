@@ -36,7 +36,10 @@ module.exports = async (message, destination, link = false) => {
         components: link ? button : []
     }).catch(err => console.log);
 
-    if (link) client.clones.set(message.id, cloned);
+    if (link) {
+        client.clones.set(message.id, cloned);
+        client.clones.sort(message => message.createdTimestamp);
+    }
 
     return;
 
