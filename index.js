@@ -1,4 +1,5 @@
 const discord = require("discord.js");
+const fs = require("fs");
 const events = require("./events/events.js");
 
 const client = new discord.Client({
