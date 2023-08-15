@@ -1,6 +1,6 @@
 const utils = require("../utils/utils.js");
 
-module.exports = async (filler, message) => {
+module.exports = async message => {
     const { author, channel, client, guild } = message;
     const { news, chat } = client.config.channels;
 
