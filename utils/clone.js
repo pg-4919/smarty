@@ -39,6 +39,7 @@ module.exports = async (message, destination, link = false) => {
     if (link) {
         client.clones.set(message.id, cloned);
         client.clones.sort(message => message.createdTimestamp);
+        console.log(client.clones);
     }
 
     return;
