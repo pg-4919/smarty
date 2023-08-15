@@ -3,8 +3,9 @@
 const discord = require("discord.js");
 const truncate = require("./truncate.js");
 
-async function buildReply(reference, type, emojis) {
+async function buildReply(message, emojis) {
     const { curved, straight } = emojis;
+    const { reference, type, channel } = message;
 
     if (!(reference && type === 19)) return undefined;
 
@@ -24,8 +25,6 @@ module.exports = async (destination, message, link = false) => {
         content,
         embeds,
         member,
-        reference,
-        type,
         url
     } = message;
 
