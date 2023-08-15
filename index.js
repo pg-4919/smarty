@@ -25,6 +25,7 @@ client.config = JSON.parse(fs.readFileSync(".config"));
 
 client.on("interactionCreate", events.interactionCreate);
 client.on("messageCreate", events.messageCreate);
+client.on("messageDelete", events.messageDelete);
 client.on("messageUpdate", events.messageUpdate);
 client.on("messageReactionAdd", events.messageReactionAdd);
 client.on("ready", events.ready);

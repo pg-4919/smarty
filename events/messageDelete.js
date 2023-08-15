@@ -8,6 +8,7 @@ module.exports = async message => {
         const cloned = client.clones.get(message.id);
         const webhooks = await guild.fetchWebhooks();
         const webhook = webhooks.get(cloned.webhookId);
+        
         if (!webhook) return console.log("Something went wrong.");
 
         await webhook.deleteMessage(cloned.id);
