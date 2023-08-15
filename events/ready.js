@@ -25,6 +25,12 @@ async function updateCaches(guild) {
     await guild.emojis.fetch();
 }
 
+async function pruneRoles(guild) {
+    guild.roles.cache
+        .filter(role => role.members.size === 0)
+        .each(role => role.delete().catch(() => { }));
+}
+
 module.exports = async client => {
     const guild = await client.guilds.fetch(client.config.guild);
     client.commands = new discord.Collection();
@@ -32,12 +38,8 @@ module.exports = async client => {
 
     await updateCommands(client, guild);
     await updateCaches(guild);
-
-    guild.roles.cache
-        .filter(role => role.members.size === 0)
-        .each(role => role.delete().catch(() => { }));
+    await pruneRoles(guild);
 
     await client.user.setActivity("with nuclear weapons", { type: 0 });
-
     return console.log("Ready to domestically terrorize multiple nation states");
 }
