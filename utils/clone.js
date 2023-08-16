@@ -12,13 +12,14 @@ async function fetchWebhook(destination) {
     return webhook;
 }
 
-async function saveClones(client) {
-    client.clones.sort(message => message.createdTimestamp);
-    if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0));
+function saveClones(clones) {
+    clones.sort(message => message.createdTimestamp);
+    if (clones.size > 100) clones.delete(clones.keyAt(0));
 
-    const clones = {};
-    client.clones.forEach((value, key) => clones[key] = value);
-    fs.writeFileSync(`${path.root}/clones.json`, JSON.stringify(clones));
+    const serialized = {};
+    clones.forEach((value, key) => serialized[key] = value);
+    fs.writeFileSync(`${path.root}/clones.json`, JSON.stringify(serialized));
+    return;
 }
 
 module.exports = async (message, destination, link = false) => {
@@ -57,8 +58,7 @@ module.exports = async (message, destination, link = false) => {
     // if the clone contains a link, add it to the list of clones
     if (link) {
         client.clones.set(message.id, cloned);
-        
-        
+        saveClones(client.clones);
     }
 
     return;
