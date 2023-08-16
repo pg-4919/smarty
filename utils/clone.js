@@ -46,7 +46,7 @@ module.exports = async (message, destination, link = false) => {
         if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0));
         fs.writeFileSync(
             require("path").join(path.root, "clones.json"),
-            JSON.stringify(client.clones.toJSON());
+            JSON.stringify(client.clones.toJSON())
         );
     }
 
