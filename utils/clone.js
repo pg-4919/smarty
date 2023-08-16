@@ -23,6 +23,7 @@ function saveClones(clones) {
 }
 
 module.exports = async (message, destination, link = false) => {
+    console.log(client.clones);
     const {
         attachments,
         author,
