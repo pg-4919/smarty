@@ -1,7 +1,10 @@
 "use strict";
 
 const discord = require("discord.js");
+const fs = require("fs");
+
 const reply = require("./reply.js");
+const path = require("./path.js");
 
 module.exports = async (message, destination, link = false) => {
     const {
@@ -40,7 +43,11 @@ module.exports = async (message, destination, link = false) => {
     if (link) {
         client.clones.set(message.id, cloned);
         client.clones.sort(message => message.createdTimestamp);
-        if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0))
+        if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0));
+        fs.writeFileSync(
+            require("path").join(path.root, "clones.json"),
+            JSON.stringify(client.clones.toJSON());
+        );
     }
 
     return;
