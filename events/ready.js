@@ -34,7 +34,7 @@ async function pruneRoles(guild) {
 module.exports = async client => {
     const guild = await client.guilds.fetch(client.config.guild);
     client.commands = new discord.Collection();
-    client.clones = new discord.Collection(JSON.parse(fs.readFileSync(`${path.root}/clones.json`)));
+    client.clones = new discord.Collection(JSON.parse(fs.readFileSync(`${utils.path.root}/clones.json`)));
 
     await updateCommands(client, guild);
     await updateCaches(guild);
