@@ -6,6 +6,21 @@ const fs = require("fs");
 const reply = require("./reply.js");
 const path = require("./path.js");
 
+async function fetchWebhook(destination) {
+    const webhooks = await destination.fetchWebhooks();
+    const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
+    return webhook;
+}
+
+async function saveClones(client) {
+    client.clones.sort(message => message.createdTimestamp);
+    if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0));
+
+    const clones = {};
+    client.clones.forEach((value, key) => clones[key] = value);
+    fs.writeFileSync(`${path.root}/clones.json`, JSON.stringify(clones));
+}
+
 module.exports = async (message, destination, link = false) => {
     const {
         attachments,
@@ -18,8 +33,7 @@ module.exports = async (message, destination, link = false) => {
         url
     } = message;
 
-    const webhooks = await destination.fetchWebhooks();
-    const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
+    const webhook = await fetchWebhook(destination);
 
     const button = [new discord.ActionRowBuilder().addComponents(
         new discord.ButtonBuilder()
@@ -43,9 +57,8 @@ module.exports = async (message, destination, link = false) => {
     // if the clone contains a link, add it to the list of clones
     if (link) {
         client.clones.set(message.id, cloned);
-        client.clones.sort(message => message.createdTimestamp);
-        if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0));
-        fs.writeFileSync(`${path.root}/clones.json`, JSON.stringify(client.clones.toJSON()));
+        
+        
     }
 
     return;
