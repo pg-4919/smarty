@@ -2,6 +2,9 @@
 
 const discord = require("discord.js");
 
-module.exports = content => discord.escapeMarkdown(content).replace(/\@everyone/g, "everyone");
-
+module.exports = content => discord.cleanContent(
+    discord.escapeMarkdown(content)
+        .replace(/\@everyone/g, "everyone")
+        .replace(/\@everyone/g, "here")
+)
 //content.replace(/([*])|(\|{2,})|(_{2,})|(^(> ))/g, "").replace(/\n/g, "");

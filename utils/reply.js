@@ -14,6 +14,6 @@ module.exports = async message => {
     if (client.clones.has(original.id))
         return `<:curved:${curved}> ${mention} [${content}](${client.clones.get(original.id).url})\n<:straight:${straight}>\n `;
     else
-    return `<:curved:${curved}> ${mention} [${content}](${original.url})\n<:straight:${straight}>\n `;
-    return reply;
+        return `<:curved:${curved}> ${mention} [${content}](${original.url})\n<:straight:${straight}>\n `;
+
 }
