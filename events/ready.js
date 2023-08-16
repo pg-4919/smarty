@@ -33,7 +33,7 @@ async function pruneRoles(guild) {
 
 function fetchClones() {
     const clones = new discord.Collection();
-    const serialized = JSON.parse(fs.readFileSync(`${path.root}/clones.json`));
+    const serialized = JSON.parse(fs.readFileSync(`${utils.path.root}/clones.json`));
     Object.entries(serialized).forEach(entry => clones.set(entry.key, entry.value));
     return clones;
 }
