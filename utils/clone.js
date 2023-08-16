@@ -40,16 +40,13 @@ module.exports = async (message, destination, link = false) => {
         components: link ? button : []
     }).catch(err => console.log);
 
+    // if the clone contains a link, add it to the list of clones
     if (link) {
         client.clones.set(message.id, cloned);
         client.clones.sort(message => message.createdTimestamp);
         if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0));
-        fs.writeFileSync(
-            require("path").join(path.root, "clones.json"),
-            JSON.stringify(client.clones.toJSON())
-        );
+        fs.writeFileSync(`${path.root}/clones.json`, JSON.stringify(client.clones.toJSON()));
     }
 
     return;
-
 }
