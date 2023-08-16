@@ -10,6 +10,6 @@ module.exports = async message => {
     const original = await channel.messages.fetch(reference.messageId);
     const content = clean(truncate(original.content, 50));
     const mention = `<@${(original.author.id || "1".repeat(19))}>`;
-    const reply = `<:curved:${curved}> ${mention} ${content}\n<:straight:${straight}>\n `;
+    const reply = `<:curved:${curved}> ${mention} [${content}](${original.url})\n<:straight:${straight}>\n `;
     return reply;
 }
