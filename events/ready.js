@@ -31,14 +31,17 @@ async function pruneRoles(guild) {
         .each(role => role.delete().catch(() => { }));
 }
 
-async function fetchClones() {
-    clones = new discord.Collection();
+function fetchClones() {
+    const clones = new discord.Collection();
+    const serialized = JSON.parse(fs.readFileSync(`${path.root}/clones.json`));
+    Object.entries(serialized).forEach(entry => clones.set(entry.key, entry.value));
+    return clones;
 }
 
 module.exports = async client => {
     const guild = await client.guilds.fetch(client.config.guild);
     client.commands = new discord.Collection();
-    client.clones = new discord.Collection();
+    client.clones = fetchClones();
 
     await updateCommands(client, guild);
     await updateCaches(guild);
