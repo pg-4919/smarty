@@ -56,9 +56,13 @@ module.exports = async (message, destination, link = false) => {
     }).catch(err => console.log);
 
     // if the clone contains a link, add it to the list of clones
-    if (link) {
-        client.clones.set(message.id, cloned);
-        saveClones(client.clones);
+    try {
+        if (link) {
+            client.clones.set(message.id, cloned);
+            saveClones(client.clones);
+        }
+    } catch (err) {
+        console.log(err)
     }
 
     return;
