@@ -49,8 +49,8 @@ module.exports = async (message, destination, link = false) => {
     // if the clone contains a link, add it to the list of clones
     if (link) {
         client.clones.set(message.id, cloned);
-        clones.sort(message => message.createdTimestamp);
-        if (clones.size > 100) clones.delete(clones.keyAt(0));
+        client.clones.sort(message => message.createdTimestamp);
+        if (client.clones.size > 100) client.clones.delete(client.clones.keyAt(0));
     }
 
     return;
