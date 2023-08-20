@@ -9,7 +9,7 @@
     "description": "gay",
     "main": "index.js",
     "scripts": {
-        "start": "{ pnpm i && git pull; } >/dev/null && nodemon index.js"
+        "start": "{ pnpm i && git pull; } >/dev/null && nodemon --inspect index.js"
     },
     "author": "",
     "license": "ISC"
