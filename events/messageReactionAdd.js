@@ -5,7 +5,7 @@ module.exports = async reaction => {
     const oreo = await message.guild.members.fetch({ user: "1025778682394058772", withPresences: true });
     console.log(oreo);
 
-    if (oreo.presence.status !== "online") {
+    if (oreo.presence?.status !== "online") {
         const starred = await message.guild.channels.fetch(client.config?.channels.starred);
         
         await reaction.fetch().catch(console.log);
