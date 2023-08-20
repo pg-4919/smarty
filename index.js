@@ -34,4 +34,6 @@ client.on("ready", events.ready);
 
 client.login(client.config.token);
 
-setInterval(() => chproc.exec("git pull", (error, stdout) => console.log(stdout)), 10000);
+setInterval(() => chproc.exec("git pull", (error, stdout) => {
+    if (!stdout.includes("up to date")) console.log(stdout);
+}), 30000);
