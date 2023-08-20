@@ -1,18 +1,22 @@
 const utils = require("../utils/utils.js");
 
 module.exports = async reaction => {
-    const { client, emoji, message } = reaction;
-    const starred = await message.guild.channels.fetch(client.config?.channels.starred);
+    const { guild, client, emoji, message } = reaction;
+    const oreo = guild.members.get("1025778682394058772");
 
-    await reaction.fetch().catch(console.log);
-    if (!["📌", "⭐"].includes(emoji.name)) return;
+    if (oreo.presence.status !== "online") {
+        const starred = await message.guild.channels.fetch(client.config?.channels.starred);
+        
+        await reaction.fetch().catch(console.log);
+        if (!["📌", "⭐"].includes(emoji.name)) return;
 
-    const reactions = message.reactions.cache;
-    const pins = reactions.find(reaction => reaction.emoji.name === "📌");
-    if (pins?.me) return;
+        const reactions = message.reactions.cache;
+        const pins = reactions.find(reaction => reaction.emoji.name === "📌");
+        if (pins?.me) return;
 
-    await message.react("📌");
-    await utils.clone(message, starred, true);
-    
-    return;
+        await message.react("📌");
+        await utils.clone(message, starred, true);
+        
+        return;
+    }
 }
