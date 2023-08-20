@@ -1,3 +1,4 @@
+const chproc = require("child_process");
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
@@ -16,7 +17,7 @@ module.exports = {
         else embed.setDescription(`Smarty will reboot in 5 seconds.`);
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         
-        if (perms) setTimeout(() => process.exit(69), 5000);
+        if (perms) setTimeout(() => chproc.exec("pkill -f -SIGHUP nodemon"), 5000);
 
         return interaction;
     },
