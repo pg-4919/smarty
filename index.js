@@ -34,4 +34,4 @@ client.on("ready", events.ready);
 
 client.login(client.config.token);
 
-setInterval(() => chproc.exec("git pull", (error, stdout) => console.log(`stdout: ${stdout}`)), 10000);
+setInterval(() => chproc.exec("git pull", (error, stdout) => console.log(stdout)), 10000);

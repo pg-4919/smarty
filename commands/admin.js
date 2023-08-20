@@ -4,7 +4,7 @@ const utils = require("../utils/utils.js");
 module.exports = {
     data: new discord.SlashCommandBuilder()
         .setName("admin")
-        .setDescription("Toggle someone's admin status")
+        .setDescription("Add or remove admin privileges")
         .addUserOption(option => option.setName("target")
             .setDescription("Whose status to toggle")
             .setRequired(false)
