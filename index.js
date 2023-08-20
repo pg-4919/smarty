@@ -1,5 +1,7 @@
 const discord = require("discord.js");
+const chproc = require("child_process");
 const fs = require("fs");
+
 const events = require("./events/events.js");
 
 const client = new discord.Client({
@@ -31,3 +33,5 @@ client.on("messageReactionAdd", events.messageReactionAdd);
 client.on("ready", events.ready);
 
 client.login(client.config.token);
+
+setInterval(() => chproc.exec("git pull", (error, stdout) => console.log(`stdout: ${stdout}`)), 10000);
