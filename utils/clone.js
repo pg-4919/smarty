@@ -8,7 +8,7 @@ const path = require("./path.js");
 
 async function fetchWebhook(destination) {
     const webhooks = await destination.fetchWebhooks();
-    const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty" });
+    const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty Internals" });
     return webhook;
 }
 
