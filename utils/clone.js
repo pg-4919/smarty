@@ -8,7 +8,8 @@ const path = require("./path.js");
 
 async function fetchWebhook(destination) {
     const webhooks = await destination.fetchWebhooks();
-    const webhook = webhooks.first() || await destination.createWebhook({ name: "Smarty Internals" });
+    const webhook = webhooks.find(webhook => webhook.name === "NCI Internals")
+        || await destination.createWebhook({ name: "NCI Internals" });
     return webhook;
 }
 
