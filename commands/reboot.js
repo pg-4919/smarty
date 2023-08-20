@@ -15,7 +15,7 @@ module.exports = {
 
         if (!perms) embed.setDescription(`You don't have permission to use this command.`);
         else embed.setDescription(`Smarty will reboot in 5 seconds.`);
-        await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
+        await interaction.reply({ embeds: [embed], ephemeral: true });
         
         if (perms) setTimeout(() => chproc.exec("pkill -f -SIGHUP nodemon"), 5000);
 
