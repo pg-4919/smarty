@@ -27,7 +27,6 @@ module.exports = {
         }
 
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
-
         return interaction;
     },
 }
