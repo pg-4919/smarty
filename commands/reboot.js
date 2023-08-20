@@ -8,7 +8,7 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const { member, user, options, client } = interaction;
+        const { member, user, client } = interaction;
         const embed = utils.embed(member);
         const perms = client.config.admins.includes(user.id);
 
