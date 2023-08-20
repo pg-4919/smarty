@@ -16,7 +16,7 @@ module.exports = {
         else embed.setDescription(`Smarty will reboot in 5 seconds.`);
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         
-        if (perms) setTimeout(5000, () => process.exit(1));
+        if (perms) setTimeout(process.exit, 5000);
 
         return interaction;
     },
