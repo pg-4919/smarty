@@ -3,6 +3,7 @@ const utils = require("../utils/utils.js");
 module.exports = async reaction => {
     const { client, emoji, message } = reaction;
     const oreo = message.guild.members.fetch("1025778682394058772");
+    oreo.fetch(true);
 
     if (oreo.presence.status !== "online") {
         const starred = await message.guild.channels.fetch(client.config?.channels.starred);
