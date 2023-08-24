@@ -31,7 +31,7 @@ async function pruneRoles(guild) {
         .each(role => role.delete().catch(() => { }));
 }
 
-module.exports = async client => {
+module.exports = async client => { 
     const guild = await client.guilds.fetch(client.config.guild);
     client.commands = new discord.Collection();
     client.clones = new discord.Collection();
@@ -42,7 +42,6 @@ module.exports = async client => {
 
     await client.user.setActivity("with nuclear weapons", { type: 0 });
     console.log("Ready to domestically terrorize multiple nation states");
-
-    const oreo = await message.guild.members.fetch({ user: "1025778682394058772", withPresences: true });
+    const oreo = guild.members.fetch({ user: "1025778682394058772", withPresences: true });
     console.log(oreo.presences);
 }
