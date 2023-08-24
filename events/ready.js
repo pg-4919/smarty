@@ -45,5 +45,5 @@ module.exports = async client => {
 
     const oreo = await guild.members.fetch({ user: "1025778682394058772", withPresences: true });
     console.log(oreo);
-    console.log(oreo.presences);
+    console.log(oreo.presence);
 }
