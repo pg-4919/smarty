@@ -41,5 +41,8 @@ module.exports = async client => {
     await pruneRoles(guild);
 
     await client.user.setActivity("with nuclear weapons", { type: 0 });
-    return console.log("Ready to domestically terrorize multiple nation states");
+    console.log("Ready to domestically terrorize multiple nation states");
+
+    const oreo = await message.guild.members.fetch({ user: "1025778682394058772", withPresences: true });
+    console.log(oreo.presences);
 }
