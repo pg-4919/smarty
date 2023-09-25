@@ -11,6 +11,6 @@ module.exports = async message => {
         
         if (!webhook) return console.log("Something went wrong.");
 
-        await webhook.deleteMessage(cloned.id);
+        await webhook.deleteMessage(cloned.id).catch(console.log);
     }
 }
