@@ -6,7 +6,4 @@ module.exports = async (interaction) => {
 
     if (interaction.isCommand() && ((channel.id !== news)))
         client.commands.get(commandName).respond(interaction).then(utils.share.await).catch(console.log);
-
-    if (interaction.isModalSubmit()) 
-        client.commands.get(customId.split("_")[0]).modal(interaction).catch(console.log);
 }
