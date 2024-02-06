@@ -9,10 +9,9 @@ module.exports = {
             .setDescription("Where to send it")
             .setRequired(false)
         )
-        /*.addStringOption(option => option.setName("message")
-            .setDescription("What to send")
-            .setRequired(true)
-        )*/
+        .addStringOption(option =>
+            option.setName('input')
+                .setDescription('The input to echo back'))
         .toJSON(),
 
     async respond(interaction) {
