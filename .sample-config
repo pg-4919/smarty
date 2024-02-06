@@ -1,0 +1,17 @@
+{
+    "token": "<token>",
+    "guild": "<guild>",
+    "channels": {
+        "news": "<news>",
+        "chat": "<chat>",
+        "starred": "<starred>"
+    },
+    "admins": [
+        "<admin1>",
+        "<admin2>"
+    ],
+    "emojis": {
+        "curved": "<curved>",
+        "straight": "<straight>"
+    }
+}
