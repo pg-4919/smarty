@@ -17,7 +17,7 @@ module.exports = {
     async respond(interaction) {
         const { user, options, client } = interaction;
         
-        const channel = options.getMember("channel") || interaction.channel;
+        const channel = options.getChannel("channel") || interaction.channel;
         const message = options.getString("message");
 
         if (!client.config.admins.includes(user.id))
