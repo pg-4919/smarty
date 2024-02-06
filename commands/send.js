@@ -9,10 +9,10 @@ module.exports = {
             .setDescription("Where to send it")
             .setRequired(false)
         )
-        .addStringOption(option => option.setName("message")
+        /*.addStringOption(option => option.setName("message")
             .setDescription("What to send")
             .setRequired(true)
-        )
+        )*/
         .toJSON(),
 
     async respond(interaction) {
