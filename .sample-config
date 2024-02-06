@@ -1,17 +1,16 @@
 {
-    "token": "<token>",
-    "guild": "<guild>",
+    "token": "",
+    "guild": "803315311663251537",
     "channels": {
-        "news": "<news>",
-        "chat": "<chat>",
-        "starred": "<starred>"
+        "news": "997661924546322472",
+        "chat": "1014256055330549842",
+        "starred": "1016113247662919760"
     },
     "admins": [
-        "<admin1>",
-        "<admin2>"
+        "789695310875197460"
     ],
     "emojis": {
-        "curved": "<curved>",
-        "straight": "<straight>"
+        "curved": "1034653422416302151",
+        "straight": "1034653871613681714"
     }
 }
