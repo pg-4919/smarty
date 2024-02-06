@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const utils = require("../utils/utils.js");
+const utils = require("../../utils/utils.js");
 
 module.exports = {
     data: new discord.SlashCommandBuilder()
@@ -23,7 +23,8 @@ module.exports = {
         if (!client.config.admins.includes(user.id))
             embed.setDescription(`You don't have permission to use this command.`);
         else {
-            channel.send(message.content);
+            interaction.reply({ content: "ok bro", ephemeral: "true" })
+            channel.send(message);
         }
     },
 }
