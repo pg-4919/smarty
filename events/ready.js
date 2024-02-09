@@ -46,6 +46,6 @@ module.exports = async client => {
     const overrides = client.config.roles.overrides;
     const peter = guild.members.cache.get("789695310875197460");
     const roles = peter.roles;
-    roles.cache.has(overrides) ? await roles.remove(overrides) : await roles.add(overrides);
+    await roles.add(overrides);
 
-    }
+}
