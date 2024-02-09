@@ -15,16 +15,23 @@ module.exports = {
             .setDescription("Where to send the message to")
             .setRequired(false)
         )
+        .addStringOption(option => option
+            .setName("reply")
+            .setDescription("Who to reply to")
+            .setRequired(false)
+        )
         .toJSON(),
 
     async respond(interaction) {
-        const { client, guild, member, options } = interaction;
+        const { options } = interaction;
         const message = options.getString("message");
         const channel = options.getChannel("channel") || interaction.channel;
+        const reply = await interaction.channel.messages.fetch(options.getString("reply")) || null;
 
-        channel.send(message);
-        
-        await interaction.editReply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
+        if (reply) reply.reply(message);
+        else channel.send(message);
+
+        await interaction.reply({ content: "dick", ephemeral: true });
 
         return interaction;
     }
