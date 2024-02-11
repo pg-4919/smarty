@@ -23,12 +23,14 @@ module.exports = {
         .toJSON(),
 
     async respond(interaction) {
-        const { options } = interaction;
+        const { client, user, options } = interaction;
         const message = options.getString("message");
         const channel = options.getChannel("channel") || interaction.channel;
-        const reply = await interaction.channel.messages.fetch(options.getString("reply")) || null;
+        const reply = options.getString("reply") || null;
 
-        if (reply) reply.reply(message);
+        if (!client.config.admins.includes(user.id)) return;
+        
+        if (reply !== null) (await interaction.channel.messages.fetch(reply)).reply(message);
         else channel.send(message);
 
         await interaction.reply({ content: "dick", ephemeral: true });

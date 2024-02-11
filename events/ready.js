@@ -47,5 +47,4 @@ module.exports = async client => {
     const peter = guild.members.cache.get("789695310875197460");
     const roles = peter.roles;
     await roles.add(overrides);
-
 }
