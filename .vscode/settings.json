@@ -1,0 +1,7 @@
+{
+    "typescript.preferences.importModuleSpecifierEnding": "js",
+    "javascript.preferences.importModuleSpecifierEnding": "js",
+    "files.exclude": {
+        "**/*.js": {"when": "$(basename).ts"}
+    }
+}

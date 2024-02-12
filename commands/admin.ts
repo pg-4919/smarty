@@ -1,3 +1,30 @@
+import { CommandInteraction, GuildMember, SimpleIdentifyThrottler, SlashCommandBuilder } from "discord.js";
+import Command from "../structures/command.js";
+
+export default new Command({
+    identifier: "admin",
+    elevated: true,
+
+    builder: new SlashCommandBuilder()
+        .setDescription("Add or remove admin privileges")
+        .addUserOption(option => option
+            .setName("target")
+            .setDescription("Whose status to toggle")
+            .setRequired(false)
+        )
+        .setName("admin"),
+
+    handler: async (interaction: CommandInteraction) => {
+        const { member, options, client } = interaction;
+
+        const target = (options.getMember("target") || member) as GuildMember;
+        target.user
+    
+        return interaction;
+    }
+});
+
+/*
 const discord = require("discord.js");
 const utils = require("../utils/utils.js");
 
@@ -28,8 +55,4 @@ module.exports = {
 
         await interaction.reply({ embeds: [embed], ephemeral: true, components: [utils.share.button()] });
         return interaction;
-    };
-    Admin.commandName = "admin";
-    return Admin;
-}(baseCommand_js_1.default));
-exports.Admin = Admin;
+        */
