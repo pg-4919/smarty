@@ -15,10 +15,19 @@ module.exports = async message => {
     }
 
     if (client.config.admins.includes(author.id)) {
-        if (content.includes("smarty smite") || content.includes("smarty, smite")) {
+        if (content.toLowerCase().includes("smarty smite") || content.toLowerCase().includes("smarty, smite")) {
             console.log("Ok!");
             message.react("👍")
             smite(message);
+        }
+    }
+
+    if (author.id == "784598998664085556") {
+        
+        if (mentions.everyone) {
+            message.reply("boo, bad post 👎");
+        } else {
+            message.react("👎");
         }
     }
 
