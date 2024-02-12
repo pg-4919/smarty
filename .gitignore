@@ -1,5 +1,6 @@
 # Local Smarty data
 .config
+.vscode
 clones.json
 package-lock.json
 pnpm-lock.yaml
