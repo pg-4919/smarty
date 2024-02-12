@@ -16,8 +16,6 @@ module.exports = async message => {
 
     if (client.config.admins.includes(author.id)) {
         if (content.toLowerCase().includes("smarty smite") || content.toLowerCase().includes("smarty, smite")) {
-            console.log("Ok!");
-            message.react("👍")
             smite(message);
         }
     }

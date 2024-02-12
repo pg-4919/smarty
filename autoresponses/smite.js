@@ -25,6 +25,8 @@ module.exports = async (message) => {
     const { channel, reference } = message;
 
     if (reference) {
+        message.react("👍");
+        
         const reply = await channel.messages.fetch(reference.messageId);
 
         const target = reply.author;
