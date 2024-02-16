@@ -40,7 +40,7 @@ module.exports = async client => {
     await updateCaches(guild);
     await pruneRoles(guild);
 
-    await client.user.setActivity("with nuclear weapons", { type: 0 });
+    await client.user.setActivity("with your mom's pendulous balls", { type: 0 });
     console.log("Ready to domestically terrorize multiple nation states");
 
     const overrides = client.config.roles.overrides;

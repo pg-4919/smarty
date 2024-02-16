@@ -21,12 +21,19 @@ async function smite(member) {
     return buffer;
 }
 
+async function fetchWebhook(destination) {
+    const webhooks = await destination.fetchWebhooks();
+    const webhook = webhooks.find(webhook => webhook.name === "NCI Internals")
+        || await destination.createWebhook({ name: "NCI Internals" });
+    return webhook;
+}
+
 module.exports = async (message) => {
-    const { channel, reference } = message;
+    const { client, channel, reference } = message;
 
     if (reference) {
         message.react("👍");
-        
+
         const reply = await channel.messages.fetch(reference.messageId);
 
         const target = reply.author;
@@ -40,5 +47,7 @@ module.exports = async (message) => {
         }
 
         channel.send({ files: [filename] });
+
+        //channel.send("https://media.discordapp.net/attachments/1014256055330549842/1206631983266926662/smite_784598998664085556.gif?ex=65dcb69a&is=65ca419a&hm=f4e39afe55449ad4d5e2e8ee4af5b790d6ab213a84346c558a0a68cf23afa28b&=")
     }
 }

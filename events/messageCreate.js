@@ -14,20 +14,10 @@ module.exports = async message => {
         if (!everyone) message.delete().catch(console.log);
     }
 
-    if (client.config.admins.includes(author.id)) {
-        if (content.toLowerCase().includes("smarty smite") || content.toLowerCase().includes("smarty, smite")) {
-            smite(message);
-        }
+    if (content.toLowerCase().includes("smarty smite") || content.toLowerCase().includes("smarty, smite")) {
+        smite(message);
     }
 
-    if (author.id == "784598998664085556") {
-        
-        if (mentions.everyone) {
-            message.reply("boo, bad post 👎");
-        } else {
-            message.react("👎");
-        }
-    }
 
     return;
 }
