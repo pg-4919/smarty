@@ -12,5 +12,12 @@
         "start": "node index.js"
     },
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "pkg": {
+        "scripts": "commands/*.js",
+        "targets": [
+            "node16"
+        ]
+    },
+    "bin": "index.js"
 }
