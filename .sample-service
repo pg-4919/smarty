@@ -1,0 +1,11 @@
+[Unit]
+Description=A small Discord bot
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+WorkingDirectory=%h/Server/smarty
+ExecStart=npm start
+
+[Install]

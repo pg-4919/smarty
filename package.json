@@ -1,0 +1,23 @@
+{
+    "dependencies": {
+        "discord.js": "^14.12.1",
+        "dotenv": "^16.0.3",
+        "mathjs": "^11.8.2"
+    },
+    "name": "smarty",
+    "version": "1.3.1",
+    "description": "gay",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "pkg": {
+        "scripts": "commands/*.js",
+        "targets": [
+            "node16"
+        ]
+    },
+    "bin": "index.js"
+}
