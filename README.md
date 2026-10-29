@@ -24,7 +24,7 @@ Smarty's design remains one of the cleanest I have ever made, or perhaps it woul
 
 The index.js file logs into the Discord API using discord.js and registers each event. From there, everything is handled by the event files. Slash commands are handled through specialized command files, which export standardized "respond" functions that themselves return Interaction objects that can be used in different areas of the code.
 
-The syntax itself is also pretty clean and concise, in my opinion, utilizing many advanced features of JavaScript, such as the ternary operator, object destructuring, arrow syntax, and many other bits of syntactic sugar. In many ways, Smarty is my love letter to the language. It is certainly the most complete and most complex project I have ever made.
+The syntax itself is also pretty clean and concise, in my opinion, utilizing many advanced features of JavaScript, such as the ternary operator, object destructuring, arrow syntax, and many other bits of syntactic sugar. In many ways, Smarty is my love letter to the language. It is certainly the most complete and most complex project under my name.
 
 ## Config ##
 ```
