@@ -3,7 +3,7 @@ Smarty was originally written as a Discord bot to annoy my friends. Eventually I
 ## Features ##
 Smarty's biggest purpose was to control a dedicated announcement channel. To keep things looking clean, it would purge all messages that weren't announcements (indicated by a mention of @everyone or @here). Most impressively, it would clone the message to the chat channel to allow everyone to discuss and reply to the announcement.
 
-Smarty's cloning behavior was by far the most impressive and singularly most complicated part of its programming. It would read in the user's avatar and username, dynamically update the first free webhook to that information, and send the message, along with attachments, using that webhook, creating a perfect clone of the user. In addition, to handle and display messages that were replies to other messages, it could use specially designed emojis in another server. It would also include a button or link to jump to the original message. To my knowledge, this was the most advanced cloning utility of any Discord bot at the time.
+Smarty's cloning behavior was by far the most impressive and singularly most complicated part of its programming. It would read in the user's avatar and username, dynamically update the first free webhook to that information, and send the message, along with attachments, using that webhook, creating a perfect clone of the user. In addition, to handle and display messages that were replies to other messages, it could use specially designed emojis in another server. It would also include a button or link to jump to the original message. Smarty was also able to detect message deletions and to delete any messages cloned from them. To my knowledge, this was the most advanced cloning utility of any Discord bot at the time.
 
 Smarty also handled a pin channel to get around Discord's native pin limits. Using the same cloning behavior, it would listen for the pin emoji reaction event and clone any messages to the dedicated channel.
 
@@ -20,7 +20,11 @@ Or strike them down with unlimited power ...
 _That last one is meant to be a GIF of the user's avatar getting blown up by lightning, but it doesn't really show well on Github._
 
 ## Architecture ##
-Smarty's architecture remains one of the cleanest I have ever designed. Designed in a modular fashion, it makes use of NodeJS's require system to split functionality into several dedicated files.
+Smarty's design remains one of the cleanest I have ever made, or perhaps it would be more accurate to say it is the only clean one I have ever made. Built in a modular fashion, it makes use of NodeJS's require system to split functionality into several dedicated files, further split into categories such as utils and commands. Each file is meant to be as simple as possible.
+
+The index.js file logs into the Discord API using discord.js and registers each event. From there, everything is handled by the event files. Slash commands are handled through specialized command files, which export standardized "respond" functions that themselves return Interaction objects that can be used in different areas of the code.
+
+The syntax itself is also pretty clean and concise, in my opinion, utilizing many advanced features of JavaScript, such as the ternary operator, object destructuring, arrow syntax, and many other bits of syntactic sugar. In many ways, Smarty is my love letter to the language. It is certainly the most complete and most complex project I have ever made.
 
 ## Config ##
 ```
